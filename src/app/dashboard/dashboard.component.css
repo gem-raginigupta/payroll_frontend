@@ -1,0 +1,110 @@
+.container-fluid {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.mat-sidenav-container {
+  height: 100%;
+}
+
+  .sidenav {
+    background: #373441;
+    width: 230px;
+    height: 100%;
+    text-align: center;
+  }
+
+  a {
+    text-decoration-line: none;
+    font-family: Helvetica Regular;
+    font-size: 14px !important;
+  }
+
+  .horizontal-divider {
+    margin-left: 5px;
+    width: 1px;
+    background-color: #dfe0e3;
+  }
+
+  .search-icon {
+    color: #b7b7b9;
+  }
+
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #cecfd3;
+    opacity: 1; /* Firefox */
+    font-family: Helvetica Regular;
+  }
+
+  .search-box {
+    border: 1px solid #cecfd3;
+    height: 30px;
+    font-family: Helvetica Regular;
+    font-size: 14px;
+    padding: 5px;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  .notf-icon {
+    color: #b7b7b9;
+  }
+
+  .mat-divider {
+    margin-top: 10px;
+    background-color: #4d4a55;
+  }
+
+  .mat-list-item {
+    margin-top: 10px;
+    padding: 20px;
+    color: #8f8c9b;
+  }
+
+  :host ::ng-deep .mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content {
+    padding: 0px 40px;
+}
+
+.mat-tab-label {
+    width: 50% !important;
+}
+
+.sidenav-icon {
+  color: #8f8c9b;
+}
+
+.dashboard :host ::ng-deep.mat-tab-label, :host ::ng-deep.mat-tab-label-active{
+    width: 50%;
+  }
+
+.menu-btn {
+  color: #b7b7b9;
+  background-color: white;
+  border: none;
+}
+
+.header{
+  height: 70px;
+  border-bottom: 1px solid #dfe0e3;
+}
+
+.user {
+  font-size: 14px;
+  font-family: Helvetica Regular;;
+  color: purple;
+  font-weight: bold;
+}
+
+.user-icon {
+  color: purple;
+}
+
+.mat-badge-content {
+  background-color: #7d00e0;
+  color: white;
+}
+
+

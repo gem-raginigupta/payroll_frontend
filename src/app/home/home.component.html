@@ -1,0 +1,179 @@
+<div class="container-fluid">
+  <mat-horizontal-stepper labelPosition="bottom" #stepper linear>
+    <mat-step [stepControl]="personalDetailsFormGroup">
+      <form [formGroup]="personalDetailsFormGroup" class="text-center mt-2">
+        <ng-template matStepLabel>Personal Details</ng-template>
+        <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>First Name</mat-label>
+          <input autocomplete="off" matInput formControlName="firstName" placeholder="Your First Name" required>
+        </mat-form-field>
+        <!-- <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Middle Name</mat-label>
+          <input matInput formControlName="middleName" placeholder="Your Middle Name">
+        </mat-form-field> -->
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Last Name</mat-label>
+          <input autocomplete="off" matInput formControlName="lastName" placeholder="Your Last Name" required>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Permanent Address</mat-label>
+          <input autocomplete="off" matInput formControlName="perAddress" placeholder="Ex. 1 Main St, New York, NY" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Correspondence Address</mat-label>
+          <input autocomplete="off" matInput formControlName="corrAddress" placeholder="Ex. 1 Main St, New York, NY">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Aadhar Card Number</mat-label>
+          <input autocomplete="off" matInput formControlName="aadharNo" placeholder="Aadhar Card Number" required>
+        </mat-form-field>
+    </div>
+      <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>DOB</mat-label>
+          <input autocomplete="off" matInput formControlName="dob" placeholder="Date Of Birth" required [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1 color="primary"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>DOJ</mat-label>
+          <input autocomplete="off" matInput formControlName="doj" placeholder="Date Of Joining" required [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>DOE</mat-label>
+          <input autocomplete="off" matInput formControlName="doe" placeholder="Date Of Exit" [matDatepicker]="picker3">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3 color="primary"></mat-datepicker>
+        </mat-form-field>
+        </div>
+    <div class="row justify-content-around mb-4">
+      <mat-form-field appearance="outline" class="mat-elevation-z3">
+        <mat-label>Permanent Account Number</mat-label>
+        <input autocomplete="off" matInput formControlName="acctNo" placeholder="Permanent Account Number" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mat-elevation-z3">
+        <mat-label>UAN Number</mat-label>
+        <input autocomplete="off" matInput formControlName="uanNo" placeholder="UAN Number" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="mat-elevation-z3">
+        <mat-label>PN Number</mat-label>
+        <input autocomplete="off" matInput formControlName="pnNo" placeholder="PN Number" required>
+      </mat-form-field>
+  </div>
+        <div class="mt-5">
+          <button mat-button class="save-btn mr-3">SAVE</button>
+          <button mat-button matStepperNext class="action-btn">NEXT</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="bankDetailsFormGroup">
+      <form [formGroup]="bankDetailsFormGroup" class="text-center mt-2" class="bank-details-height">
+        <ng-template matStepLabel>Bank Details</ng-template>
+        <div class="row justify-content-around mb-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>Bank Account Number</mat-label>
+            <input autocomplete="off" matInput formControlName="bankAccountNo" placeholder="Bank Account Number" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>Bank Account Name</mat-label>
+            <input autocomplete="off" matInput formControlName="bankAccountName" placeholder="Bank Account Name" required>
+          </mat-form-field>
+        </div>
+        <div class="row justify-content-around mb-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>Bank Account Address</mat-label>
+            <input autocomplete="off" matInput formControlName="bankAccountAddress" placeholder="Bank Account Address" required>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>Bank Account IFSC</mat-label>
+            <input autocomplete="off" matInput formControlName="bankAccountIFSC" placeholder="Bank Account IFSC" required>
+          </mat-form-field>
+        </div>
+        <div class="bank-details-btns">
+          <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
+          <button mat-button class="save-btn mr-3">SAVE</button>
+          <button mat-button matStepperNext class="action-btn">NEXT</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="ctcDetailsFormGroup">
+      <form [formGroup]="ctcDetailsFormGroup" class="text-center mt-2">
+        <ng-template matStepLabel>CTC Details</ng-template>
+        <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Basic Pay</mat-label>
+          <input autocomplete="off" matInput formControlName="basicPay" placeholder="Basic Pay" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>HRA</mat-label>
+          <input autocomplete="off" matInput formControlName="hra" placeholder="HRA" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Special Allowance</mat-label>
+          <input autocomplete="off" matInput formControlName="specialAllowance" placeholder="Special Allowance" required>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Conveyance Allowance</mat-label>
+          <input autocomplete="off" matInput formControlName="conveyanceAllowance" placeholder="Conveyance Allowance" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Provident Fund</mat-label>
+          <input autocomplete="off" matInput formControlName="pf" placeholder="Provident Fund" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Standard Deductions</mat-label>
+          <input autocomplete="off" matInput formControlName="standardDeductions" placeholder="Standard Deductions" required>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Group Health Insurance</mat-label>
+          <input autocomplete="off" matInput formControlName="groupHealthInsurance" placeholder="Group Health Insurance" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Gross Salary</mat-label>
+          <input autocomplete="off" matInput formControlName="grossSalary" placeholder="Gross Salary" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Joining Bonus</mat-label>
+          <input autocomplete="off" matInput formControlName="joiningBonus" placeholder="Joining Bonus" required>
+        </mat-form-field>
+      </div>
+      <div class="row justify-content-around mb-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Variable</mat-label>
+          <input autocomplete="off" matInput formControlName="variable" placeholder="Variable" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>Gratuity Benefits Total CTC</mat-label>
+          <input autocomplete="off" matInput formControlName="gratuityBenefitsTotalCTC" placeholder="Gratuity Benefits Total CTC" required>
+        </mat-form-field>
+      </div>
+        <div class="mt-5">
+          <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
+          <button mat-button class="save-btn mr-3">SAVE</button>
+          <button mat-button (click)="stepper.reset()" class="action-btn">RESET</button>
+        </div>
+      </form>
+    </mat-step>
+    <ng-template matStepperIcon="number">
+      <mat-icon>none</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="done">
+      <mat-icon>done_outline</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="edit">
+      <mat-icon>done_outline</mat-icon>
+    </ng-template>
+    <!-- <ng-template matStepperIcon="normal">
+      <mat-icon>none</mat-icon>
+    </ng-template> -->
+  </mat-horizontal-stepper>
+  </div>

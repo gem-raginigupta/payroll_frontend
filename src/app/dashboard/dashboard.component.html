@@ -1,0 +1,62 @@
+<div class="container-fluid dashboard">
+  <mat-sidenav-container autosize>
+    <mat-sidenav #sidenav class="sidenav" mode="side" opened="true">
+      <img width="200px" height="100px" src="../../assets/images/gemlogo.png">
+      <mat-nav-list>
+        <!-- <div *ngFor="let link of sidebarTab">
+          <a mat-list-item [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <mat-icon class="sidenav-icon">{{link.icon}}</mat-icon>
+              &nbsp;
+            {{link.label}}
+          </a>
+        </div> -->
+        <a mat-list-item routerLink="./home" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <mat-icon class="sidenav-icon">home</mat-icon>
+            &nbsp;
+          Home
+        </a>
+
+        <a mat-list-item routerLink="./empDetails" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <mat-icon class="sidenav-icon">person</mat-icon>
+            &nbsp;
+          Employee Details
+        </a>
+
+        <a mat-list-item routerLink="./payroll" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <mat-icon class="sidenav-icon">credit_card</mat-icon>
+            &nbsp;
+          Payroll
+        </a>
+
+        <mat-divider></mat-divider>
+
+        <a mat-list-item routerLink="./settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+          <mat-icon class="sidenav-icon">settings</mat-icon>
+            &nbsp;
+          Settings
+        </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="row-col-12">
+          <div class="header d-flex align-items-md-center justify-content-between">
+            <button class="menu-btn ml-3" mat-icon-button>
+                  <mat-icon matTooltip="Menu" (click)="sidenav.toggle()">menu</mat-icon>
+              </button>
+              <div class="d-flex">
+                <!-- <input class="search-box" placeholder="Search">
+                <mat-icon class="search-icon mr-2 mt-1">search</mat-icon> -->
+                <mat-icon [matBadge]="1" matBadgeSize="small" class="notf-icon mr-2 mt-1">notifications</mat-icon>
+                <div class="horizontal-divider"></div>
+              <p class="user mr-2 ml-5 mt-1">Ragini Gupta</p>
+            <mat-icon class="user-icon mt-1 mr-2">person</mat-icon>
+            </div>
+        </div>
+        <div>
+          <router-outlet></router-outlet>
+         </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
