@@ -8,10 +8,12 @@ import {
   MatInputModule,
   MatListModule,
   MatNativeDateModule,
+  MatPaginatorModule,
   MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
   MatStepperModule,
+  MatTableModule,
 } from '@angular/material';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
@@ -31,7 +33,9 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [
     {

@@ -17,8 +17,10 @@
 
   a {
     text-decoration-line: none;
-    font-family: Helvetica Regular;
-    font-size: 14px !important;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px !important;
   }
 
   .horizontal-divider {
@@ -28,11 +30,11 @@
   }
 
   .search-icon {
-    color: #b7b7b9;
+    color: #C5C7CD;
   }
 
   ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #cecfd3;
+    color: rgba(17, 17, 17, 0.48);
     opacity: 1; /* Firefox */
     font-family: Helvetica Regular;
   }
@@ -47,10 +49,6 @@
 
   input:focus {
     outline: none;
-  }
-
-  .notf-icon {
-    color: #b7b7b9;
   }
 
   .mat-divider {
@@ -81,7 +79,7 @@
   }
 
 .menu-btn {
-  color: #b7b7b9;
+  color: #C5C7CD;
   background-color: white;
   border: none;
 }
@@ -92,19 +90,90 @@
 }
 
 .user {
-  font-size: 14px;
-  font-family: Helvetica Regular;;
-  color: purple;
-  font-weight: bold;
+  color: #6E41E2;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
 }
 
 .user-icon {
-  color: purple;
+  color: #6E41E2;
 }
 
 .mat-badge-content {
-  background-color: #7d00e0;
+  background-color: #5D38DB;
   color: white;
 }
+
+
+span {
+  width: 10px;
+}
+
+.notf-icon {
+  color: #C5C7CD;
+  cursor: pointer;
+}
+
+.notifications {
+  background-color: white;
+  right: 8px;
+  width: 300px;
+  position: absolute;
+  height: 400px;
+  z-index: 99;
+  top: 40px;
+  border: 1px solid rgb(180, 177, 177);
+}
+
+.notf-header {
+  background-color: #ebebeb;
+  font-family: Helvetica regular;
+  text-align: center;
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.notf-item {
+  font-family: Helvetica regular;
+  font-size: 14px;
+  width: 305px;
+  padding: 5px 0 5px 5px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.notf-content {
+  height: 333px;
+  overflow-y: scroll;
+}
+
+.active-notf-content {
+  font-family: Helvetica regular;
+  font-size: 14px;
+  padding: 5px 0 5px 5px;
+  border-bottom: 1px solid white;
+  background-color: rgb(215, 232, 238);
+}
+
+.notf-footer {
+  background-color: #ebebeb;
+  height: 20px;
+  border-top: 1px solid lightgray;
+}
+
+.notf-time {
+  float: right;
+    color: gray;
+    font-size: 10px;
+}
+
+.no-notf {
+  display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
 
 

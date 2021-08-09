@@ -47,10 +47,23 @@
               <div class="d-flex">
                 <!-- <input class="search-box" placeholder="Search">
                 <mat-icon class="search-icon mr-2 mt-1">search</mat-icon> -->
-                <mat-icon [matBadge]="1" matBadgeSize="small" class="notf-icon mr-2 mt-1">notifications</mat-icon>
+                <mat-icon [matBadge]="1" matBadgeSize="small" class="notf-icon mr-2 mt-1" (click)="openNotifications($event)">notifications</mat-icon>
                 <div class="horizontal-divider"></div>
               <p class="user mr-2 ml-5 mt-1">Ragini Gupta</p>
             <mat-icon class="user-icon mt-1 mr-2">person</mat-icon>
+
+            <div class="notifications" *ngIf="showNotifications">
+              <div class="notf-header">Notifications</div>
+              <div class="notf-content">
+                <div *ngIf="notifications.length; else noNotf">
+              <!-- <div class="row notf-item" [class.active-notf-content]="notification.is_read === false" *ngFor="let notification of notifications">
+                <div class="col-md-8">{{notification.text}}</div><div class="notf-time col-md-4">{{notification.date_time}}</div>
+              </div> -->
+            </div>
+            <ng-template #noNotf><div class="no-notf">No new notification.</div></ng-template>
+            </div>
+              <div class="notf-footer"></div>
+            </div>
             </div>
         </div>
         <div>
