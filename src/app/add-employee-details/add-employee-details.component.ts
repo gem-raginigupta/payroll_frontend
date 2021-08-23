@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar, MatStepper } from '@angular/material';
 import { EmployeeService } from '../shared/services/employee.service';
 import * as moment from 'moment';
 
@@ -16,18 +16,23 @@ export class AddEmployeeDetailsComponent implements OnInit {
   bankDetailsFormGroup: FormGroup;
   ctcDetailsFormGroup: FormGroup;
   date: string;
-  personalFormDetails: any;
-  bankFormDetails: any;
-  ctcFormDetails: any;
+  personalFormDetails: any = [];
+  bankFormDetails: any = [];
+  ctcFormDetails: any = [];
+  CTCComponentsDetails: any[] = [];
+  calculatedPayroll: any[] = [];
+  durationInSeconds = 5;
+  @ViewChild('stepper', {static: true}) private stepper: MatStepper;
   constructor(public dialogRef: MatDialogRef<AddEmployeeDetailsComponent>, private _formBuilder: FormBuilder,
-    private employeeService: EmployeeService) {
+    private employeeService: EmployeeService, private _snackBar: MatSnackBar) {
       let currentDate = new Date();
       this.date = formatDate(currentDate, 'dd/MM/yyyy HH:mm:ss', 'en-US');
+      this.getCTCCompoenets();
     }
 
   ngOnInit() {
     this.personalDetailsFormGroup = this._formBuilder.group({
-    firstName: ['Ragini', Validators.required],
+    firstName: ['Rahul', Validators.required],
     // empId: ['', Validators.required],
     lastName: ['Gupta', Validators.required],
     dateOfBirth: ['', Validators.required],
@@ -42,7 +47,7 @@ export class AddEmployeeDetailsComponent implements OnInit {
   });
   this.bankDetailsFormGroup = this._formBuilder.group({
     bankAcctNo: ['789876677', Validators.required],
-    bankAcctName: ['Ragini Gupta', Validators.required],
+    bankAcctName: ['Rahul Gupta', Validators.required],
     bankAcctAddress: ['abc', Validators.required],
     bankIFSC: ['5678999', Validators.required],
   });
@@ -51,12 +56,24 @@ export class AddEmployeeDetailsComponent implements OnInit {
     hra: ['12000', Validators.required],
     specialAllowance: ['30000', Validators.required],
     conveyanceAllowance: ['20000', Validators.required],
-    pf: ['2200', Validators.required],
+    // pf: ['', Validators.required],
     standardDeductions: ['3000', Validators.required],
     welfareContribution: ['56798', Validators.required],
     joiningBonus: ['4567', Validators.required],
-    variable: ['30000', Validators.required],
+    // variable: ['', Validators.required],
   });
+  }
+
+  getCTCCompoenets() {
+    this.employeeService.getCTCComponentsApi().subscribe(
+      res => {
+        this.CTCComponentsDetails = res.data;
+        console.log('get all CTC Components details res', this.CTCComponentsDetails);
+      },
+      error => {
+        console.log('get all CTC Components details failed', error);
+      }
+    );
   }
 
   postEmployeeDetails() {
@@ -68,12 +85,12 @@ export class AddEmployeeDetailsComponent implements OnInit {
       lastName: this.personalDetailsFormGroup.get('lastName').value,
       dateOfBirth: moment(this.personalDetailsFormGroup.get('dateOfBirth').value).format('DD/MM/yyyy HH:mm:ss'),
       dateOfJoining: moment(this.personalDetailsFormGroup.get('dateOfJoining').value).format('DD/MM/yyyy HH:mm:ss'),
-      dateOfExit: moment(this.personalDetailsFormGroup.get('dateOfExit').value).format('DD/MM/yyyy HH:mm:ss'),
-      bankAcctNo: this.personalDetailsFormGroup.get('bankAcctNo').value,
+      dateOfExit: this.personalDetailsFormGroup.get('dateOfExit').value ? moment(this.personalDetailsFormGroup.get('dateOfExit').value).format('DD/MM/yyyy HH:mm:ss') : '',
+      bankAcctNo: this.bankDetailsFormGroup.get('bankAcctNo').value,
       bankAcctAddress: this.bankDetailsFormGroup.get('bankAcctAddress').value,
       bankAcctName: this.bankDetailsFormGroup.get('bankAcctName').value,
       bankIFSC: this.bankDetailsFormGroup.get('bankIFSC').value,
-      aadhaar: this.bankDetailsFormGroup.get('aadhaar').value,
+      aadhaar: this.personalDetailsFormGroup.get('aadhaar').value,
       permenantAddress: this.personalDetailsFormGroup.get('permenantAddress').value,
       correspondenceAddress: this.personalDetailsFormGroup.get('correspondenceAddress').value,
       uanNo: this.personalDetailsFormGroup.get('uanNo').value,
@@ -89,6 +106,7 @@ export class AddEmployeeDetailsComponent implements OnInit {
     this.employeeService.postEmployeeDetailsApi(element).subscribe(
       res => {
         console.log('addEmployeeService res', res);
+        this.postEmployeeCTCDetails(res.data.employeeId);
       },
       error => {
         console.log('addEmployeeService failed', error);
@@ -97,43 +115,115 @@ export class AddEmployeeDetailsComponent implements OnInit {
     }
   }
 
-  postEmployeeCTCDetails() {
+  postEmployeeCTCDetails(empId: any) {
     if (this.ctcDetailsFormGroup.valid) {
-    let element = {
-      cityType: "",
-      employeeId: "GSI G 710",
-      firstName: this.ctcDetailsFormGroup.get('firstName').value,
-      lastName: this.ctcDetailsFormGroup.get('lastName').value,
-      residentialAddress: this.ctcDetailsFormGroup.get('perAddress').value,
-      rowInsertBy: "ragupta",
-      rowInsertDate: this.date,
-      rowUpdateBy: "ragupta",
-      rowUpdateDate: this.date,
-      status: ""
+    let data = [
+    {
+      "amount": this.ctcDetailsFormGroup.get('basicPay').value,
+      "ctcComponent": "BASIC_PAY",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+      "amount": this.ctcDetailsFormGroup.get('hra').value,
+      "ctcComponent": "HRA",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+      "amount": this.ctcDetailsFormGroup.get('conveyanceAllowance').value,
+      "ctcComponent": "CONVEYANCE_ALLOWANCE",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+      "amount": this.ctcDetailsFormGroup.get('joiningBonus').value,
+      "ctcComponent": "BONUS",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+    "amount": this.ctcDetailsFormGroup.get('specialAllowance').value,
+    "ctcComponent": "SPECIAL_ALLOWANCE",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+      "amount": this.ctcDetailsFormGroup.get('standardDeductions').value,
+      "ctcComponent": "STANDARD_ALLOWANCE",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+   {
+      "amount": this.ctcDetailsFormGroup.get('welfareContribution').value,
+      "ctcComponent": "WELFARE_CONTRIBUTION",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
     }
-    console.log('element', element);
-    this.employeeService.postEmployeeDetailsApi(element).subscribe(
+  ]
+    this.employeeService.postEmployeeCTCDetailsApi(data).subscribe(
       res => {
-        console.log('addEmployeeService res', res);
+        this.onClose();
+        console.log('postEmployeeCTCDetails res', res);
+        this.openSnackbar('Details submitted successfully!!', 'Close');
+        setTimeout(() => {
+        window.location.reload();
+      }, 2000);
       },
       error => {
-        console.log('addEmployeeService failed', error);
+        this.openSnackbar('Failed to submit details!!', 'Close');
+        console.log('postEmployeeCTCDetails failed', error);
       }
     );
     }
-  }
-
-  postDetails() {
-    this.postEmployeeDetails();
   }
 
   getFormDetails() {
-    let mapped1 = Object.keys(this.personalDetailsFormGroup.value).map(key => ({type: key, value: this.personalDetailsFormGroup.value[key]}));
-    this.personalFormDetails = mapped1;
-    let mapped2 = Object.keys(this.bankDetailsFormGroup.value).map(key => ({type: key, value: this.bankDetailsFormGroup.value[key]}));
-    this.bankFormDetails = mapped2;
-    let mapped3 = Object.keys(this.ctcDetailsFormGroup.value).map(key => ({type: key, value: this.ctcDetailsFormGroup.value[key]}));
-    this.ctcFormDetails = mapped3;
+    this.personalFormDetails = Object.keys(this.personalDetailsFormGroup.value).map(key => ({type: key, value: this.personalDetailsFormGroup.value[key]}));
+    this.bankFormDetails = Object.keys(this.bankDetailsFormGroup.value).map(key => ({type: key, value: this.bankDetailsFormGroup.value[key]}));
+    this.ctcFormDetails = Object.keys(this.ctcDetailsFormGroup.value).map(key => ({type: key, value: this.ctcDetailsFormGroup.value[key]}));
     console.log(this.personalFormDetails. this.bankFormDetails, this.ctcFormDetails);
   }
 
@@ -146,5 +236,53 @@ export class AddEmployeeDetailsComponent implements OnInit {
 
   onClose(): void {
     this.dialogRef.close();
+  }
+
+  calculateCTC() {
+    let data = [
+      {
+      "ctcComponent":"BASIC_PAY",
+      "amount": this.ctcDetailsFormGroup.get('basicPay').value,
+      },
+      {
+      "ctcComponent":"HRA",
+      "amount": this.ctcDetailsFormGroup.get('hra').value,
+      },
+      {
+      "ctcComponent":"CONVEYANCE_ALLOWANCE",
+      "amount": this.ctcDetailsFormGroup.get('conveyanceAllowance').value,
+      },
+      {
+      "ctcComponent":"BONUS",
+      "amount": this.ctcDetailsFormGroup.get('joiningBonus').value,
+      },
+      {
+      "ctcComponent":"SPECIAL_ALLOWANCE",
+      "amount": this.ctcDetailsFormGroup.get('specialAllowance').value,
+      },
+      {
+      "ctcComponent":"STANDARD_ALLOWANCE",
+      "amount": this.ctcDetailsFormGroup.get('standardDeductions').value,
+      },
+      {
+      "ctcComponent":"WELFARE_CONTRIBUTION",
+      "amount": this.ctcDetailsFormGroup.get('welfareContribution').value,
+      }
+      ]
+    this.employeeService.calculateCTCApi(data).subscribe(
+      res => {
+        this.calculatedPayroll = res.data;
+        // console.log('calculateCTC res', res.data);
+      },
+      error => {
+        console.log('calculateCTC failed', error);
+      }
+    );
+  }
+
+  openSnackbar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+    });
   }
 }

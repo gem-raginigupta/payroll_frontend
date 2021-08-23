@@ -95,8 +95,18 @@ input:focus {
 }
 
 table {
-  width: 100%;
+  width: 97%;
 }
+
+.main-table {
+  border: 1px solid #C1C1C1;
+  box-sizing: border-box;
+  margin: 10px 0 0 15px;
+}
+
+/* :host ::ng-deep .mat-header-row {
+  height: 20px !important;
+} */
 
 td.mat-cell:last-of-type{
   padding-right: 0px;
@@ -135,7 +145,7 @@ tr.element-row:not(.expanded-row):active {
 .request_table {
   border-collapse: separate;
   border-spacing: 0 4px;
-  background-color: inherit;
+  /* background-color: inherit; */
 }
 
 .request_table td:first-of-type {
@@ -148,24 +158,25 @@ tr.element-row:not(.expanded-row):active {
   border-bottom-right-radius: 10px;
 }
 
-.request_table tr {
+/* .request_table tr {
   font-size: 15px;
-}
+} */
 
-.request_table th {
-  font-weight: bold;
-  font-size: 14px;
-  border: 0;
-  color: #474747;
+tr.mat-header-row {
+  height: 30px;
 }
 
 .request_table td {
   vertical-align: middle;
   padding-right: 10px;
   padding-left: 10px;
-  background-color: #f3f3f3;
+  border: none;
+  /* background-color: #f3f3f3; */
   cursor: pointer;
-  font-family: Helvetica Regular;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 10px;
 }
 
 td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
@@ -175,9 +186,44 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
 .request_table th {
   padding-left: 10px;
   padding-right: 10px;
-  font-family: Helvetica Regular;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+  border: 0;
+  color: #6A6A6A;
 }
 
 .request_table tr .expand_row {
   background-color: white;
+}
+
+.emp-detail {
+  padding-top: 10px;
+  margin-left: 10px !important;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.emp{
+  padding:0;
+  font-size:small;
+}
+
+.data-hd{
+  color:#767777;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.data{
+  height: 20px;
+  color: #4E4E4E;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 20px;
 }

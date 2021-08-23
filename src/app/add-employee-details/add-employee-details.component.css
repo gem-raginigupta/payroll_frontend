@@ -7,6 +7,10 @@
   margin-top: 8px;
 }
 
+input {
+  padding: 0;
+}
+
 .mat-form-field {
   width: 250px;
   /* border: 1px solid #E8E8E8;
@@ -41,7 +45,7 @@
   font-family: Montserrat;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 :host ::ng-deep .mat-form-field-label {
@@ -121,7 +125,7 @@
 .ctc-details-btns {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .review-details-btns {
@@ -141,5 +145,10 @@ h5 {
   color: #373441;
   font-style: normal;
   font-family: Helvetica regular;
+}
+
+.cal-btn {
+  background: none;
+  border: none;
 }
 

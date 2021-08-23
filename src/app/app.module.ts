@@ -11,6 +11,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { AddEmployeeDetailsComponent } from './add-employee-details/add-employee-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RemovewhitespacesPipe } from './core/pipes/removeWHiteSpaces.pipe';
+import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.pipe';
+import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     HomeComponent,
     EmployeeDetailsComponent,
-    AddEmployeeDetailsComponent
+    AddEmployeeDetailsComponent,
+    RemovewhitespacesPipe,
+    FirstLetterToLowerCasePipe,
+    ReplaceUnderscorePipe
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [AddEmployeeDetailsComponent]
