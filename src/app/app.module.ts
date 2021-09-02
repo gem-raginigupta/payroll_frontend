@@ -1,3 +1,4 @@
+import { PayrollComponent } from './payroll/payroll.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     HomeComponent,
     EmployeeDetailsComponent,
-    AddEmployeeDetailsComponent
+    AddEmployeeDetailsComponent,
+    PayrollComponent
   ],
   imports: [
     BrowserModule,
