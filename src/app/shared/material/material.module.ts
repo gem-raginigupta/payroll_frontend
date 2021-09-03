@@ -12,8 +12,10 @@ import {
   MatSidenavModule,
   MatSliderModule,
   MatSlideToggleModule,
+  MatSnackBarModule,
   MatStepperModule,
   MatTableModule,
+  MatTooltipModule,
 } from '@angular/material';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
@@ -36,6 +38,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     MatBadgeModule,
     MatTableModule,
     MatPaginatorModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [
     {

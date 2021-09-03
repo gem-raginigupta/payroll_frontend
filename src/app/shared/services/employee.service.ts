@@ -33,4 +33,25 @@ export class EmployeeService {
     this.path = 'employee-ctc/addEmployeeCtc';
     return this.baseService.post(this.path, data);
   }
+
+  getCTCComponentsApi(): Observable<any> {
+    this.path = 'options/CTC_COMPONENT';
+    return this.baseService.get(this.path);
+  }
+
+  getAllCTCComponentsApi(): Observable<any> {
+    this.path = 'ctc/allCtcComponent';
+    return this.baseService.get(this.path);
+  }
+
+  calculateCTCApi(data: any): Observable<any>  {
+    this.path = 'payrollCalc/getGrossAndCTCbeforeTax';
+    return this.baseService.post(this.path, data);
+  }
+
+  getEmployeeCTCDetailsApi(empId: any): Observable<any> {
+    this.param = new HttpParams().set('employeeId', empId);
+    this.path = `employee-ctc/getEmployeeCtcDetail`;
+    return this.baseService.get(this.path, this.param);
+  }
 }

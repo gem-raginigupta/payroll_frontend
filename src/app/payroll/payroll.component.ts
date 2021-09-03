@@ -10,22 +10,21 @@ import { EmployeeService} from '../shared/services/employee.service';
 
 
   export class PayrollComponent{
-      te: any = 'payroll';
       empListSourceRaw: any;
       public empListSource: MatTableDataSource<any>;
       displayedColumns: string[] = ['gem_id', 'name', 'dept', 'role', 'total_salary', 'payment_status'];
       @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
       @ViewChild(MatSort, {static: true}) sort: MatSort;
       ngOnInit() {
-        this.printPayroll();
         this.get_empDetails();
-      }
-      printPayroll() {
-        console.log(this.te);
       }
       get_empDetails() {
         this.empListSourceRaw = [
-          {'GEM_ID': 'GSI G 001','Name': 'Den Cooper', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'}
+          {'GEM_ID': 'GSI G 001','Name': 'Den Cooper', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'},
+          {'GEM_ID': 'GSI G 002','Name': 'Eric Cooper', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'},
+          {'GEM_ID': 'GSI G 003','Name': 'Paul Cooper', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'},
+          {'GEM_ID': 'GSI G 004','Name': 'Kevin Malone', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'},
+          {'GEM_ID': 'GSI G 005','Name': 'Michael Scott', 'Department': 'Android Dev', 'Role': 'Executive Manger', 'Total_Salary': 'Rs. 655,733.00', 'Payment_status': 'Paid'}
         ]
         this.empListSource = new MatTableDataSource<any>(this.empListSourceRaw)
         console.log(this.empListSource)
