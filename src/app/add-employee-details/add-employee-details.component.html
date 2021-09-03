@@ -4,47 +4,58 @@
     <mat-step [stepControl]="personalDetailsFormGroup">
       <form [formGroup]="personalDetailsFormGroup" class="text-center mt-2">
         <ng-template matStepLabel>Personal Details</ng-template>
-        <div class="row justify-content-around mb-4">
+        <div class="row">
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>First Name</mat-label>
           <input autocomplete="off" matInput formControlName="firstName" placeholder="Your First Name" required>
         </mat-form-field>
+      </div>
+      <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Last Name</mat-label>
           <input autocomplete="off" matInput formControlName="lastName" placeholder="Your Last Name" required>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>DOB</mat-label>
+            <input autocomplete="off" matInput formControlName="dateOfBirth" placeholder="Date Of Birth" required [matDatepicker]="picker1">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1 color="primary"></mat-datepicker>
+          </mat-form-field>
+          </div>
         <!-- <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Employee Id</mat-label>
           <input autocomplete="off" matInput formControlName="empId" placeholder="Your Employee Id" required>
         </mat-form-field> -->
-      </div>
-      <div class="row justify-content-around mb-4">
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Permanent Address</mat-label>
           <input autocomplete="off" matInput formControlName="permenantAddress" placeholder="Ex. 1 Main St, New York, NY" required>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Correspondence Address</mat-label>
           <input autocomplete="off" matInput formControlName="correspondenceAddress" placeholder="Ex. 1 Main St, New York, NY">
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Aadhar Card Number</mat-label>
           <input autocomplete="off" matInput formControlName="aadhaar" placeholder="Aadhar Card Number" required>
         </mat-form-field>
-    </div>
-      <div class="row justify-content-around mb-4">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>DOB</mat-label>
-          <input autocomplete="off" matInput formControlName="dateOfBirth" placeholder="Date Of Birth" required [matDatepicker]="picker1">
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1 color="primary"></mat-datepicker>
-        </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>DOJ</mat-label>
           <input autocomplete="off" matInput formControlName="dateOfJoining" placeholder="Date Of Joining" required [matDatepicker]="picker2">
           <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
           <mat-datepicker #picker2 color="primary"></mat-datepicker>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>DOE</mat-label>
           <input autocomplete="off" matInput formControlName="dateOfExit" placeholder="Date Of Exit" [matDatepicker]="picker3">
@@ -52,19 +63,24 @@
           <mat-datepicker #picker3 color="primary"></mat-datepicker>
         </mat-form-field>
         </div>
-    <div class="row justify-content-around mb-4">
+        <div class="col-md-4">
       <mat-form-field appearance="outline" class="mat-elevation-z3">
         <mat-label>Permanent Account Number</mat-label>
         <input autocomplete="off" matInput formControlName="pan" placeholder="Permanent Account Number" required>
       </mat-form-field>
+      </div>
+      <div class="col-md-4">
       <mat-form-field appearance="outline" class="mat-elevation-z3">
         <mat-label>UAN Number</mat-label>
         <input autocomplete="off" matInput formControlName="uanNo" placeholder="UAN Number" required>
       </mat-form-field>
+      </div>
+      <div class="col-md-4">
       <mat-form-field appearance="outline" class="mat-elevation-z3">
         <mat-label>PF Number</mat-label>
         <input autocomplete="off" matInput formControlName="pfNo" placeholder="PF Number" required>
       </mat-form-field>
+    </div>
   </div>
         <div class="mt-5">
           <!-- <button mat-button class="save-btn mr-3" (click)="postEmployeeDetails()">SAVE</button> -->
@@ -75,7 +91,8 @@
     <mat-step [stepControl]="bankDetailsFormGroup">
       <form [formGroup]="bankDetailsFormGroup" class="text-center mt-2">
         <ng-template matStepLabel>Bank Details</ng-template>
-        <div class="row justify-content-around mb-4">
+        <div class="row">
+          <div class="col-md-6">
           <mat-form-field appearance="outline" class="mat-elevation-z3">
             <mat-label>Bank Account Number</mat-label>
             <input autocomplete="off" matInput formControlName="bankAcctNo" placeholder="Bank Account Number" required>
@@ -85,7 +102,7 @@
             <input autocomplete="off" matInput formControlName="bankAcctName" placeholder="Bank Account Name" required>
           </mat-form-field>
         </div>
-        <div class="row justify-content-around mb-4">
+        <div class="col-md-6">
           <mat-form-field appearance="outline" class="mat-elevation-z3">
             <mat-label>Bank Account Address</mat-label>
             <input autocomplete="off" matInput formControlName="bankAcctAddress" placeholder="Bank Account Address" required>
@@ -94,6 +111,7 @@
             <mat-label>Bank Account IFSC</mat-label>
             <input autocomplete="off" matInput formControlName="bankIFSC" placeholder="Bank Account IFSC" required>
           </mat-form-field>
+          </div>
         </div>
         <div class="bank-details-btns">
           <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
@@ -105,55 +123,99 @@
     <mat-step [stepControl]="ctcDetailsFormGroup">
       <form [formGroup]="ctcDetailsFormGroup" class="text-center mt-2">
         <ng-template matStepLabel>CTC Details</ng-template>
-        <div class="row justify-content-around mb-4">
+        <div class="row">
+          <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[0]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="basicPay" [placeholder]="CTCComponentsDetails[0]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[1]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="basicPay" [placeholder]="CTCComponentsDetails[1]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[6]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="hra" [placeholder]="CTCComponentsDetails[6]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[0]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="hra" [placeholder]="CTCComponentsDetails[0]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[7]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="specialAllowance" [placeholder]="CTCComponentsDetails[7]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[3]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="specialAllowance" [placeholder]="CTCComponentsDetails[3]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
-      </div>
-      <div class="row justify-content-around mb-4">
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[2]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="conveyanceAllowance" [placeholder]="CTCComponentsDetails[2]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="paytm" [placeholder]="CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
+        </div>
+        <div class="col-md-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>{{CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="lta" [placeholder]="CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore | titlecase" required>
+        </mat-form-field>
+        </div>
+        <div class="col-md-4" *ngIf="calculatedPayroll.length">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input class="totalFlexiBasket" autocomplete="off" matInput value="{{calculatedPayroll[2]?.amount}}" placeholder="{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore | titlecase}}">
+        </mat-form-field>
+        </div>
+        <div class="col-md-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>{{CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="conveyanceAllowance" [placeholder]="CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore | titlecase" required>
+        </mat-form-field>
+        </div>
         <!-- <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Provident Fund</mat-label>
           <input autocomplete="off" matInput formControlName="pf" placeholder="Provident Fund" required>
         </mat-form-field> -->
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[8]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="standardDeductions" [placeholder]="CTCComponentsDetails[8]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[2]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="standardDeductions" [placeholder]="CTCComponentsDetails[2]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
-        <mat-form-field *ngIf="calculatedPayroll.length" appearance="outline" class="mat-elevation-z3">
+        </div>
+        <div class="col-md-4" *ngIf="calculatedPayroll.length">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}">
+          <input formControlName="grossSalary" autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore | titlecase}}">
         </mat-form-field>
-      </div>
-      <div class="row justify-content-around mb-2">
+        </div>
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[9]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="welfareContribution" [placeholder]="CTCComponentsDetails[9]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[4]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="welfareContribution" [placeholder]="CTCComponentsDetails[4]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
+        </div>
         <!-- <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>Variable</mat-label>
           <input autocomplete="off" matInput formControlName="variable" placeholder="Variable" required>
         </mat-form-field> -->
+        <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[1]?.optionName}}</mat-label>
-          <input autocomplete="off" matInput formControlName="joiningBonus" [placeholder]="CTCComponentsDetails[1]?.optionDesc" required>
+          <mat-label>{{CTCComponentsDetails[5]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="joiningBonus" [placeholder]="CTCComponentsDetails[5]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
-        <mat-form-field *ngIf="calculatedPayroll.length" appearance="outline" class="mat-elevation-z3">
+        </div>
+        <div class="col-md-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>{{CTCComponentsDetails[9]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="pf" [placeholder]="CTCComponentsDetails[9]?.ctcComponent | replaceUnderscore | titlecase" required>
+        </mat-form-field>
+        </div>
+        <div class="col-md-4">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
+          <mat-label>{{CTCComponentsDetails[10]?.ctcComponent | replaceUnderscore}}</mat-label>
+          <input autocomplete="off" matInput formControlName="gratuity" [placeholder]="CTCComponentsDetails[10]?.ctcComponent | replaceUnderscore | titlecase" required>
+        </mat-form-field>
+        </div>
+        <div class="col-md-4" *ngIf="calculatedPayroll.length">
+        <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{calculatedPayroll[1]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput value="{{calculatedPayroll[1]?.amount}}" placeholder="{{calculatedPayroll[1]?.ctcComponent | replaceUnderscore}}">
+          <input formControlName="ctc" autocomplete="off" matInput value="{{calculatedPayroll[1]?.amount}}" placeholder="{{calculatedPayroll[1]?.ctcComponent | replaceUnderscore | titlecase}}">
         </mat-form-field>
+        </div>
       </div>
       <button matTooltip="Click here to calculate payroll" class="cal-btn float-right mr-2" (click)="calculateCTC()"><img width="30px" height="30px" src="../../assets/images/calculator.svg"></button>
       <!-- <div class="mt-4">

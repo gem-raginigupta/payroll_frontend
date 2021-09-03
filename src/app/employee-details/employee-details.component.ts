@@ -4,6 +4,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { AddEmployeeDetailsComponent } from '../add-employee-details/add-employee-details.component';
 import { EmployeeService } from '../shared/services/employee.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-employee-details',
@@ -24,27 +25,22 @@ export class EmployeeDetailsComponent implements OnInit {
   expandedElement: any;
   allEmpDetails: any;
   employeeCTCDetails: any[] = [];
-  empDetails: any = [{
-    header: 'Permanent Address', field: 'permenantAddress'
-  },
-  {
-    header: 'Correspondence Address', field: 'correspondenceAddress'
-  },
-  {
-    header: 'Permenant Account Number', field: 'pan'
-  },
+  employeeCalculatedDetails: any;
+  empDetails: any = [
+    {header: 'Permanent Address', field: 'permenantAddress'},
+    {header: 'Correspondence Address', field: 'correspondenceAddress'},
+    {header: 'Permenant Account Number', field: 'pan'},
     {header: 'UAN Number', field: 'uanNo'},
     {header: 'PF Number', field: 'pfNo'},
     {header: 'Bank Account Number', field: 'bankAcctNo'},
     {header: 'Bank Account Name', field: 'bankAcctName'},
     {header: 'Bank Account Address', field: 'bankAcctAddress'},
-    {
-    header: 'Bank IFSC', field: 'bankIFSC',
-  }]
+    {header: 'Bank IFSC', field: 'bankIFSC'}
+  ];
 
   public empListDataSource: MatTableDataSource<any>;
   constructor(public dialog: MatDialog, private employeeService: EmployeeService) { }
-  displayedColumns: string[] = ['id', 'name', 'doj', 'dob', 'doe', 'cityType', 'aadhaar', 'status'];
+  displayedColumns: string[] = ['expand_action', 'id', 'name', 'doj', 'dob', 'doe', 'cityType', 'aadhaar', 'status'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   ngOnInit() {
@@ -78,6 +74,7 @@ export class EmployeeDetailsComponent implements OnInit {
     }
 
     getEmployeeCTCDetails(element) {
+      if (this.expandedElement === element)
       this.employeeService.getEmployeeCTCDetailsApi(element.employeeId).subscribe(
         res => {
           console.log('getEmployeeCTCDetailsApi res', res);
@@ -88,4 +85,17 @@ export class EmployeeDetailsComponent implements OnInit {
         }
       );
       }
+
+      // getEmployeeCTCDetails(element) {
+      //   const grossDetails = this.employeeService.getEmployeeCTCDetailsApi(element.employeeId);
+      //   const calculatedDetails = this.employeeService.getCalculatedDetailsApi(element.employeeId);
+      //   forkJoin([grossDetails, calculatedDetails]).subscribe(
+      //     res => {
+      //       console.log('getEmployeeCTCDetailsApi res', res[0]);
+      //       this.employeeCTCDetails = res[0].data;
+
+      //       console.log('getEmployeeCalculatedDetailsApi res', res[1]);
+      //       this.employeeCalculatedDetails = res[1].data;
+      //     });
+      //     }
 }

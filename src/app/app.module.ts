@@ -24,7 +24,7 @@ import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
     AddEmployeeDetailsComponent,
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
-    ReplaceUnderscorePipe
+    ReplaceUnderscorePipe,
   ],
   imports: [
     BrowserModule,

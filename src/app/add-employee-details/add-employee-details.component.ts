@@ -32,9 +32,9 @@ export class AddEmployeeDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.personalDetailsFormGroup = this._formBuilder.group({
-    firstName: ['Rahul', Validators.required],
+    firstName: ['Kritika', Validators.required],
     // empId: ['', Validators.required],
-    lastName: ['Gupta', Validators.required],
+    lastName: ['Sharma', Validators.required],
     dateOfBirth: ['', Validators.required],
     dateOfJoining: ['', Validators.required],
     dateOfExit: [''],
@@ -47,7 +47,7 @@ export class AddEmployeeDetailsComponent implements OnInit {
   });
   this.bankDetailsFormGroup = this._formBuilder.group({
     bankAcctNo: ['789876677', Validators.required],
-    bankAcctName: ['Rahul Gupta', Validators.required],
+    bankAcctName: ['Kritika Sharma', Validators.required],
     bankAcctAddress: ['abc', Validators.required],
     bankIFSC: ['5678999', Validators.required],
   });
@@ -56,16 +56,23 @@ export class AddEmployeeDetailsComponent implements OnInit {
     hra: ['12000', Validators.required],
     specialAllowance: ['30000', Validators.required],
     conveyanceAllowance: ['20000', Validators.required],
-    // pf: ['', Validators.required],
+    pf: ['3000', Validators.required],
+    lta: ['40000', Validators.required],
+    paytm: ['2000', Validators.required],
+    gratuity: ['50000', Validators.required],
     standardDeductions: ['3000', Validators.required],
     welfareContribution: ['56798', Validators.required],
     joiningBonus: ['4567', Validators.required],
+    grossSalary: [''],
+    totalFlexiBasket: [''],
+    ctc: ['']
     // variable: ['', Validators.required],
   });
   }
 
   getCTCCompoenets() {
-    this.employeeService.getCTCComponentsApi().subscribe(
+    // this.employeeService.getCTCComponentsApi().subscribe(
+      this.employeeService.getAllCTCComponentsApi().subscribe(
       res => {
         this.CTCComponentsDetails = res.data;
         console.log('get all CTC Components details res', this.CTCComponentsDetails);
@@ -201,7 +208,91 @@ export class AddEmployeeDetailsComponent implements OnInit {
       "rowUpdateBy": "string",
       "rowUpdateDate": "20/12/2020 20:20:20",
       "status": "ACTIVE"
-    }
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('pf').value,
+      "ctcComponent": "PF",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('lta').value,
+      "ctcComponent": "LTA",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('paytm').value,
+      "ctcComponent": "PAYTM",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('gratuity').value,
+      "ctcComponent": "GRATUITY",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('grossSalary').value,
+      "ctcComponent": "GROSS_SALARY",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('ctc').value,
+      "ctcComponent": "CTC",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
+    {
+      "amount": this.ctcDetailsFormGroup.get('totalFlexiBasket').value,
+      "ctcComponent": "TOTAL_FLEXI_BASKET",
+      "employeeId": empId,
+      "fiscal": "2021",
+      "notes": "Some random text to see the change in CTC",
+      "rowInsertBy": "string",
+      "rowInsertDate": "20/12/2020 20:20:20",
+      "rowUpdateBy": "string",
+      "rowUpdateDate": "20/12/2020 20:20:20",
+      "status": "ACTIVE"
+    },
   ]
     this.employeeService.postEmployeeCTCDetailsApi(data).subscribe(
       res => {
@@ -224,7 +315,7 @@ export class AddEmployeeDetailsComponent implements OnInit {
     this.personalFormDetails = Object.keys(this.personalDetailsFormGroup.value).map(key => ({type: key, value: this.personalDetailsFormGroup.value[key]}));
     this.bankFormDetails = Object.keys(this.bankDetailsFormGroup.value).map(key => ({type: key, value: this.bankDetailsFormGroup.value[key]}));
     this.ctcFormDetails = Object.keys(this.ctcDetailsFormGroup.value).map(key => ({type: key, value: this.ctcDetailsFormGroup.value[key]}));
-    console.log(this.personalFormDetails. this.bankFormDetails, this.ctcFormDetails);
+    // console.log(this.personalFormDetails, this.bankFormDetails, this.ctcFormDetails);
   }
 
   checkDateType(value: any) {
@@ -267,12 +358,31 @@ export class AddEmployeeDetailsComponent implements OnInit {
       {
       "ctcComponent":"WELFARE_CONTRIBUTION",
       "amount": this.ctcDetailsFormGroup.get('welfareContribution').value,
+      },
+      {
+        "ctcComponent":"GRATUITY",
+        "amount": this.ctcDetailsFormGroup.get('gratuity').value,
+        },
+      {
+        "ctcComponent":"PF",
+        "amount": this.ctcDetailsFormGroup.get('pf').value,
+      },
+      {
+        "ctcComponent":"PAYTM",
+        "amount": this.ctcDetailsFormGroup.get('paytm').value,
+      },
+      {
+        "ctcComponent":"LTA",
+        "amount": this.ctcDetailsFormGroup.get('lta').value,
       }
       ]
     this.employeeService.calculateCTCApi(data).subscribe(
       res => {
         this.calculatedPayroll = res.data;
-        // console.log('calculateCTC res', res.data);
+        console.log('calculateCTC res', res.data);
+        this.ctcDetailsFormGroup.get('grossSalary').setValue(this.calculatedPayroll[0].amount);
+        this.ctcDetailsFormGroup.get('ctc').setValue(this.calculatedPayroll[1].amount);
+        this.ctcDetailsFormGroup.get('totalFlexiBasket').setValue(this.calculatedPayroll[2].amount);
       },
       error => {
         console.log('calculateCTC failed', error);
