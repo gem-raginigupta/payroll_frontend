@@ -1,0 +1,89 @@
+<hr id="line" />
+<div class="container">
+    <div class="box" id="box1">PAYROLL FOR THE MONTH OF JUNE</div>
+    <div class="box" id="box2">
+        64
+        <hr class="desc" />
+        <p>Total Employees</p>
+    </div>
+    <div class="box" id="box3">
+        2345.00
+        <hr class="desc" />
+        <p>Total Income</p>
+    </div>
+    <div class="box" id="box4">
+        Tuesday, June 1
+        <hr class="desc" />
+        <p>Pay Day</p>
+    </div>
+</div>
+<div class="height"></div>
+
+
+<div class="container-fluid background_color">
+    <div class="row">
+        <div class="col-sm text-center">
+            <p class="text_style"><b>EMPLOYEES PAYROLL</b></p>
+        </div>
+        <div class="col-sm" style="padding-right: 10%;">
+            <div class="row">
+                <div class="col-sm">
+                    <p class="text_style" style="font-size: small;"><a href=""><i class="fas fa-print "
+                                style="font-size:15px;color: grey;"></i></a> Print </p>
+                </div>
+                <div class="col-sm">
+                    <p class="text_style" style="font-size: small;"><a href=""><i class="fas fa-cloud-download-alt "
+                                style="font-size:15px;color: grey;"></i></a> Download </p>
+                </div>
+                <div class="col-sm" style="padding-top: 10px;">
+                    <button class="add-employee-btn">ADD</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="table-responsive mt-3">
+        <table class="table request_table pl-3 pr-3 mat-elevation-z8" mat-table matSort multiTemplateDataRows
+            [dataSource]="this.empListSource">
+
+            <ng-container matColumnDef="gem_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gem ID </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.GEM_ID}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dept">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Department}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Role}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="total_salary">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Salary </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Total_Salary}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="payment_status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Payment_status}}
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>
