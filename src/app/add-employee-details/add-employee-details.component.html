@@ -1,4 +1,4 @@
- <div class="container-fluid">
+ <div class="container-fluid scroller">
   <button mat-icon-button class="float-right" (click)="onClose()"><mat-icon>close</mat-icon></button>
   <mat-horizontal-stepper labelPosition="bottom" #stepper linear>
     <mat-step [stepControl]="personalDetailsFormGroup">
@@ -144,24 +144,6 @@
         </div>
         <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput formControlName="paytm" [placeholder]="CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore | titlecase" required>
-        </mat-form-field>
-        </div>
-        <div class="col-md-4">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput formControlName="lta" [placeholder]="CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore | titlecase" required>
-        </mat-form-field>
-        </div>
-        <div class="col-md-4" *ngIf="calculatedPayroll.length">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input class="totalFlexiBasket" autocomplete="off" matInput value="{{calculatedPayroll[2]?.amount}}" placeholder="{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore | titlecase}}">
-        </mat-form-field>
-        </div>
-        <div class="col-md-4">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore}}</mat-label>
           <input autocomplete="off" matInput formControlName="conveyanceAllowance" [placeholder]="CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
@@ -177,11 +159,29 @@
         </mat-form-field>
         </div>
         <div class="col-md-4" *ngIf="calculatedPayroll.length">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input formControlName="grossSalary" autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore | titlecase}}">
-        </mat-form-field>
-        </div>
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input formControlName="grossSalary" autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore | titlecase}}">
+          </mat-form-field>
+          </div>
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input autocomplete="off" matInput formControlName="paytm" [placeholder]="CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore | titlecase" required>
+          </mat-form-field>
+          </div>
+          <div class="col-md-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input autocomplete="off" matInput formControlName="lta" [placeholder]="CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore | titlecase" required>
+          </mat-form-field>
+          </div>
+          <div class="col-md-4" *ngIf="calculatedPayroll.length">
+            <mat-form-field appearance="outline" class="mat-elevation-z3">
+              <mat-label>{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore}}</mat-label>
+              <input class="totalFlexiBasket" autocomplete="off" matInput value="{{calculatedPayroll[2]?.amount}}" placeholder="{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore | titlecase}}">
+            </mat-form-field>
+            </div>
         <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{CTCComponentsDetails[4]?.ctcComponent | replaceUnderscore}}</mat-label>

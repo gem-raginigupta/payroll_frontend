@@ -153,3 +153,11 @@ h5 {
   border: none;
 }
 
+.scroller {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-color: #5D38DB white;
+  scrollbar-width: thin;
+}
+
