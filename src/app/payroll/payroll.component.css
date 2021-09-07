@@ -96,6 +96,8 @@
   
   table {
     width: 100%;
+    border: 1px solid #C1C1C1;
+    box-sizing: border-box;
   }
   
   td.mat-cell:last-of-type{
