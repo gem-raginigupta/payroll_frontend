@@ -46,38 +46,37 @@
 <div class="container-fluid">
     <div class="table-responsive mt-3">
         <table class="table request_table pl-3 pr-3 mat-elevation-z8" mat-table matSort multiTemplateDataRows
-            [dataSource]="this.empListSource">
+            [dataSource]="this.empListDataSource">
 
             <ng-container matColumnDef="gem_id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Gem ID </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.GEM_ID}} </td>
+                <td mat-cell *matCellDef="let element" class="element-row" (click)="openPayslipDialog(payslipDialog, element)"> {{element.employeeId}} </td>
             </ng-container>
 
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Name}} </td>
+                <td mat-cell *matCellDef="let element" class="element-row"> {{element.firstName}} {{element.lastName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="dept">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Department}}
-                </td>
+                <td mat-cell *matCellDef="let element" class="element-row"></td>
             </ng-container>
 
             <ng-container matColumnDef="role">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Role}} </td>
+                <td mat-cell *matCellDef="let element" class="element-row"></td>
             </ng-container>
 
             <ng-container matColumnDef="total_salary">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Salary </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Total_Salary}}
+                <td mat-cell *matCellDef="let element" class="element-row"> {{this.payrollDataParsed[element.employeeId]}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="payment_status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.Payment_status}}
+                <td mat-cell *matCellDef="let element" class="element-row"> Paid
                 </td>
             </ng-container>
 
@@ -87,3 +86,14 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
+
+<ng-template #payslipDialog>
+  <div class="d-flex justify-content-between">
+  <h4 class="mb-4"><u>Your Payslip</u></h4>
+  <mat-icon (click)="onClose()" style="cursor: pointer;">close</mat-icon>
+</div>
+  <div class="row p-2 payslip" *ngFor="let payslip of employeePayrollDetails">
+    <div class="col-md-6">{{payslip.component | replaceUnderscore | titlecase}}</div>
+    <div class="col-md-6">{{payslip.value}}</div>
+  </div>
+</ng-template>

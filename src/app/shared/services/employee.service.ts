@@ -54,4 +54,9 @@ export class EmployeeService {
     this.path = `employee-ctc/getEmployeeCtcDetail`;
     return this.baseService.get(this.path, this.param);
   }
+
+  getAllPayrollDetailsApi(): Observable<any> {
+    this.path = 'payrollCalc/getAllPayroll';
+    return this.baseService.get(this.path);
+  }
 }
