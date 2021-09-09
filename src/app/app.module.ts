@@ -1,3 +1,4 @@
+import { PayrollComponent } from './payroll/payroll.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,6 +23,7 @@ import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
     HomeComponent,
     EmployeeDetailsComponent,
     AddEmployeeDetailsComponent,
+    PayrollComponent,
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
