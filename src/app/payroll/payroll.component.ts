@@ -17,7 +17,7 @@ export class PayrollComponent {
   empListDataSource: any;
   allPayrollDetails: any;
   payrollDataParsed: any;
-  displayedColumns: string[] = ['gem_id', 'name', 'dept', 'role', 'total_salary', 'payment_status'];
+  displayedColumns: string[] = ['gem_id', 'name', 'dept', 'role', 'total_salary', 'payment_status', 'options'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   ngOnInit() {
