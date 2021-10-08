@@ -34,6 +34,11 @@ export class EmployeeService {
     return this.baseService.post(this.path, data);
   }
 
+  postInvestmentDeclarationAPI(data: any){
+    this.path = 'employee-Invest-Declare/addInvestmentDeclaration';
+    return this.baseService.post(this.path, data);
+  }
+
   getCTCComponentsApi(): Observable<any> {
     this.path = 'options/CTC_COMPONENT';
     return this.baseService.get(this.path);
@@ -57,6 +62,16 @@ export class EmployeeService {
 
   getAllPayrollDetailsApi(): Observable<any> {
     this.path = 'payrollCalc/getAllPayroll';
+    return this.baseService.get(this.path);
+  }
+
+  getInvestmentDelarationSectionApi(): Observable<any> {
+    this.path = `options/INVESTMENT_DECLARATION_SECTION`;
+    return this.baseService.get(this.path);
+  }
+
+  getInvestmentBySectionApi(section: any): Observable<any> {
+    this.path = `options/investment/` + section;
     return this.baseService.get(this.path);
   }
 }

@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RemovewhitespacesPipe } from './core/pipes/removeWHiteSpaces.pipe';
 import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.pipe';
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
+import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
+    InvestmentDeclarationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+input[type=text] {
+    width: 25%;
+    padding: 8px 15px;
+    margin: 2px 0;
+    box-sizing: border-box;
+  }
+
+  input[type=text]:focus {
+    border: 3px solid #555;
+  }
+
+  form {
+    padding-left: 20px;
+    padding-top: 5px;
+  }
