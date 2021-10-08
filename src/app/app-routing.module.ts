@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {PayrollComponent} from './payroll/payroll.component';
+import  {InvestmentDeclarationComponent} from './investment-declaration/investment-declaration.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
       path: 'payroll',
       component: PayrollComponent
     },
+    {
+      path: 'investmentDeclaration',
+      component: InvestmentDeclarationComponent
+    }
   ]
 },
 { path: '',

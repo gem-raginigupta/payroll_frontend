@@ -1,0 +1,23 @@
+<form [formGroup]="investmentDeclarationForm" *ngIf = "investmentDeclarationForm">
+ 
+    <p>
+        <label for="employeeid">Employee Id </label><br>
+        <select id="employeeid" name="employeeid" formControlName="employeeid">
+          <option [ngValue]="c" *ngFor="let c of employeeIds">
+            {{c}}
+          </option>
+        </select>
+      </p>
+ 
+    <label for="fiscal">Fiscal</label><br>
+    <input type="text" id="fiscal" name="fiscal" formControlName="fiscal">
+<br><h3> Add Investment Declaration </h3>
+<div *ngFor = "let c of investmentDeclarationlist">
+  <label for="fiscal">{{c}}  </label><br>
+  <input type="text" id="{{c}}" name="{{c}}" formControlName="{{c}}">
+</div>
+  <p>
+    <button (click) = "onSubmit()">Submit</button>
+  </p>
+ 
+</form>
