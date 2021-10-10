@@ -47,6 +47,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.getAllEmployeesDetails();
   }
 
+  
   openAddEmpDialog(): void {
       const dialogRef = this.dialog.open(AddEmployeeDetailsComponent, {
         width: '1000px',
@@ -56,6 +57,12 @@ export class EmployeeDetailsComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
       });
+  }
+
+  private selectedFile: File;
+  onFileSelect(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile.name);
   }
 
   getAllEmployeesDetails() {
