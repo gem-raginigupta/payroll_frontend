@@ -99,9 +99,11 @@ table {
 }
 
 .main-table {
-  border: 1px solid #9c9898;
-  box-sizing: border-box;
+  /* border: 1px solid #9c9898;
+  box-sizing: border-box; */
   margin: 10px 0 0 15px;
+  border: 1px solid #C1C1C1;
+  box-sizing: border-box;
 }
 
 /* :host ::ng-deep .mat-header-row {
@@ -126,10 +128,6 @@ tr.request-detail-row {
   /* justify-content: center; */
 }
 
-.request-detail-data div {
-  color: green;
-}
-
 tr.element-row:not(.expanded-row):hover {
   background: #777;
 }
@@ -142,11 +140,11 @@ tr.element-row:not(.expanded-row):active {
   border-bottom-width: 0;
 }
 
-.request_table {
+/* .request_table {
   border-collapse: separate;
   border-spacing: 0 4px;
-  /* background-color: inherit; */
-}
+  background-color: inherit;
+} */
 
 .request_table td:first-of-type {
   border-top-left-radius: 10px;
@@ -163,7 +161,9 @@ tr.element-row:not(.expanded-row):active {
 } */
 
 tr.mat-header-row {
-  height: 30px;
+  height: 44px;
+  background: #FAFAFA;
+  border-bottom: 1px solid #D5D5D5;
 }
 
 .request_table td {
@@ -177,7 +177,16 @@ tr.mat-header-row {
   font-size: 10px;
 }
 
-td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+td.mat-cell {
+  border-bottom-width: 0;
+  /* border-bottom: 1px solid #F6F6F6; */
+}
+
+td.mat-footer-cell {
+  border-bottom-width: 0;
+}
+
+th.mat-header-cell {
   border-bottom-width: 0;
 }
 

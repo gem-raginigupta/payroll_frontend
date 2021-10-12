@@ -41,6 +41,26 @@
       font-size: 14px;
     }
 
+    select {
+      color: #373441;
+      font-family: Helvetica Regular;
+      font-size: 14px;
+      background: rgba(229, 229, 229, 0.54);
+      Width: 200px;
+      Height: 43px;
+      Top: 264px;
+      Left: 374px;
+    }
+
+    .date-selector {
+      margin-bottom: 10px;
+      width: 241px;
+      height: 43px;
+      left: 374px;
+      top: 264px;
+      background: rgba(229, 229, 229, 0.54);
+  }
+
     button {
         width: 100px;
         border-radius: 4px;
