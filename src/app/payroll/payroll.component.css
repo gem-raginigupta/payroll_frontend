@@ -155,7 +155,7 @@
   }
 
   .request_table {
-    border-collapse: separate;
+    
     border-spacing: 0 4px;
     background-color: inherit;
   }
@@ -175,23 +175,30 @@
   }
 
   .request_table th {
+    text-align: center;
+    padding-bottom: 15px;
     font-weight: bold;
     font-size: 14px;
     border: 0;
     color: #474747;
+    font-family: Montserrat;
+    font-style: medium;
+    line-height: 17px;
+    letter-spacing: 0.2px;
   }
 
   .request_table td {
+    text-align: center;
     vertical-align: middle;
     padding-right: 10px;
     padding-left: 10px;
-    background-color: #f3f3f3;
+    background-color: #FFFFFF;
     cursor: pointer;
     font-family: Helvetica Regular;
   }
 
   td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
-    border-bottom-width: 0;
+    border-bottom-width: 1px #F6F6F6;
   }
 
   .request_table th {
@@ -277,7 +284,7 @@
 
 .height {
   width: 110px;
-  height: 100px;
+  height: 50px;
   margin-right: 40px;
   line-height: 5px;
 }
@@ -293,4 +300,15 @@ h4 {
   font-size: 14px;
   font-family: Monserrat;
   color: #474747;
+}
+
+.dropdowns {
+  width: 15%;
+  height: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+  border-radius: 5px ;
+  border-style:solid 1px rgba(151, 151, 151, 0.15);
+  background-color: #FFFFFF;
 }

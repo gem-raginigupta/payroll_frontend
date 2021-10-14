@@ -43,11 +43,21 @@
       />
     </button>
   </div>
+
+  <input style="display: none" type="file" (change)="onFileSelect($event)" #hiddenfileinput>
+  
+  <div class="float-right mt-2 mr-3">
+  <button (click)="hiddenfileinput.click()" class="add-employee-btn">
+    Upload File
+  </button>
+  </div>
+  
   <div class="float-right mt-2 mr-3">
     <button class="add-employee-btn" (click)="openAddEmpDialog()">
       Add Employee Details
     </button>
   </div>
+
 
   <div class="table-responsive mt-3">
     <table

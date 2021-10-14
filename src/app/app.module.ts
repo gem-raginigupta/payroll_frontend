@@ -16,6 +16,7 @@ import { RemovewhitespacesPipe } from './core/pipes/removeWHiteSpaces.pipe';
 import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.pipe';
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
 import { SafePipe } from './core/pipes/safepipe.pipe';
+import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SafePipe } from './core/pipes/safepipe.pipe';
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
-    SafePipe
+    SafePipe,
+    InvestmentDeclarationComponent
   ],
   imports: [
     BrowserModule,

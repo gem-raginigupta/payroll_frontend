@@ -48,14 +48,7 @@ export class PayrollComponent implements AfterViewInit {
     "November",
     "December",
   ];
-  displayedColumns: string[] = [
-    "gem_id",
-    "name",
-    "dept",
-    "role",
-    "total_salary",
-    "payment_status",
-  ];
+  displayedColumns: string[] = ['gem_id', 'name', 'dept', 'role', 'total_salary', 'payment_status', 'options'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild("iframePay", { static: false }) iframePay: ElementRef;
