@@ -8,7 +8,7 @@ import { BaseService } from './base.service';
 })
 export class EmployeeService {
 
-  private path = '';
+  private path;
   private param: HttpParams;
 
   constructor(private baseService: BaseService, private http: HttpClient) { }

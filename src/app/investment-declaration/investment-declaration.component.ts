@@ -15,11 +15,14 @@ export class InvestmentDeclarationComponent {
     allEmpDetails: any;
     empListDataSource: any;
     employeeIds: any;
+    show80C: any;
+    show80D: any;
     investment_option: any;
     investment_declarations: any;
     investmentDeclarationlist: any;
     investmentDeclarationForm: any;
     investmentDeclarationDict: any;
+    allInvestmentDeclarations: any;
     formgroup: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -28,13 +31,34 @@ export class InvestmentDeclarationComponent {
       this.formgroup['employeeid'] = []
       this.formgroup['fiscal'] = []
       this.getInvestmentDelarations();
+      this.getInvestmentBySection('80C');
+      this.getInvestmentBySection('80D');
       this.display();
       this.getAllEmployees();
+      this.show80C = false;
+      this.show80D = false;
     }
 
     display(){
         console.log("Yo!!!")
     }
+
+    displayDec(section){
+      this.show80C = !this.show80C;
+      this.getInvestmentBySection(section);
+    }
+
+    display80C(){
+      this.show80C = !this.show80C;
+      this.getInvestmentBySection('80C');
+    }
+
+    display80D(){
+      console.log("Clicked")
+      this.show80D = !this.show80D;
+      this.getInvestmentBySection('80D');
+    }
+
     getAllEmployees(){
         this.employeeService.getAllEmployeesDetailsApi().subscribe(
             res => {
@@ -85,12 +109,14 @@ export class InvestmentDeclarationComponent {
         }
     }
     getInvestmentDelarations() {
+      this.allInvestmentDeclarations = []
       this.employeeService.getInvestmentDelarationSectionApi().subscribe(
         res => {
           this.investment_declarations = res.data;
-          this.investment_option = res.data[0]['optionValue'];
-          console.log(this.investment_option)
-          this.getInvestmentBySection(this.investment_option);
+          for(let i=0; i< res.data.length; i++){
+            this.allInvestmentDeclarations.push(res.data[i]['optionValue'])
+            // this.getInvestmentBySection(this.investment_option);
+          }
         }
       )
     }
