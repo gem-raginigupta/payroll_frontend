@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://gempayrolldevapi.geminisolutions.com//'
+  baseURL: 'https://gempayrolldevapi.geminisolutions.com/'
   // baseURL: 'http://localhost:8080/'
 };
 

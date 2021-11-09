@@ -64,7 +64,7 @@ input[type=text] {
     color: #5D38DB;
   }
 
-  .mat-icon {
+  .mat-icon, i {
     cursor: pointer;
   }
 
