@@ -127,15 +127,18 @@ export class PayrollComponent implements AfterViewInit {
 
   generatePayrollPDF() {
     let payrollArr = [];
-    const header = ["Earnings", ""];
+    const header = [{text: 'Earnings', style: 'header'}, ''];
+    const subHeader = [{text: '', fillColor: '#e9f6ff', height: '30px'}, {text: 'Amount in (Rs.)', style: 'subHeader'}];
     payrollArr.push(header);
+    payrollArr.push(subHeader);
     this.employeePayrollDetails.forEach((detail) => {
       payrollArr.push([detail.component, detail.value]);
     });
     let docDefinition = {
       content: [
         {
-          layout: "lightHorizontalLines", // optional
+          style: 'mainContent',
+          layout: "headerLineOnly", // optional
           table: {
             // headers are automatically repeated if the table spans over multiple pages
             // you can declare how many rows should be treated as headers
@@ -147,14 +150,32 @@ export class PayrollComponent implements AfterViewInit {
         },
       ],
 
-      // styles: {
-      //   anotherStyle: {
-      //     fontSize: 22,
-      //     bold: true,
-      //     italics: true,
-      //     alignment: 'right'
-      //   }
-      // }
+      styles: {
+        header: {
+          color: 'grey',
+          fontSize: 12,
+          bold: true,
+          alignment: 'left',
+          margin: [ 6, 6, 6, 6 ]
+        },
+        subHeader: {
+          fillColor: '#e9f6ff',
+          color: 'grey',
+          fontSize: 12,
+          bold: true,
+          alignment: 'right',
+          height: '30px',
+          margin: [ 6, 6, 6, 6 ]
+        },
+        mainContent: {
+          margin: [ 10, 20, 10, 20 ],
+          fontSize: 12,
+        },
+        anotherStyle: {
+          italics: true,
+          alignment: 'right'
+        }
+      }
     };
 
     // pdfMake.tableLayouts = {
