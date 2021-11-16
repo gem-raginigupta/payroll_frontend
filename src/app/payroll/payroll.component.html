@@ -1,3 +1,4 @@
+<div style="overflow: hidden;">
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm text-center ">
@@ -48,7 +49,7 @@
     </div>
 </div>
 <div style="height: 20px;"></div>
-<div class="container">
+<div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
     <select name="Sort By" id="Sort By" class="dropdowns" style="margin-right: 20px;">
         <option value="#">Sort By</option>
         <option value="1">1</option>
@@ -65,7 +66,7 @@
       </select>
 </div>
 
-<div class="container">
+<div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
     <div class="table-responsive mt-3">
         <table class="table request_table pl-3 pr-3 mat-elevation-z8" mat-table matSort multiTemplateDataRows
             [dataSource]="this.empListDataSource">
