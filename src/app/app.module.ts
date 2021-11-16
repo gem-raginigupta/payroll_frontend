@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RemovewhitespacesPipe } from './core/pipes/removeWHiteSpaces.pipe';
 import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.pipe';
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
+import { DndDirective } from './employee-details/dnd.directive';
+import { ProgressComponent } from './employee-details/progress/progress.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
+    DndDirective,
+    ProgressComponent,
   ],
   imports: [
     BrowserModule,
