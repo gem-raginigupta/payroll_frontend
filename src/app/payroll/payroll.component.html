@@ -51,19 +51,19 @@
 <div style="height: 20px;"></div>
 <div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
     <select name="Sort By" id="Sort By" class="dropdowns" style="margin-right: 20px;">
-        <option value="#">Sort By</option> 
+        <option value="#">Sort By</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
       </select>
       <select name="Filter" id="Filter" class="dropdowns">
-        <option value="#">Filter</option> 
+        <option value="#">Filter</option>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-      </select> 
+      </select>
 </div>
 
 <div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
@@ -73,11 +73,7 @@
 
             <ng-container matColumnDef="gem_id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Gem ID </th>
-    
-                <td mat-cell *matCellDef="let element" class="element-row"> 
-                    <input type="checkbox" id={{element.employeeId}} name={{element.employeeId}} value={{element.employeeId}} style="float: left;height: 20px;width: 20px;">
-                    {{element.employeeId}} 
-                </td>
+                <td mat-cell *matCellDef="let element" class="element-row" (click)="openPayslipDialog(payslipDialog, element)"> {{element.employeeId}} </td>
             </ng-container>
 
             <ng-container matColumnDef="name">
@@ -87,13 +83,12 @@
 
             <ng-container matColumnDef="dept">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> 
-                </td>
+                <td mat-cell *matCellDef="let element" class="element-row"></td>
             </ng-container>
 
             <ng-container matColumnDef="role">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-                <td mat-cell *matCellDef="let element" class="element-row">  </td>
+                <td mat-cell *matCellDef="let element" class="element-row"></td>
             </ng-container>
 
             <ng-container matColumnDef="total_salary">
@@ -110,10 +105,10 @@
 
             <ng-container matColumnDef="options">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Options </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> 
+                <td mat-cell *matCellDef="let element" class="element-row">
                    <a href=""><i class="far fa-edit fa-2x" style="padding-right: 10px;color: grey;"></i></a>
                    <a href=""><i class="far fa-trash-alt fa-2x" style="padding-right: 10px;color: #C82727;"></i></a>
-                   <a href=""><i class="fas fa-user-minus fa-2x" style="padding-right: 10px;color: #F38A2D;"></i></a> 
+                   <a href=""><i class="fas fa-user-minus fa-2x" style="padding-right: 10px;color: #F38A2D;"></i></a>
                 </td>
             </ng-container>
 
@@ -123,4 +118,36 @@
         <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
     </div>
 </div>
+
+<ng-template #payslipDialog>
+  <div class="d-flex justify-content-between">
+  <h4 class="mb-4"><u>Your Payslip</u></h4>
+  <mat-icon (click)="onClose()" style="cursor: pointer;">close</mat-icon>
 </div>
+<div>
+  <form class="mb-3">
+  <label for="cars">Choose a month:</label><br>
+  <!-- <mat-form-field>
+    <input class="date-selector" matInput [matDatepicker]="dp2" [min]="sixMonthsAgo" [max]="today" placeholder="Select a Date" (click)="openDatePicker(dp2)">
+    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+    <mat-datepicker #dp2 startView="multi-year" (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
+  </mat-form-field> -->
+  <select name="month" id="month">
+    <option *ngFor="let month of months" [value]="month">{{month}}</option>
+  </select>
+</form>
+</div>
+<iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe>
+<!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
+    <p style="padding-left: 10px; color: gray; font-size: 14px; font-family: Montserrat;">Earnings</p>
+</div>
+<div style="background-color: #e9f6ff; height: 40px; padding: 10px 0 10px 0; border-left: 1px solid rgb(206, 203, 203); border-right: 1px solid rgb(206, 203, 203)">
+    <p style="color: gray; font-size: 14px; font-family: Montserrat; padding-left: 10px;">Amount in (Rs)</p>
+</div>
+<div style="border: 1px solid rgb(206, 203, 203)">
+  <div class="row p-2 payslip" *ngFor="let payslip of employeePayrollDetails">
+    <div class="col-md-6">{{payslip.component | replaceUnderscore | titlecase}}</div>
+    <div class="col-md-6">{{payslip.value}}</div>
+  </div>
+</div> -->
+</ng-template>

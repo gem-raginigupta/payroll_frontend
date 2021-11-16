@@ -10,3 +10,27 @@ button:focus {
 .mat-stepper-horizontal-header:focus {
   outline: none;
   }
+
+  /* width */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color:inherit
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color:inherit;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background:#5D38DB;
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(93,56,200);
+}

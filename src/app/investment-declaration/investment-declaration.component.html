@@ -1,0 +1,89 @@
+<form [formGroup]="investmentDeclarationForm" *ngIf="investmentDeclarationForm">
+  <div class="container-fluid background_color">
+    <div class="row">
+      <div class="col-sm text-center">
+        <p class="text_style"><b>INVESTMENT DECLARATION</b></p>
+      </div>
+    </div>
+  </div>
+  <p>
+    <label for="employeeid">Employee Id </label><br>
+    <select id="employeeid" name="employeeid" formControlName="employeeid">
+      <option [ngValue]="c" *ngFor="let c of employeeIds">
+        {{c}}
+      </option>
+    </select>
+  </p>
+
+  <label for="fiscal">Fiscal</label><br>
+  <input type="text" id="fiscal" name="fiscal" formControlName="fiscal">
+  <br>
+  <div class="card" (click)="display80C()">
+    <div class="card-body d-flex justify-content-between">
+      <div>
+      Section 80C <span class='info'><i matTooltip="A little column extra info. Aaand just a little bit more" class="icon-info-sign"></i>
+        <!-- <span class="extra-info">
+          A little column extra info. Aaand just a little bit more
+        </span> -->
+      </span>
+    </div>
+      <div class="title-right d-flex align-items-md-center"> Add to declaration <span class="ml-2"><mat-icon>add_circle_outline</mat-icon></span></div>
+    </div>
+  </div>
+  <div class="drop_inv">
+    <div class="container" *ngIf="show80C">
+      <div class="row">
+        <div *ngFor="let c of investmentDeclarationlist">
+          <div class="col-6">
+            <label for="fiscal" class="inv_title">{{c}} </label><br>
+            <input type="text" id="{{c}}" name="{{c}}" formControlName="{{c}}" placeholder="Enter Amount">
+            <!-- <input type="text" id="{{c}}" name="{{c}}" placeholder="Enter Amount"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card" (click)="display80D()">
+    <div class="card-body d-flex justify-content-between">
+      <div>
+      Section 80D <span class='info'><i matTooltip="A little column extra info. Aaand just a little bit more" class="icon-info-sign"></i>
+      </span>
+    </div>
+      <div class="title-right d-flex align-items-md-center"> Add to declaration <span class="ml-2"><mat-icon>add_circle_outline</mat-icon></span></div>
+    </div>
+  </div>
+  <div class="drop_inv">
+    <div class="container" *ngIf="show80D">
+      <div class="row">
+        <div *ngFor="let c of investmentDeclarationlist">
+          <div class="col-6">
+            <label for="fiscal" class="inv_title">{{c}} </label><br>
+            <input type="text" id="{{c}}" name="{{c}}" formControlName="{{c}}" placeholder="Enter Amount">
+            <!-- <input type="text" id="{{c}}" name="{{c}}" placeholder="Enter Amount"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div *ngFor="let d of allInvestmentDeclarations">
+    <div class="card" (click)="displayDec(d)">
+      <div class="card-body">
+        {{d}}
+      </div>
+    </div>
+    <div class="container" *ngIf="show80C">
+      <div class="row">
+        <div *ngFor="let c of investmentDeclarationlist">
+          <div class="col-6">
+            <label for="fiscal" class="inv_title">{{c}} </label><br>
+            <input type="text" id="{{c}}" name="{{c}}" formControlName="{{c}}" placeholder="Enter Amount">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!-- <p>
+    <button (click)="onSubmit()">Submit</button>
+  </p> -->
+
+</form>

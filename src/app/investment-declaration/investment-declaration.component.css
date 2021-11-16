@@ -1,0 +1,137 @@
+input[type=text] {
+    width: 300px;
+    height: 48px;
+    top: 513px;
+    left: 996px;
+    padding: 8px 15px;
+    margin: 2px 0;
+    box-sizing: border-box;
+    border: 1px solid #E8E8E8;
+    border-radius: 4px;
+    background: #FFFFFF;
+  }
+
+  input[type=text]:focus {
+    border: 3px solid #5D38DB;
+  }
+
+  form {
+    padding-left: 20px;
+    padding-top: 5px;
+  }
+
+  .inv_title {
+    position: absolute;
+    width: 326px;
+    height: 17px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #000000;
+  }
+
+  ::placeholder {
+    color: #3F3356;
+    font-size: 14px;
+    font-family: Montserrat;
+  }
+
+  .card{
+    width: 90%;
+    height: 70px;
+    align-self: center;
+    background: #FAFAFA;
+    box-shadow: 5px 5px 5px grey;
+    border-radius: 5px;
+  }
+
+  .card-body {
+    width: 90%;
+    height: 70px;
+    /* width: 306px; */
+    /* height: 17px; */
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 17px;
+    align-items: center;
+    letter-spacing: 0.2px;
+    /* text-transform: uppercase; */
+    color: #5D38DB;
+  }
+
+  .mat-icon, i {
+    cursor: pointer;
+  }
+
+  .background_color{
+    background-color: #FDF1FF;
+    width: 100%;
+    height: 85px;
+    left: 274px;
+    top: 117px;
+  }
+
+  .text_style{
+    padding-top: 17px;
+    padding-bottom: 10px;
+    text-align: center;
+ }
+
+ .extra-info {
+  display: none;
+  line-height: 30px;
+  font-size: 12px;
+	position: absolute;
+  top: 0;
+  text-align: right;
+}
+
+.info:hover .extra-info {
+  display: block;
+}
+
+* {
+  transition: all .2s ease;
+}
+
+.info {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 20px;
+  border-radius: 15px;
+}
+
+.info:hover {
+  background-color: white;
+  padding: 0 0 0 5px;
+  width: 315px;
+  text-align: left !important;
+}
+
+/* .numberCircle {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  padding: 5px;
+
+  background: #fff;
+  border: 1px solid #666;
+  color: #666;
+  text-align: center;
+
+  font: 15px Arial, sans-serif;
+} */
+
+.title-right{
+  text-align: right;
+  align-items: right;
+}
+
+.drop_inv{
+  padding-top: 30px;
+}

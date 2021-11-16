@@ -17,6 +17,8 @@ import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
 import { DndDirective } from './employee-details/dnd.directive';
 import { ProgressComponent } from './employee-details/progress/progress.component';
+import { SafePipe } from './core/pipes/safepipe.pipe';
+import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { ProgressComponent } from './employee-details/progress/progress.componen
     ReplaceUnderscorePipe,
     DndDirective,
     ProgressComponent,
+    SafePipe,
+    InvestmentDeclarationComponent
   ],
   imports: [
     BrowserModule,

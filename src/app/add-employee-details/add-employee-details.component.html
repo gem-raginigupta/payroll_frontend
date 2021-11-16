@@ -1,4 +1,5 @@
- <div class="container-fluid">
+ <div class="container-fluid scroller">
+   <div style="background-color: #E5E5E5;">
   <button mat-icon-button class="float-right" (click)="onClose()"><mat-icon>close</mat-icon></button>
   <mat-horizontal-stepper labelPosition="bottom" #stepper linear>
     <mat-step [stepControl]="personalDetailsFormGroup">
@@ -91,8 +92,8 @@
     <mat-step [stepControl]="bankDetailsFormGroup">
       <form [formGroup]="bankDetailsFormGroup" class="text-center mt-2">
         <ng-template matStepLabel>Bank Details</ng-template>
-        <div class="row">
-          <div class="col-md-6">
+        <div class="row justify-content-center">
+          <div class="col-md-4">
           <mat-form-field appearance="outline" class="mat-elevation-z3">
             <mat-label>Bank Account Number</mat-label>
             <input autocomplete="off" matInput formControlName="bankAcctNo" placeholder="Bank Account Number" required>
@@ -102,7 +103,7 @@
             <input autocomplete="off" matInput formControlName="bankAcctName" placeholder="Bank Account Name" required>
           </mat-form-field>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <mat-form-field appearance="outline" class="mat-elevation-z3">
             <mat-label>Bank Account Address</mat-label>
             <input autocomplete="off" matInput formControlName="bankAcctAddress" placeholder="Bank Account Address" required>
@@ -114,7 +115,7 @@
           </div>
         </div>
         <div class="bank-details-btns">
-          <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
+          <button mat-button matStepperPrevious class="action-btn mr-3">PREVIOUS</button>
           <!-- <button mat-button class="save-btn mr-3">SAVE</button> -->
           <button mat-button matStepperNext class="action-btn">NEXT</button>
         </div>
@@ -144,24 +145,6 @@
         </div>
         <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput formControlName="paytm" [placeholder]="CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore | titlecase" required>
-        </mat-form-field>
-        </div>
-        <div class="col-md-4">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input autocomplete="off" matInput formControlName="lta" [placeholder]="CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore | titlecase" required>
-        </mat-form-field>
-        </div>
-        <div class="col-md-4" *ngIf="calculatedPayroll.length">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input class="totalFlexiBasket" autocomplete="off" matInput value="{{calculatedPayroll[2]?.amount}}" placeholder="{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore | titlecase}}">
-        </mat-form-field>
-        </div>
-        <div class="col-md-4">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore}}</mat-label>
           <input autocomplete="off" matInput formControlName="conveyanceAllowance" [placeholder]="CTCComponentsDetails[6]?.ctcComponent | replaceUnderscore | titlecase" required>
         </mat-form-field>
@@ -177,11 +160,29 @@
         </mat-form-field>
         </div>
         <div class="col-md-4" *ngIf="calculatedPayroll.length">
-        <mat-form-field appearance="outline" class="mat-elevation-z3">
-          <mat-label>{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}</mat-label>
-          <input formControlName="grossSalary" autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore | titlecase}}">
-        </mat-form-field>
-        </div>
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input formControlName="grossSalary" autocomplete="off" matInput value="{{calculatedPayroll[0]?.amount}}" placeholder="{{calculatedPayroll[0]?.ctcComponent | replaceUnderscore | titlecase}}">
+          </mat-form-field>
+          </div>
+        <div class="col-md-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input autocomplete="off" matInput formControlName="paytm" [placeholder]="CTCComponentsDetails[7]?.ctcComponent | replaceUnderscore | titlecase" required>
+          </mat-form-field>
+          </div>
+          <div class="col-md-4">
+          <mat-form-field appearance="outline" class="mat-elevation-z3">
+            <mat-label>{{CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore}}</mat-label>
+            <input autocomplete="off" matInput formControlName="lta" [placeholder]="CTCComponentsDetails[8]?.ctcComponent | replaceUnderscore | titlecase" required>
+          </mat-form-field>
+          </div>
+          <div class="col-md-4" *ngIf="calculatedPayroll.length">
+            <mat-form-field appearance="outline" class="mat-elevation-z3">
+              <mat-label>{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore}}</mat-label>
+              <input class="totalFlexiBasket" autocomplete="off" matInput value="{{calculatedPayroll[2]?.amount}}" placeholder="{{calculatedPayroll[2]?.ctcComponent | replaceUnderscore | titlecase}}">
+            </mat-form-field>
+            </div>
         <div class="col-md-4">
         <mat-form-field appearance="outline" class="mat-elevation-z3">
           <mat-label>{{CTCComponentsDetails[4]?.ctcComponent | replaceUnderscore}}</mat-label>
@@ -225,7 +226,7 @@
         </mat-form-field>
       </div> -->
         <div class="ctc-details-btns">
-          <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
+          <button mat-button matStepperPrevious class="action-btn mr-3">PREVIOUS</button>
           <button mat-button class="action-btn mr-3" (click)="getFormDetails()" matStepperNext>NEXT</button>
           <button mat-button (click)="stepper.reset()" class="action-btn">RESET</button>
         </div>
@@ -258,7 +259,7 @@
         </div>
       </div>
       <div class="review-details-btns">
-      <button mat-button matStepperPrevious class="action-btn mr-3">BACK</button>
+      <button mat-button matStepperPrevious class="action-btn mr-3">PREVIOUS</button>
       <button mat-button class="save-btn mr-3" (click)="postEmployeeDetails()">SAVE</button>
       <!-- <button mat-button (click)="onClose()" class="action-btn mr-3">CANCEL</button> -->
     </div>
@@ -276,4 +277,5 @@
       <mat-icon>none</mat-icon>
     </ng-template> -->
   </mat-horizontal-stepper>
+</div>
   </div>

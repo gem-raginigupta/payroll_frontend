@@ -239,7 +239,7 @@
       <ng-container matColumnDef="expand_action">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let element" class="element-row">
-          <mat-icon style="cursor: pointer;"
+          <mat-icon [ngStyle]="{'color':'#C1C1C1'}" style="cursor: pointer;"
             (click)="
               expandedElement = expandedElement === element ? null : element
             "

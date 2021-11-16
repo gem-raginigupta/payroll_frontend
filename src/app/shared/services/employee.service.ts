@@ -8,7 +8,7 @@ import { BaseService } from './base.service';
 })
 export class EmployeeService {
 
-  private path = '';
+  private path;
   private param: HttpParams;
 
   constructor(private baseService: BaseService, private http: HttpClient) { }
@@ -31,6 +31,11 @@ export class EmployeeService {
 
   postEmployeeCTCDetailsApi(data: any): Observable<any>  {
     this.path = 'employee-ctc/addEmployeeCtc';
+    return this.baseService.post(this.path, data);
+  }
+
+  postInvestmentDeclarationAPI(data: any){
+    this.path = 'employee-Invest-Declare/addInvestmentDeclaration';
     return this.baseService.post(this.path, data);
   }
 
@@ -57,6 +62,16 @@ export class EmployeeService {
 
   getAllPayrollDetailsApi(): Observable<any> {
     this.path = 'payrollCalc/getAllPayroll';
+    return this.baseService.get(this.path);
+  }
+
+  getInvestmentDelarationSectionApi(): Observable<any> {
+    this.path = `options/INVESTMENT_DECLARATION_SECTION`;
+    return this.baseService.get(this.path);
+  }
+
+  getInvestmentBySectionApi(section: any): Observable<any> {
+    this.path = `options/investment/` + section;
     return this.baseService.get(this.path);
   }
 }
