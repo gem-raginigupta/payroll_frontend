@@ -135,3 +135,7 @@ input[type=text] {
 .drop_inv{
   padding-top: 30px;
 }
+
+.limit{
+  align-self: center;
+}
