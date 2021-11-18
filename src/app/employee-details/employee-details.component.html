@@ -55,10 +55,10 @@
             <div class="row" style="float: right;padding-right: 20px;">
                 
                 <div class="col-sm" style="padding-top: 10px;">
-                    <button class="add-employee-btn" (click)="openUploadFilesDialog(uploadFilesDialog)">ADD</button>
+                    <button class="add-employee-btn" (click)="openAddEmpDialog()">ADD</button>
                 </div>
                 <div class="col-sm" style="padding-top: 10px;">                  
-                  <button class="add-employee-btn" style="background-color: #0CBB48;">UPLOAD</button>
+                  <button class="add-employee-btn" style="background-color: #0CBB48;" (click)="openUploadFilesDialog(uploadFilesDialog)">UPLOAD</button>
                 </div>
                 
             </div>
@@ -78,7 +78,7 @@
   <div class="col-sm" >
   <div class="dropzone"  appDnd (fileDropped)="onFileDropped($event)">
     <label for ="fileInput"><i class="fas fa-cloud-upload-alt fa-3x"></i></label>
-    <input  type="file" id="fileInput"  multiple (change)="fileBrowseHandler($event.target.files)" />
+    <input style="display: none;" type="file" id="fileInput"  multiple (change)="fileBrowseHandler($event.target.files)" />
     <!-- #fileDropRef id="fileDropRef" -->
     <!-- <svg xmlns="http://www.w3.org/2000/svg" width="30" height="50" viewBox="0 0 50 50">
       <g fill="#3B454F" fill-rule="nonzero">
@@ -91,14 +91,16 @@
       </g>
     </svg> -->
       <h5>Drag Fies to Upload</h5>
-      <h5>or <label for="fileDropRef" style="color: purple;"><h5>Browse</h5></label> </h5> 
+      <!-- <h5>or <label for="fileDropRef" style="color: purple;"><h5>Browse</h5></label> </h5>  -->
       
   </div>
   </div>
   <div class="col-sm">
   <!-- file list -->
   <div class="files-list">
+    
     <div class="single-file" *ngFor="let file of files; let i = index">
+      
       <div class="file-icon" style="width: 40px">
         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           x="0px" y="0px" viewBox="0 0 58 58" style="enable-background:new 0 0 58 58;" xml:space="preserve">
@@ -139,7 +141,13 @@
 </div>
 </div>
   <div style="height: 20px;"></div>
-<button class="add-employee-btn" style="background-color: #0CBB48;">Upload Files</button>
+
+</div>
+<div style="display: flex;
+justify-content: center;
+padding-top: 40px;
+align-items: center;">
+  <button class="add-employee-btn" style="background-color: #0CBB48;width: 140px;">Upload Files</button>
 </div>
 </ng-template>
 
