@@ -17,6 +17,10 @@ import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
 import { SafePipe } from './core/pipes/safepipe.pipe';
 import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
+import { LoginComponent } from './account/login/login.component';
+import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
+import { AuthGuard } from './core/authentication/auth.guard';
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { InvestmentDeclarationComponent } from './investment-declaration/investm
     EmployeeDetailsComponent,
     AddEmployeeDetailsComponent,
     PayrollComponent,
+    LoginComponent,
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
@@ -41,7 +46,23 @@ import { InvestmentDeclarationComponent } from './investment-declaration/investm
     FormsModule,
     ReactiveFormsModule
     ],
-  providers: [],
+  providers: [
+    AuthService, AuthGuard, SocialAuthService,
+    {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            '923610267740-6fotbsfamigs8jrqp0o4kobnv2gad50h.apps.googleusercontent.com'
+          ),
+        },
+      ],
+    } as SocialAuthServiceConfig,
+  }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddEmployeeDetailsComponent]
 })
