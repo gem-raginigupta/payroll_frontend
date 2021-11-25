@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { RemovewhitespacesPipe } from './core/pipes/removeWHiteSpaces.pipe';
 import { FirstLetterToLowerCasePipe } from './core/pipes/firstLetterToLowerCase.pipe';
 import { ReplaceUnderscorePipe } from './core/pipes/replaceUnderscore.pipe';
+import { DndDirective } from './employee-details/dnd.directive';
+import { ProgressComponent } from './employee-details/progress/progress.component';
 import { SafePipe } from './core/pipes/safepipe.pipe';
 import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
 import { LoginComponent } from './account/login/login.component';
@@ -35,6 +37,8 @@ import { environment } from 'src/environments/environment';
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
+    DndDirective,
+    ProgressComponent,
     SafePipe,
     InvestmentDeclarationComponent
   ],
