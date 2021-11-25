@@ -21,6 +21,7 @@ import { LoginComponent } from './account/login/login.component';
 import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
 import { AuthGuard } from './core/authentication/auth.guard';
 import { AuthService } from './shared/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { AuthService } from './shared/services/auth.service';
         {
           id: GoogleLoginProvider.PROVIDER_ID,
           provider: new GoogleLoginProvider(
-            '923610267740-6fotbsfamigs8jrqp0o4kobnv2gad50h.apps.googleusercontent.com'
+            environment.clientId
           ),
         },
       ],
