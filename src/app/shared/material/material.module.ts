@@ -3,6 +3,8 @@ import {
   MatBadgeModule,
   MatButtonModule,
   MatDatepickerModule,
+  MatDialog,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -39,7 +41,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
     MatTableModule,
     MatPaginatorModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     {

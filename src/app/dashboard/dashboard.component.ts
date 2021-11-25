@@ -1,4 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,7 +16,7 @@ export class DashboardComponent implements OnInit {
     this.showNotifications = false;
   }
 
-  constructor() { }
+  constructor(private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,6 +26,27 @@ export class DashboardComponent implements OnInit {
     event.stopPropagation();
     if (this.showNotifications) {
       // this.readNotifications();
+    }
+  }
+
+  openLogout(templateRef: TemplateRef<any>) {
+    let dialogRef = this.dialog.open(templateRef, {
+      width: '280px',
+      height: '140px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  signOut(): void {
+    if (sessionStorage.getItem('user') !== null) {
+      sessionStorage.removeItem('user');
+      this.dialog.closeAll();
+      this.router.navigate(['/login']);
+    } else {
+      console.log('user not logged in');
     }
   }
 

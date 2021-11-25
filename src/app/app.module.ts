@@ -19,6 +19,11 @@ import { DndDirective } from './employee-details/dnd.directive';
 import { ProgressComponent } from './employee-details/progress/progress.component';
 import { SafePipe } from './core/pipes/safepipe.pipe';
 import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
+import { LoginComponent } from './account/login/login.component';
+import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig } from 'angularx-social-login';
+import { AuthGuard } from './core/authentication/auth.guard';
+import { AuthService } from './shared/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,6 +33,7 @@ import { InvestmentDeclarationComponent } from './investment-declaration/investm
     EmployeeDetailsComponent,
     AddEmployeeDetailsComponent,
     PayrollComponent,
+    LoginComponent,
     RemovewhitespacesPipe,
     FirstLetterToLowerCasePipe,
     ReplaceUnderscorePipe,
@@ -45,7 +51,23 @@ import { InvestmentDeclarationComponent } from './investment-declaration/investm
     FormsModule,
     ReactiveFormsModule
     ],
-  providers: [],
+  providers: [
+    AuthService, AuthGuard, SocialAuthService,
+    {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider(
+            environment.clientId
+          ),
+        },
+      ],
+    } as SocialAuthServiceConfig,
+  }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddEmployeeDetailsComponent]
 })
