@@ -27,7 +27,19 @@ export class LoginComponent implements OnInit {
       // console.log(data.authToken);
       // console.log(data.idToken);
       sessionStorage.setItem('user', JSON.stringify(data));
+      this.login(data.idToken);
       this.router.navigate(['/dashboard/home']);
     });
+  }
+
+  login(idToken) {
+    this.loginService.loginApi(idToken).subscribe(
+      res => {
+        console.log('login res', res.data);
+      },
+      error => {
+        console.log('login failed', error);
+      }
+    );
   }
 }

@@ -13,7 +13,7 @@ export class BaseService {
     this.baseURL = environment.baseURL;
   }
 
-  get(path: string, httpParams: HttpParams = null): Observable<any> {
+  get(path: string, httpParams: HttpParams = null, httpHeaders?: HttpHeaders): Observable<any> {
     const url = this.getRequestURL(path);
     const apiRequest = this.http.get(url, {headers: this.setHeaders(), params: httpParams});
     return apiRequest;
