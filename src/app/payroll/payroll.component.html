@@ -137,7 +137,8 @@
   </select>
 </form>
 </div>
-<iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe>
+<button (click) = "save_pdf()"> Download Payslip</button>
+<!-- <iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe> -->
 <!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
     <p style="padding-left: 10px; color: gray; font-size: 14px; font-family: Montserrat;">Earnings</p>
 </div>
@@ -151,3 +152,25 @@
   </div>
 </div> -->
 </ng-template>
+<div class = "pdfbody">
+<div class = "payslipPDF" id = "payslipPDF">
+    <!-- <div class = "heading"> -->
+    <div class = "pdfhead d-flex align-items-md-center"> GEMINI &nbsp; SOLUTIONS &nbsp; PRIVATE &nbsp; LIMITED </div>
+    <div class = "pdfsubhead">   Plot No. 119,Udyog Vihar,Phase-1, Sector-20, Gurgaon,Haryana-122016</div><br>
+        <table style="width: 10%;">
+            <tr style="height: 5px;">
+                <td class = "pdfsubhead">Name </td>
+                <td class = "pdfsubhead">Ujjwal</td>
+                <td class = "pdfsubhead">Employee No.</td>
+                <td class = "pdfsubhead">GSI G 666</td>
+            </tr>
+            <tr style="height: 50px;">
+                <td class = "pdfsubhead">Joining Date</td>
+                <td class = "pdfsubhead">02 Jan 2019 </td>
+                <td class = "pdfsubhead">Bank Name</td>
+                <td class = "pdfsubhead">Yes Bank Ltd</td>
+            </tr>
+        </table>
+    <!-- </div> -->
+</div>
+</div>

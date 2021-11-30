@@ -312,3 +312,19 @@ h4 {
   border-style:solid 1px rgba(151, 151, 151, 0.15);
   background-color: #FFFFFF;
 }
+
+.pdfhead{
+  font-size: 6px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.pdfsubhead{
+  font-size: 4px;
+  
+}
+
+.pdfbody{
+  visibility: hidden;
+}

@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    console.log(environment.env);
     // this.socialAuthService.authState.subscribe((data) => {
     //   this.user = data;
     //   this.loggedIn = (data != null);

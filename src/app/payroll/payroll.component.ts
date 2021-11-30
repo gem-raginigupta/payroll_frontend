@@ -13,6 +13,7 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material";
+import jsPDF from "jspdf";
 import { EmployeeService } from "../shared/services/employee.service";
 import { PayrollService } from "../shared/services/payroll.service";
 import * as pdfMake from "pdfmake/build/pdfmake";
@@ -234,5 +235,23 @@ export class PayrollComponent implements AfterViewInit {
   closeDatePicker(eventData: any, dp?: any) {
     // get month and year from eventData and close datepicker, thus not allowing user to select date
     dp.close();
+  }
+
+  save_pdf(){
+    console.log("Fetching PDF");
+    let doc = new jsPDF('p', 'mm', 'a4');
+    // pdf.setFont("helvetica");
+    // pdf.setFontType("bold");
+    let  width = doc.internal.pageSize.getWidth();
+    let height = doc.internal.pageSize.getHeight();
+    let position = 0;
+    const pdf_temp = document.getElementById('payslipPDF');
+    console.log(pdf_temp);
+    doc.html(pdf_temp, {
+      callback: function(pdf){
+        doc.setFontSize(1);
+        doc.save("Payroll.pdf");
+      }
+    });
   }
 }
