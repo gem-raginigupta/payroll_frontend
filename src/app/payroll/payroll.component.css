@@ -315,14 +315,22 @@ h4 {
 
 .pdfhead{
   font-size: 6px;
-  display: flex;
-  align-items: center;
+  width: 220px;
   text-align: center;
+  font-weight: bold;
 }
 
 .pdfsubhead{
   font-size: 4px;
+  width: 220px;
+  text-align: center;
+  font-weight: bold;
   
+}
+
+.pdfcell{
+  font-size: 4px;
+  padding: 0.2px;
 }
 
 .pdfbody{

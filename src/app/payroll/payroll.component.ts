@@ -35,6 +35,8 @@ export class PayrollComponent implements AfterViewInit {
   allPayrollDetails: any;
   payrollDataParsed: any = [];
   employeePayrollDetails: any;
+  parsedEmployeePayrollDetails: any;
+  employeeDetails: any;
   months = [
     "January",
     "February",
@@ -77,8 +79,8 @@ export class PayrollComponent implements AfterViewInit {
       (res) => {
         this.allPayrollDetails = res.data;
         this.payrollDataParsed = this.parsePayrollData(res.data);
-        // console.log(this.allPayrollDetails);
-        // console.log('Parsed', this.payrollDataParsed);
+        console.log(this.allPayrollDetails);
+        console.log('Parsed', this.payrollDataParsed);
       },
       (error) => {
         console.log("get all payroll details failed", error);
@@ -113,17 +115,38 @@ export class PayrollComponent implements AfterViewInit {
     return this.payrollDataParsed;
   }
 
+  parseEmployeePayrollDetails(employeePayrollDetails){
+    let parsedData = {}
+    for (let i = 0; i< employeePayrollDetails.length; i++) {
+      parsedData[employeePayrollDetails[i]['component']] = employeePayrollDetails[i]['value']
+    }
+    return parsedData;
+  }
+
   getPayrollDetails(element) {
     this.payrollService.getAllPayrollDetailsApi(element.employeeId).subscribe(
       (res) => {
         this.employeePayrollDetails = res.data;
-        // console.log("employeePayrollDetails res", this.employeePayrollDetails);
+        this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(this.employeePayrollDetails)
+        console.log(this.parsedEmployeePayrollDetails);
+        console.log("employeePayrollDetails res", this.employeePayrollDetails);
+        console.log(this.employeePayrollDetails[0]['component'])
         this.generatePayrollPDF();
+        // this.save_pdf();
       },
       (error) => {
         console.log("employeePayrollDetails failed", error);
       }
     );
+  }
+
+  getEmployeesDetails(element) {
+    this.employeeService.getEmployeDetailsApi(element.employeeId).subscribe(
+      (res) => {
+        this.employeeDetails = res.data;
+        console.log(this.employeeDetails);
+      }
+    )
   }
 
   generatePayrollPDF() {
@@ -218,7 +241,8 @@ export class PayrollComponent implements AfterViewInit {
       height: "600px",
     });
     this.getPayrollDetails(element);
-
+    this.getEmployeesDetails(element);
+    console.log(this.employeePayrollDetails);
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
     });

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://gempayrolldevapi.geminisolutions.com/',
+  baseURL: 'https://gempayrollapi.geminisolutions.com/',
   clientId: '923610267740-6fotbsfamigs8jrqp0o4kobnv2gad50h.apps.googleusercontent.com',
   env: 'local'
 };
