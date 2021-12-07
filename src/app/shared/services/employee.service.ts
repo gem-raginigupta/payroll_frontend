@@ -74,4 +74,9 @@ export class EmployeeService {
     this.path = `options/investment/` + section;
     return this.baseService.get(this.path);
   }
+
+  postBulkFileUploadApi(data: any): Observable<any>  {
+    this.path = 'employee/bulkImportEmployee';
+    return this.baseService.post(this.path, data);
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { AddEmployeeDetailsComponent } from '../add-employee-details/add-employee-details.component';
 import { EmployeeService } from '../shared/services/employee.service';
@@ -25,6 +24,7 @@ export class EmployeeDetailsComponent implements OnInit {
   expandedElement: any;
   allEmpDetails: any;
   employeeCTCDetails: any[] = [];
+  files: any[] = [];
   employeeCalculatedDetails: any;
   empDetails: any = [
     {header: 'Permanent Address', field: 'permenantAddress'},
@@ -93,8 +93,34 @@ export class EmployeeDetailsComponent implements OnInit {
       );
       }
       
+
+    //-------------------
+    uploadTestCase() {
+      const formData = new FormData();
+      // this.testCaseFiles.forEach((file, i) => formData.append('files', file[i]));
+      const tcFiles = Array.from(this.files);
+      for (let i; i <= tcFiles.length; i++) {
+        // const file: File = this.testCaseFiles[i];
+        const file: File = tcFiles[i];
+        formData.append('files', file);
+      }
+      console.log('tc index', tcFiles[1]);
+      // for (const file of this.testCaseFiles) {
+      //   formData.append('files', file, file.get);
+      // }
+      console.log('tcFile', this.files);
+      this.employeeService.postBulkFileUploadApi(formData).subscribe(
+          res => {
+            console.log(res, 'Files uploaded');
+          },
+          error => {
+            console.log('Files uploading failed', error);
+          }
+        );
+    }
+  
     //  -------------
-    files: any[] = [];
+   
 
   /**
    * on file drop handler

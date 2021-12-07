@@ -19,6 +19,7 @@ import { DndDirective } from './employee-details/dnd.directive';
 import { ProgressComponent } from './employee-details/progress/progress.component';
 import { SafePipe } from './core/pipes/safepipe.pipe';
 import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
+import {UploadFiles} from '/employee/bulkImportEmployee';
 
 @NgModule({
   declarations: [
