@@ -47,7 +47,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.getAllEmployeesDetails();
   }
 
-  
+
   openAddEmpDialog(): void {
       const dialogRef = this.dialog.open(AddEmployeeDetailsComponent, {
         width: '1000px',
@@ -92,7 +92,7 @@ export class EmployeeDetailsComponent implements OnInit {
         }
       );
       }
-      
+
     //  -------------
     files: any[] = [];
 
@@ -155,7 +155,8 @@ export class EmployeeDetailsComponent implements OnInit {
    * @param bytes (File size in bytes)
    * @param decimals (Decimals point)
    */
-  formatBytes(bytes, decimals) {
+  formatBytes(bytes) {
+    let decimals;
     if (bytes === 0) {
       return '0 Bytes';
     }
@@ -185,14 +186,14 @@ export class EmployeeDetailsComponent implements OnInit {
           width: "800px",
           height: "600px",
         });
-    
+
         dialogRef.afterClosed().subscribe((result) => {
           console.log("The dialog was closed");
         });
       }
-    
+
       onClose() {
         this.dialog.closeAll();
       }
-    
+
 }
