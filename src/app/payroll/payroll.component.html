@@ -163,32 +163,32 @@
             <div class="pdfhead"> GEMINI &nbsp; SOLUTIONS &nbsp; PRIVATE &nbsp; LIMITED
             </div>
             <div class="pdfsubhead"> Plot No. 119,Udyog Vihar,Phase-1, Sector-20, Gurgaon,Haryana-122016</div><br>
-            <table style="width: 12%;">
-                <tr style="height: 5px;">
+            <table class = "table_pdf">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">Name </td>
                     <td class="pdfcell">{{employeeDetails['firstName']}} &nbsp; {{employeeDetails['lastName']}}</td>
                     <td class="pdfcell">Employee No.</td>
                     <td class="pdfcell">{{employeeDetails['employeeId']}}</td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">Joining Date</td>
                     <td class="pdfcell">{{employeeDetails['dateOfJoining']}} </td>
                     <td class="pdfcell">Bank Name</td>
                     <td class="pdfcell">Yes Bank Ltd</td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">Aadhar</td>
                     <td class="pdfcell"> {{employeeDetails['aadhaar']}}</td>
                     <td class="pdfcell">PAN Number</td>
                     <td class="pdfcell">{{employeeDetails['pan']}}</td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">Bank Account No</td>
                     <td class="pdfcell">{{employeeDetails['bankAcctNo']}}</td>
                     <td class="pdfcell">PF No</td>
                     <td class="pdfcell">{{employeeDetails['pfNo']}}</td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">UAN No</td>
                     <td class="pdfcell">{{employeeDetails['uanNo']}}</td>
                     <td class="pdfcell"></td>
@@ -196,38 +196,38 @@
                 </tr>
             </table>
             <br>
-            <table style="width: 12%;">
-                <tr style="height: 5px;">
+            <table class = "table_pdf">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell"><b>Earnings</b> </td>
                     <td class="pdfcell"><b>Amount</b></td>
                     <td class="pdfcell"><b>Deductions</b></td>
                     <td class="pdfcell"><b>Amount</b></td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">BASIC</td>
                     <td class="pdfcell">{{parsedEmployeePayrollDetails['BASIC_PAY']}}.00 </td>
                     <td class="pdfcell">PF</td>
                     <td class="pdfcell">{{parsedEmployeePayrollDetails['PF']}}.00</td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">HRA</td>
                     <td class="pdfcell"> {{parsedEmployeePayrollDetails['HRA']}}.00 </td>
                     <td class="pdfcell"></td>
                     <td class="pdfcell"></td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">STD &nbsp; ALLOWANCE</td>
                     <td class="pdfcell"> {{parsedEmployeePayrollDetails['STANDARD_ALLOWANCE']}}.00</td>
                     <td class="pdfcell"></td>
                     <td class="pdfcell"></td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell">SPECIAL &nbsp; ALLOWANCE</td>
                     <td class="pdfcell">{{parsedEmployeePayrollDetails['SPECIAL_ALLOWANCE']}}.00</td>
                     <td class="pdfcell"></td>
                     <td class="pdfcell"></td>
                 </tr>
-                <tr style="height: 5px;">
+                <tr class = "table_pdf_row">
                     <td class="pdfcell"><b>Total &nbsp; Earnings</b></td>
                     <td class="pdfcell"> <b>{{parsedEmployeePayrollDetails['TOTAL_EARNINGS']}}.00 </b></td>
                     <td class="pdfcell"><b> Total Deduction</b></td>

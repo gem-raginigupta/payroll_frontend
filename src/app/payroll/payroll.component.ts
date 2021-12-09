@@ -263,7 +263,7 @@ export class PayrollComponent implements AfterViewInit {
 
   save_pdf(){
     console.log("Fetching PDF");
-    let doc = new jsPDF('p', 'mm', 'a4');
+    let doc = new jsPDF('p', 'pt', 'a4');
     // pdf.setFont("helvetica");
     // pdf.setFontType("bold");
     let  width = doc.internal.pageSize.getWidth();
