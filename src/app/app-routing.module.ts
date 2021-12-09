@@ -5,10 +5,13 @@ import { HomeComponent } from './home/home.component';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import {PayrollComponent} from './payroll/payroll.component';
 import  {InvestmentDeclarationComponent} from './investment-declaration/investment-declaration.component';
+import { LoginComponent } from './account/login/login.component';
+import { AuthGuard } from './core/authentication/auth.guard';
 
 
 const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent,
+  canActivate: [AuthGuard],
   children: [
     {
       path: '',
@@ -32,6 +35,10 @@ const routes: Routes = [
       component: InvestmentDeclarationComponent
     }
   ]
+},
+{
+  path: 'login',
+  component: LoginComponent
 },
 { path: '',
     pathMatch: 'full',

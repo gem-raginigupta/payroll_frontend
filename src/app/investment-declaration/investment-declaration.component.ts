@@ -75,6 +75,7 @@ export class InvestmentDeclarationComponent {
 
     display80D(){
       console.log("Clicked")
+      this.show80C = false;
       this.show80D = !this.show80D;
       this.show80C = false;
       this.getInvestmentBySection('80D');
@@ -153,6 +154,18 @@ export class InvestmentDeclarationComponent {
               this.investmentDeclarationvalue[res.data[i]['investmentType']] = 0;
               this.formgroup[res.data[i]['investmentType']] = []
           }
+          this.investmentDeclarationlist = this.investmentDeclarationlist.sort((n1,n2) => {
+            if (n1 > n2) {
+                return 1;
+            }
+        
+            if (n1 < n2) {
+                return -1;
+            }
+        
+            return 0;
+        });
+        
           this.investmentDeclarationForm = this.formBuilder.group(this.formgroup);
           console.log(this.formgroup);
           console.log(this.investmentDeclarationlist);

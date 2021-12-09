@@ -1,0 +1,128 @@
+.login_container {
+    width: 300px;
+    height: 380px;
+    background-color: white;
+    border-radius: 20px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-btn {
+    color: white;
+    margin-top: 20px;
+    width: 90%;
+    font-family: Helvetica Regular;
+    box-shadow: none;
+    font-style: normal;
+    border-radius: 10px;
+    background-color: #9f4b9c;
+  }
+  .form_data img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .form_data {
+    margin-right: 20px;
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  /* .container-fluid {
+    background: url("src/assets/images/img.png");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding-left: 200px;
+    justify-content: left;
+  } */
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .container-fluid {
+    background: url("src/assets/images/login.svg");
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+  }
+
+  .login-page {
+    height: 380px;
+    width: 300px;
+    background: #FFC4FF;
+    box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+    border-radius: 5.5px;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .circle {
+    width: 300px;
+    position: absolute;
+    height: 300px;
+    transform: translate(-20%, -20%);
+    background-color: #9B2F9B;
+    border-radius: 50%;
+  }
+
+  .payroll {
+    position: absolute;
+    color: white;
+    font-size: 14px;
+    font-family: Helvetica regular;
+    margin-top: 15px;
+    margin-left: 20px;
+  }
+
+  .gem-logo {
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    border-radius: 4px;
+    padding: 6px;
+    width: 250px;
+    border: none;
+    font-size: 14px;
+    font-family: Helvetica regular;
+  }
+
+  .login-btn {
+    padding: 10px 50px 10px 50px;
+    background-color: white;
+    color: #9B2F9B;
+    font-size: 14px;
+    font-family: Helvetica regular;
+    border-radius: 4px;
+    border: none;
+  }
+
+  .forgot-password {
+    bottom: 2px;
+    position: absolute;
+    color: #862586;
+    font-size: 12px;
+    font-family: Helvetica regular;
+  }
+
+  .or {
+    margin-top: 40px;
+    font-size: 12px;
+    font-family: Helvetica regular;
+    color: white;
+  }

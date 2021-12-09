@@ -13,6 +13,7 @@ import {
   MatTableDataSource,
   MatTableModule,
 } from "@angular/material";
+import jsPDF from "jspdf";
 import { EmployeeService } from "../shared/services/employee.service";
 import { PayrollService } from "../shared/services/payroll.service";
 import * as pdfMake from "pdfmake/build/pdfmake";
@@ -34,6 +35,8 @@ export class PayrollComponent implements AfterViewInit {
   allPayrollDetails: any;
   payrollDataParsed: any = [];
   employeePayrollDetails: any;
+  parsedEmployeePayrollDetails: any;
+  employeeDetails: any;
   months = [
     "January",
     "February",
@@ -76,8 +79,8 @@ export class PayrollComponent implements AfterViewInit {
       (res) => {
         this.allPayrollDetails = res.data;
         this.payrollDataParsed = this.parsePayrollData(res.data);
-        // console.log(this.allPayrollDetails);
-        // console.log('Parsed', this.payrollDataParsed);
+        console.log(this.allPayrollDetails);
+        console.log('Parsed', this.payrollDataParsed);
       },
       (error) => {
         console.log("get all payroll details failed", error);
@@ -112,17 +115,38 @@ export class PayrollComponent implements AfterViewInit {
     return this.payrollDataParsed;
   }
 
+  parseEmployeePayrollDetails(employeePayrollDetails){
+    let parsedData = {}
+    for (let i = 0; i< employeePayrollDetails.length; i++) {
+      parsedData[employeePayrollDetails[i]['component']] = employeePayrollDetails[i]['value']
+    }
+    return parsedData;
+  }
+
   getPayrollDetails(element) {
     this.payrollService.getAllPayrollDetailsApi(element.employeeId).subscribe(
       (res) => {
         this.employeePayrollDetails = res.data;
-        // console.log("employeePayrollDetails res", this.employeePayrollDetails);
+        this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(this.employeePayrollDetails)
+        console.log(this.parsedEmployeePayrollDetails);
+        console.log("employeePayrollDetails res", this.employeePayrollDetails);
+        console.log(this.employeePayrollDetails[0]['component'])
         this.generatePayrollPDF();
+        // this.save_pdf();
       },
       (error) => {
         console.log("employeePayrollDetails failed", error);
       }
     );
+  }
+
+  getEmployeesDetails(element) {
+    this.employeeService.getEmployeDetailsApi(element.employeeId).subscribe(
+      (res) => {
+        this.employeeDetails = res.data;
+        console.log(this.employeeDetails);
+      }
+    )
   }
 
   generatePayrollPDF() {
@@ -217,7 +241,8 @@ export class PayrollComponent implements AfterViewInit {
       height: "600px",
     });
     this.getPayrollDetails(element);
-
+    this.getEmployeesDetails(element);
+    console.log(this.employeePayrollDetails);
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
     });
@@ -234,5 +259,23 @@ export class PayrollComponent implements AfterViewInit {
   closeDatePicker(eventData: any, dp?: any) {
     // get month and year from eventData and close datepicker, thus not allowing user to select date
     dp.close();
+  }
+
+  save_pdf(){
+    console.log("Fetching PDF");
+    let doc = new jsPDF('p', 'pt', 'a4');
+    // pdf.setFont("helvetica");
+    // pdf.setFontType("bold");
+    let  width = doc.internal.pageSize.getWidth();
+    let height = doc.internal.pageSize.getHeight();
+    let position = 0;
+    const pdf_temp = document.getElementById('payslipPDF');
+    console.log(pdf_temp);
+    doc.html(pdf_temp, {
+      callback: function(pdf){
+        doc.setFontSize(1);
+        doc.save("Payroll.pdf");
+      }
+    });
   }
 }
