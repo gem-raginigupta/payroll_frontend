@@ -1,7 +1,7 @@
 node('nodejs_runner') {
         stage('frontend_checkout') {
                 dir('payrollautomationui') {
-                        checkout([$class: 'GitSCM', branches: [[name: '*/dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], \
+                        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], \
                                 userRemoteConfigs: [[credentialsId: 'admingithub', url: 'https://github.com/gem-raginigupta/payroll_frontend.git', poll: 'false']]])
                 }
         }
@@ -11,7 +11,7 @@ node('nodejs_runner') {
                                 sh 'rm -rf package-lock.json'
                                 sh 'npm cache clean --force'
                                 sh 'npm install'
-                                sh 'npm run build --dev'
+                                sh 'npm run build --prod'
                         }
                 }
         }
