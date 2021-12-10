@@ -11,9 +11,8 @@ import {
   MatPaginator,
   MatSort,
   MatTableDataSource,
-  MatTableModule,
 } from "@angular/material";
-import jsPDF from "jspdf";
+import { jsPDF } from "jspdf";
 import { EmployeeService } from "../shared/services/employee.service";
 import { PayrollService } from "../shared/services/payroll.service";
 import * as pdfMake from "pdfmake/build/pdfmake";
