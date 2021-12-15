@@ -312,14 +312,14 @@ h4 {
 
 .pdfhead{
   font-size: 18px;
-  width: 660px;
+  width: 600px;
   text-align: center;
   font-weight: bold;
 }
 
 .pdfsubhead{
   font-size: 12px;
-  width: 660px;
+  width: 600px;
   text-align: center;
   font-weight: bold;
   
@@ -342,6 +342,7 @@ h4 {
   border: 1px solid;
   /* border-color: black; */
   border-color: black;
+  margin-left: 14px;;
 }
 
 .table_pdf_row{

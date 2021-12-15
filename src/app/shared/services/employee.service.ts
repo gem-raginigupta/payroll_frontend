@@ -80,4 +80,9 @@ export class EmployeeService {
     this.path = `options/investment/` + section;
     return this.baseService.get(this.path);
   }
+
+  getInvestmentLimitApi(): Observable<any> {
+    this.path = `InvestLimitXref/allInvestLimitXref`;
+    return this.baseService.get(this.path);
+  }
 }

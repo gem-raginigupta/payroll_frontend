@@ -24,6 +24,7 @@ export class InvestmentDeclarationComponent {
     investmentDeclarationDict: any;
     allInvestmentDeclarations: any;
     investmentDeclarationvalue: any;
+    allInvestmentsLimit: any;
     investment_sum:any;
     formgroup: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -38,7 +39,7 @@ export class InvestmentDeclarationComponent {
       this.getInvestmentBySection('80D');
       this.display();
       this.getAllEmployees();
-      this.investment_sum = 0;
+      this.investment_sum = {};
       this.show80C = false;
       this.show80D = false;
     }
@@ -47,17 +48,25 @@ export class InvestmentDeclarationComponent {
       console.log("Yo!!!")
     }
 
-    sum(key, value){
-      console.log(key,value);
+    sum(key, value, section){
+      console.log(key,value, section);
       if(!value){
         value = 0
       }
       this.investmentDeclarationvalue[key] = parseInt(value);
       let obj = this.investmentDeclarationvalue;
-      this.investment_sum = 0
+      console.log(obj);
+      console.log(this.investmentDeclarationlist);
+      this.investment_sum[section] = 0
       for( var k in obj ) {
-        if( obj.hasOwnProperty( k ) ) {
-          this.investment_sum += parseFloat( obj[k] );
+        if( obj.hasOwnProperty(k) ) {
+          if (this.investmentDeclarationlist.includes(k)){
+            console.log("FFF")
+            this.investment_sum[section] += parseFloat( obj[k] );
+            if(this.investment_sum[section] > this.allInvestmentsLimit[section]){
+              this.investment_sum[section] = this.allInvestmentsLimit[section]
+            }
+          }
         }
       }
     }
@@ -139,6 +148,18 @@ export class InvestmentDeclarationComponent {
             this.allInvestmentDeclarations.push(res.data[i]['optionValue'])
             // this.getInvestmentBySection(this.investment_option);
           }
+        }
+      )
+      this.employeeService.getInvestmentLimitApi().subscribe(
+        res => {
+          let limit_json = {}
+          let result = res.data;
+          for(let i=0; i< res.data.length; i++){
+            limit_json[res.data[i]['section']] = res.data[i]['investmentLimit']
+            this.investment_sum[res.data[i]['section']] = 0
+          }
+          this.allInvestmentsLimit = limit_json
+          console.log(this.allInvestmentsLimit)
         }
       )
     }
