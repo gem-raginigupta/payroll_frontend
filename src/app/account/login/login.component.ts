@@ -27,9 +27,9 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(data => {
       // console.log(data.authToken);
-      console.log(data.idToken);
+      // console.log(data.idToken);
       sessionStorage.setItem('user', JSON.stringify(data));
-      this.login(data.idToken);
+      // this.login(data.idToken);
       this.router.navigate(['/dashboard/home']);
     });
   }
