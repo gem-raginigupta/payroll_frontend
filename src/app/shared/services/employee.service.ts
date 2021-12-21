@@ -60,6 +60,12 @@ export class EmployeeService {
     return this.baseService.get(this.path, this.param);
   }
 
+  getEmployeDetailsApi(empId: any): Observable<any> {
+    // this.param = new HttpParams().set('employeeId', empId);
+    this.path = `employee/getEmployeeById/` + empId;
+    return this.baseService.get(this.path);
+  }
+
   getAllPayrollDetailsApi(): Observable<any> {
     this.path = 'payrollCalc/getAllPayroll';
     return this.baseService.get(this.path);

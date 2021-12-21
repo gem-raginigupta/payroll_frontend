@@ -11,7 +11,7 @@ node('nodejs_runner') {
                                 sh 'rm -rf package-lock.json'
                                 sh 'npm cache clean --force'
                                 sh 'npm install'
-                                sh 'npm run build'
+                                sh 'npm run build --prod'
                         }
                 }
         }

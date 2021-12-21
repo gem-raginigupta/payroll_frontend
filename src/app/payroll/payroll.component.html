@@ -1,144 +1,151 @@
 <div style="overflow: hidden;">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm text-center ">
-            <div class="text-style" style="padding-top: 20px;"><b>PAYROLL FOR THE MONTH OF JUNE</b></div>
-        </div>
-        <div class="col-sm text-center">
-            <div class="box" id="box2">
-                64
-                <hr class="desc" />
-                <p>Total Employees</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm text-center ">
+                <div class="text-style" style="padding-top: 20px;"><b>PAYROLL FOR THE MONTH OF JUNE</b></div>
             </div>
-            <div class="box" id="box3">
-                2345.00
-                <hr class="desc" />
-                <p>Total Income</p>
-            </div>
-            <div class="box" id="box4">
-                Tuesday, June 1
-                <hr class="desc" />
-                <p>Pay Day</p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="height"></div>
-
-
-<div class="container-fluid background_color">
-    <div class="row">
-        <div class="col-sm text-center">
-            <p class="text_style"><b>EMPLOYEES PAYROLL</b></p>
-        </div>
-        <div class="col-sm" style="padding-right: 10%;">
-            <div class="row">
-                <div class="col-sm">
-                    <p class="text_style" style="font-size: small;text-align: right;"><a href=""><i class="fas fa-print "
-                                style="font-size:15px;color: grey;"></i></a> Print </p>
+            <div class="col-sm text-center">
+                <div class="box" id="box2">
+                    64
+                    <hr class="desc" />
+                    <p>Total Employees</p>
                 </div>
-                <div class="col-sm">
-                    <p class="text_style" style="font-size: small;text-align: center"><a href=""><i class="fas fa-cloud-download-alt "
-                                style="font-size:15px;color: grey;"></i></a> Download </p>
+                <div class="box" id="box3">
+                    2345.00
+                    <hr class="desc" />
+                    <p>Total Income</p>
                 </div>
-                <div class="col-sm" style="padding-top: 10px;">
-                    <button class="add-employee-btn">ADD</button>
+                <div class="box" id="box4">
+                    Tuesday, June 1
+                    <hr class="desc" />
+                    <p>Pay Day</p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div style="height: 20px;"></div>
-<div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
-    <select name="Sort By" id="Sort By" class="dropdowns" style="margin-right: 20px;">
-        <option value="#">Sort By</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-      <select name="Filter" id="Filter" class="dropdowns">
-        <option value="#">Filter</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-      </select>
-</div>
+    <div class="height"></div>
 
-<div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
-    <div class="table-responsive mt-3">
-        <table class="table request_table pl-3 pr-3 mat-elevation-z8" mat-table matSort multiTemplateDataRows
-            [dataSource]="this.empListDataSource">
 
-            <ng-container matColumnDef="gem_id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Gem ID </th>
-                <td mat-cell *matCellDef="let element" class="element-row" (click)="openPayslipDialog(payslipDialog, element)"> {{element.employeeId}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{element.firstName}} {{element.lastName}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="dept">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
-                <td mat-cell *matCellDef="let element" class="element-row"></td>
-            </ng-container>
-
-            <ng-container matColumnDef="role">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
-                <td mat-cell *matCellDef="let element" class="element-row"></td>
-            </ng-container>
-
-            <ng-container matColumnDef="total_salary">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Salary </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> {{this.payrollDataParsed[element.employeeId]}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="payment_status">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
-                <td mat-cell *matCellDef="let element" class="element-row"> Paid
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="options">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Options </th>
-                <td mat-cell *matCellDef="let element" class="element-row">
-                   <a href=""><i class="far fa-edit fa-2x" style="padding-right: 10px;color: grey;"></i></a>
-                   <a href=""><i class="far fa-trash-alt fa-2x" style="padding-right: 10px;color: #C82727;"></i></a>
-                   <a href=""><i class="fas fa-user-minus fa-2x" style="padding-right: 10px;color: #F38A2D;"></i></a>
-                </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    <div class="container-fluid background_color">
+        <div class="row">
+            <div class="col-sm text-center">
+                <p class="text_style"><b>EMPLOYEES PAYROLL</b></p>
+            </div>
+            <div class="col-sm" style="padding-right: 10%;">
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="text_style" style="font-size: small;text-align: right;"><a href=""><i
+                                    class="fas fa-print " style="font-size:15px;color: grey;"></i></a> Print </p>
+                    </div>
+                    <div class="col-sm">
+                        <p class="text_style" style="font-size: small;text-align: center"><a href=""><i
+                                    class="fas fa-cloud-download-alt " style="font-size:15px;color: grey;"></i></a>
+                            Download </p>
+                    </div>
+                    <div class="col-sm" style="padding-top: 10px;">
+                        <button class="add-employee-btn">ADD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <div style="height: 20px;"></div>
+    <div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
+        <select name="Sort By" id="Sort By" class="dropdowns" style="margin-right: 20px;">
+            <option value="#">Sort By</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <select name="Filter" id="Filter" class="dropdowns">
+            <option value="#">Filter</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
 
-<ng-template #payslipDialog>
-  <div class="d-flex justify-content-between">
-  <h4 class="mb-4"><u>Your Payslip</u></h4>
-  <mat-icon (click)="onClose()" style="cursor: pointer;">close</mat-icon>
-</div>
-<div>
-  <form class="mb-3">
-  <label for="cars">Choose a month:</label><br>
-  <!-- <mat-form-field>
+    <div class="container-fluid" style="width:  80%; margin-left: auto;margin-right: auto;">
+        <div class="table-responsive mt-3">
+            <table class="table request_table pl-3 pr-3 mat-elevation-z8" mat-table matSort multiTemplateDataRows
+                [dataSource]="this.empListDataSource">
+
+                <ng-container matColumnDef="gem_id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Gem ID </th>
+                    <td mat-cell *matCellDef="let element" class="element-row"
+                        (click)="openPayslipDialog(payslipDialog, element)"> {{element.employeeId}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                    <td mat-cell *matCellDef="let element" class="element-row"> {{element.firstName}}
+                        {{element.lastName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="dept">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
+                    <td mat-cell *matCellDef="let element" class="element-row"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Role </th>
+                    <td mat-cell *matCellDef="let element" class="element-row"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="total_salary">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Total Salary </th>
+                    <td mat-cell *matCellDef="let element" class="element-row">
+                        {{this.payrollDataParsed[element.employeeId]}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="payment_status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Status </th>
+                    <td mat-cell *matCellDef="let element" class="element-row"> Paid
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="options">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Options </th>
+                    <td mat-cell *matCellDef="let element" class="element-row">
+                        <a href=""><i class="far fa-edit fa-2x" style="padding-right: 10px;color: grey;"></i></a>
+                        <a href=""><i class="far fa-trash-alt fa-2x"
+                                style="padding-right: 10px;color: #C82727;"></i></a>
+                        <a href=""><i class="fas fa-user-minus fa-2x"
+                                style="padding-right: 10px;color: #F38A2D;"></i></a>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+
+    <ng-template #payslipDialog>
+        <div class="d-flex justify-content-between">
+            <h4 class="mb-4"><u>Your Payslip</u></h4>
+            <mat-icon (click)="onClose()" style="cursor: pointer;">close</mat-icon>
+        </div>
+        <div>
+            <form class="mb-3">
+                <label for="cars">Choose a month:</label><br>
+                <!-- <mat-form-field>
     <input class="date-selector" matInput [matDatepicker]="dp2" [min]="sixMonthsAgo" [max]="today" placeholder="Select a Date" (click)="openDatePicker(dp2)">
     <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
     <mat-datepicker #dp2 startView="multi-year" (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
   </mat-form-field> -->
-  <select name="month" id="month">
-    <option *ngFor="let month of months" [value]="month">{{month}}</option>
-  </select>
-</form>
-</div>
-<iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe>
-<!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
+                <select name="month" id="month">
+                    <option *ngFor="let month of months" [value]="month">{{month}}</option>
+                </select>
+            </form>
+        </div>
+        <button (click)="save_pdf()"> Download Payslip</button>
+        <!-- <iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe> -->
+        <!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
     <p style="padding-left: 10px; color: gray; font-size: 14px; font-family: Montserrat;">Earnings</p>
 </div>
 <div style="background-color: #e9f6ff; height: 40px; padding: 10px 0 10px 0; border-left: 1px solid rgb(206, 203, 203); border-right: 1px solid rgb(206, 203, 203)">
@@ -150,4 +157,84 @@
     <div class="col-md-6">{{payslip.value}}</div>
   </div>
 </div> -->
-</ng-template>
+    </ng-template>
+    <div class="pdfbody" *ngIf = "employeePayrollDetails && employeeDetails">
+        <div class="payslipPDF" id="payslipPDF">
+            <div class="pdfhead"> GEMINI &nbsp; SOLUTIONS &nbsp; PRIVATE &nbsp; LIMITED
+            </div>
+            <div class="pdfsubhead"> Plot No. 119,Udyog Vihar,Phase-1, Sector-20, Gurgaon,Haryana-122016</div><br>
+            <table class = "table_pdf">
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">Name </td>
+                    <td class="pdfcell">{{employeeDetails['firstName']}} &nbsp; {{employeeDetails['lastName']}}</td>
+                    <td class="pdfcell">Employee No.</td>
+                    <td class="pdfcell">{{employeeDetails['employeeId']}}</td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">Joining Date</td>
+                    <td class="pdfcell">{{employeeDetails['dateOfJoining']}} </td>
+                    <td class="pdfcell">Bank Name</td>
+                    <td class="pdfcell">Yes Bank Ltd</td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">Aadhar</td>
+                    <td class="pdfcell"> {{employeeDetails['aadhaar']}}</td>
+                    <td class="pdfcell">PAN Number</td>
+                    <td class="pdfcell">{{employeeDetails['pan']}}</td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">Bank Account No</td>
+                    <td class="pdfcell">{{employeeDetails['bankAcctNo']}}</td>
+                    <td class="pdfcell">PF No</td>
+                    <td class="pdfcell">{{employeeDetails['pfNo']}}</td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">UAN No</td>
+                    <td class="pdfcell">{{employeeDetails['uanNo']}}</td>
+                    <td class="pdfcell"></td>
+                    <td class="pdfcell"></td>
+                </tr>
+            </table>
+            <br>
+            <table class = "table_pdf">
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell"><b>Earnings</b> </td>
+                    <td class="pdfcell"><b>Amount</b></td>
+                    <td class="pdfcell"><b>Deductions</b></td>
+                    <td class="pdfcell"><b>Amount</b></td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">BASIC</td>
+                    <td class="pdfcell">{{parsedEmployeePayrollDetails['BASIC_PAY']}}.00 </td>
+                    <td class="pdfcell">PF</td>
+                    <td class="pdfcell">{{parsedEmployeePayrollDetails['PF']}}.00</td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">HRA</td>
+                    <td class="pdfcell"> {{parsedEmployeePayrollDetails['HRA']}}.00 </td>
+                    <td class="pdfcell"></td>
+                    <td class="pdfcell"></td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">STD &nbsp; ALLOWANCE</td>
+                    <td class="pdfcell"> {{parsedEmployeePayrollDetails['STANDARD_ALLOWANCE']}}.00</td>
+                    <td class="pdfcell"></td>
+                    <td class="pdfcell"></td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell">SPECIAL &nbsp; ALLOWANCE</td>
+                    <td class="pdfcell">{{parsedEmployeePayrollDetails['SPECIAL_ALLOWANCE']}}.00</td>
+                    <td class="pdfcell"></td>
+                    <td class="pdfcell"></td>
+                </tr>
+                <tr class = "table_pdf_row">
+                    <td class="pdfcell"><b>Total &nbsp; Earnings</b></td>
+                    <td class="pdfcell"> <b>{{parsedEmployeePayrollDetails['TOTAL_EARNINGS']}}.00 </b></td>
+                    <td class="pdfcell"><b> Total Deduction</b></td>
+                    <td class="pdfcell"><b>{{parsedEmployeePayrollDetails['TOTAL_DEDUCTIONS']}}.00</b></td>
+                </tr>
+            </table>
+
+            <!-- </div> -->
+        </div>
+    </div>

@@ -23,6 +23,8 @@ export class InvestmentDeclarationComponent {
     investmentDeclarationForm: any;
     investmentDeclarationDict: any;
     allInvestmentDeclarations: any;
+    investmentDeclarationvalue: any;
+    investment_sum:any;
     formgroup: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -30,17 +32,34 @@ export class InvestmentDeclarationComponent {
       this.formgroup = {}
       this.formgroup['employeeid'] = []
       this.formgroup['fiscal'] = []
+      this.investmentDeclarationvalue= {}
       this.getInvestmentDelarations();
       this.getInvestmentBySection('80C');
       this.getInvestmentBySection('80D');
       this.display();
       this.getAllEmployees();
+      this.investment_sum = 0;
       this.show80C = false;
       this.show80D = false;
     }
 
     display(){
-        console.log("Yo!!!")
+      console.log("Yo!!!")
+    }
+
+    sum(key, value){
+      console.log(key,value);
+      if(!value){
+        value = 0
+      }
+      this.investmentDeclarationvalue[key] = parseInt(value);
+      let obj = this.investmentDeclarationvalue;
+      this.investment_sum = 0
+      for( var k in obj ) {
+        if( obj.hasOwnProperty( k ) ) {
+          this.investment_sum += parseFloat( obj[k] );
+        }
+      }
     }
 
     displayDec(section){
@@ -50,12 +69,15 @@ export class InvestmentDeclarationComponent {
 
     display80C(){
       this.show80C = !this.show80C;
+      this.show80D = false;
       this.getInvestmentBySection('80C');
     }
 
     display80D(){
       console.log("Clicked")
+      this.show80C = false;
       this.show80D = !this.show80D;
+      this.show80C = false;
       this.getInvestmentBySection('80D');
     }
 
@@ -128,11 +150,26 @@ export class InvestmentDeclarationComponent {
           for (let i = 0; i < res.data.length; i++){
               this.investmentDeclarationDict[res.data[i]['investmentType']] = res.data[i]['investmentViaId']
               this.investmentDeclarationlist.push(res.data[i]['investmentType']);
+              console.log(res.data[i]['investmentType']);
+              this.investmentDeclarationvalue[res.data[i]['investmentType']] = 0;
               this.formgroup[res.data[i]['investmentType']] = []
           }
+          this.investmentDeclarationlist = this.investmentDeclarationlist.sort((n1,n2) => {
+            if (n1 > n2) {
+                return 1;
+            }
+        
+            if (n1 < n2) {
+                return -1;
+            }
+        
+            return 0;
+        });
+        
           this.investmentDeclarationForm = this.formBuilder.group(this.formgroup);
           console.log(this.formgroup);
           console.log(this.investmentDeclarationlist);
+          console.log(this.investmentDeclarationvalue);
         }
       )
     }
