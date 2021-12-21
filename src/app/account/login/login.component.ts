@@ -1,8 +1,8 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import {LoginService} from '../login.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',

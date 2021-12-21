@@ -60,6 +60,12 @@ export class EmployeeService {
     return this.baseService.get(this.path, this.param);
   }
 
+  getEmployeDetailsApi(empId: any): Observable<any> {
+    // this.param = new HttpParams().set('employeeId', empId);
+    this.path = `employee/getEmployeeById/` + empId;
+    return this.baseService.get(this.path);
+  }
+
   getAllPayrollDetailsApi(): Observable<any> {
     this.path = 'payrollCalc/getAllPayroll';
     return this.baseService.get(this.path);
@@ -78,5 +84,10 @@ export class EmployeeService {
   postBulkFileUploadApi(data: any): Observable<any>  {
     this.path = 'employee/bulkImportEmployee';
     return this.baseService.post(this.path, data);
+  }
+
+  getInvestmentLimitApi(): Observable<any> {
+    this.path = `InvestLimitXref/allInvestLimitXref`;
+    return this.baseService.get(this.path);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { SocialUser } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,9 +17,13 @@ export class DashboardComponent implements OnInit {
     this.showNotifications = false;
   }
 
-  constructor(private dialog: MatDialog, private router: Router) { }
+  public user: SocialUser;
+  constructor(private dialog: MatDialog, private router: Router) {
+    this.user = JSON.parse(sessionStorage.getItem('user')) as SocialUser;
+  }
 
   ngOnInit() {
+    console.log('user', this.user);
   }
 
   openNotifications(event) {

@@ -23,6 +23,9 @@ export class InvestmentDeclarationComponent {
     investmentDeclarationForm: any;
     investmentDeclarationDict: any;
     allInvestmentDeclarations: any;
+    investmentDeclarationvalue: any;
+    allInvestmentsLimit: any;
+    investment_sum:any;
     formgroup: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
     @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -30,17 +33,42 @@ export class InvestmentDeclarationComponent {
       this.formgroup = {}
       this.formgroup['employeeid'] = []
       this.formgroup['fiscal'] = []
+      this.investmentDeclarationvalue= {}
       this.getInvestmentDelarations();
       this.getInvestmentBySection('80C');
       this.getInvestmentBySection('80D');
       this.display();
       this.getAllEmployees();
+      this.investment_sum = {};
       this.show80C = false;
       this.show80D = false;
     }
 
     display(){
-        console.log("Yo!!!")
+      console.log("Yo!!!")
+    }
+
+    sum(key, value, section){
+      console.log(key,value, section);
+      if(!value){
+        value = 0
+      }
+      this.investmentDeclarationvalue[key] = parseInt(value);
+      let obj = this.investmentDeclarationvalue;
+      console.log(obj);
+      console.log(this.investmentDeclarationlist);
+      this.investment_sum[section] = 0
+      for( var k in obj ) {
+        if( obj.hasOwnProperty(k) ) {
+          if (this.investmentDeclarationlist.includes(k)){
+            console.log("FFF")
+            this.investment_sum[section] += parseFloat( obj[k] );
+            if(this.investment_sum[section] > this.allInvestmentsLimit[section]){
+              this.investment_sum[section] = this.allInvestmentsLimit[section]
+            }
+          }
+        }
+      }
     }
 
     displayDec(section){
@@ -50,12 +78,15 @@ export class InvestmentDeclarationComponent {
 
     display80C(){
       this.show80C = !this.show80C;
+      this.show80D = false;
       this.getInvestmentBySection('80C');
     }
 
     display80D(){
       console.log("Clicked")
+      this.show80C = false;
       this.show80D = !this.show80D;
+      this.show80C = false;
       this.getInvestmentBySection('80D');
     }
 
@@ -119,6 +150,18 @@ export class InvestmentDeclarationComponent {
           }
         }
       )
+      this.employeeService.getInvestmentLimitApi().subscribe(
+        res => {
+          let limit_json = {}
+          let result = res.data;
+          for(let i=0; i< res.data.length; i++){
+            limit_json[res.data[i]['section']] = res.data[i]['investmentLimit']
+            this.investment_sum[res.data[i]['section']] = 0
+          }
+          this.allInvestmentsLimit = limit_json
+          console.log(this.allInvestmentsLimit)
+        }
+      )
     }
     getInvestmentBySection(section) {
       this.employeeService.getInvestmentBySectionApi(section).subscribe(
@@ -128,11 +171,26 @@ export class InvestmentDeclarationComponent {
           for (let i = 0; i < res.data.length; i++){
               this.investmentDeclarationDict[res.data[i]['investmentType']] = res.data[i]['investmentViaId']
               this.investmentDeclarationlist.push(res.data[i]['investmentType']);
+              console.log(res.data[i]['investmentType']);
+              this.investmentDeclarationvalue[res.data[i]['investmentType']] = 0;
               this.formgroup[res.data[i]['investmentType']] = []
           }
+          this.investmentDeclarationlist = this.investmentDeclarationlist.sort((n1,n2) => {
+            if (n1 > n2) {
+                return 1;
+            }
+        
+            if (n1 < n2) {
+                return -1;
+            }
+        
+            return 0;
+        });
+        
           this.investmentDeclarationForm = this.formBuilder.group(this.formgroup);
           console.log(this.formgroup);
           console.log(this.investmentDeclarationlist);
+          console.log(this.investmentDeclarationvalue);
         }
       )
     }
