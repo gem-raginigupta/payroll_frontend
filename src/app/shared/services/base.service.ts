@@ -15,7 +15,7 @@ export class BaseService {
 
   get(path: string, httpParams: HttpParams = null, httpHeaders?: HttpHeaders): Observable<any> {
     const url = this.getRequestURL(path);
-    const apiRequest = this.http.get(url, {headers: this.setHeaders(), params: httpParams});
+    const apiRequest = this.http.get(url, {headers: this.setHeaders(httpHeaders), params: httpParams});
     return apiRequest;
   }
   post(path: string, body: object = {}): Observable<any> {
@@ -49,10 +49,11 @@ export class BaseService {
     return url;
   }
 
-  private setHeaders(): HttpHeaders {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    return headers;
+  private setHeaders(header?: HttpHeaders): HttpHeaders {
+    if (!header) {
+      header = new HttpHeaders();
+    }
+    header.append('Content-Type', 'application/json');
+    return header;
   }
 }

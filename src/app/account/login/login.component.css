@@ -59,7 +59,7 @@
   .login-page {
     height: 380px;
     width: 300px;
-    background: #FFC4FF;
+    background: #c4c8ff;
     box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
     border-radius: 5.5px;
     z-index: 999;
@@ -75,7 +75,7 @@
     position: absolute;
     height: 300px;
     transform: translate(-20%, -20%);
-    background-color: #9B2F9B;
+    background-color: #702f9b;
     border-radius: 50%;
   }
 
@@ -105,7 +105,7 @@
   .login-btn {
     padding: 10px 50px 10px 50px;
     background-color: white;
-    color: #9B2F9B;
+    color: #702f9b;
     font-size: 14px;
     font-family: Helvetica regular;
     border-radius: 4px;
@@ -115,7 +115,7 @@
   .forgot-password {
     bottom: 2px;
     position: absolute;
-    color: #862586;
+    color: #702f9b;
     font-size: 12px;
     font-family: Helvetica regular;
   }
