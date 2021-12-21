@@ -1,10 +1,8 @@
-import { Component, OnInit,TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { AddEmployeeDetailsComponent } from '../add-employee-details/add-employee-details.component';
 import { EmployeeService } from '../shared/services/employee.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-employee-details',
@@ -25,7 +23,11 @@ export class EmployeeDetailsComponent implements OnInit {
   expandedElement: any;
   allEmpDetails: any;
   employeeCTCDetails: any[] = [];
+  files: any[] = [];
   employeeCalculatedDetails: any;
+  private selectedFile: File;
+  @ViewChild('fileInp', {static: false}) fileInp: ElementRef;
+
   empDetails: any = [
     {header: 'Permanent Address', field: 'permenantAddress'},
     {header: 'Correspondence Address', field: 'correspondenceAddress'},
@@ -47,7 +49,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.getAllEmployeesDetails();
   }
 
-  
+
   openAddEmpDialog(): void {
       const dialogRef = this.dialog.open(AddEmployeeDetailsComponent, {
         width: '1000px',
@@ -59,10 +61,9 @@ export class EmployeeDetailsComponent implements OnInit {
       });
   }
 
-  private selectedFile: File;
   onFileSelect(event) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile.name);
+    // console.log(this.selectedFile.name);
   }
 
   getAllEmployeesDetails() {
@@ -92,9 +93,22 @@ export class EmployeeDetailsComponent implements OnInit {
         }
       );
       }
-      
-    //  -------------
-    files: any[] = [];
+
+    uploadBulkData() {
+      const formData = new FormData();
+      formData.append('file', this.files[0]);
+      if (!this.files[0]) {
+        alert('Select a file to continue.');
+      }
+      this.employeeService.postBulkFileUploadApi(formData).subscribe(
+          res => {
+            console.log(res, 'Files uploaded');
+          },
+          error => {
+            console.log('Files uploading failed', error);
+          }
+        );
+    }
 
   /**
    * on file drop handler
@@ -107,6 +121,7 @@ export class EmployeeDetailsComponent implements OnInit {
    * handle file from browsing
    */
   fileBrowseHandler(files) {
+    // console.log('files', files);
     this.prepareFilesList(files);
   }
 
@@ -115,6 +130,8 @@ export class EmployeeDetailsComponent implements OnInit {
    * @param index (File index)
    */
   deleteFile(index: number) {
+    console.log(this.fileInp.nativeElement.value);
+    this.fileInp.nativeElement.value = '';
     this.files.splice(index, 1);
   }
 
@@ -143,6 +160,7 @@ export class EmployeeDetailsComponent implements OnInit {
    * @param files (Files List)
    */
   prepareFilesList(files: Array<any>) {
+    // console.log('files', files);
     for (const item of files) {
       item.progress = 0;
       this.files.push(item);
@@ -155,7 +173,8 @@ export class EmployeeDetailsComponent implements OnInit {
    * @param bytes (File size in bytes)
    * @param decimals (Decimals point)
    */
-  formatBytes(bytes, decimals) {
+  formatBytes(bytes) {
+    let decimals;
     if (bytes === 0) {
       return '0 Bytes';
     }
@@ -185,14 +204,14 @@ export class EmployeeDetailsComponent implements OnInit {
           width: "800px",
           height: "600px",
         });
-    
+
         dialogRef.afterClosed().subscribe((result) => {
           console.log("The dialog was closed");
         });
       }
-    
+
       onClose() {
         this.dialog.closeAll();
       }
-    
+
 }

@@ -1,8 +1,9 @@
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import {LoginService} from '../login.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    console.log('env', environment.env, 'client id', environment.clientId);
+    console.log('current environment', environment.env, environment.clientId);
     // this.socialAuthService.authState.subscribe((data) => {
     //   this.user = data;
     //   this.loggedIn = (data != null);
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
       // console.log(data.authToken);
       // console.log(data.idToken);
       sessionStorage.setItem('user', JSON.stringify(data));
-      this.login(data.idToken);
+      // this.login(data.idToken);
       this.router.navigate(['/dashboard/home']);
     });
   }
