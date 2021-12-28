@@ -139,3 +139,14 @@ input[type=text] {
 .limit{
   align-self: center;
 }
+
+.submit-btn {
+  width: 100px;
+  height: 40px;
+  background-color: #5D38DB;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Helvetica regular;
+  box-shadow: 5px 5px 8px hsl(254, 46%, 73%);
+}
