@@ -277,4 +277,15 @@ export class PayrollComponent implements AfterViewInit {
       }
     });
   }
+
+  calculateMonthlyPayroll() {
+    this.payrollService.calculateMonthlyPayrollApi(2021, 6).subscribe(
+      (res) => {
+        console.log('calculate monthly payroll res', res);
+      },
+      (error) => {
+        console.log("calculate monthly payroll failed", error);
+      }
+    );
+  }
 }
