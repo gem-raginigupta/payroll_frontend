@@ -15,4 +15,9 @@ export class PayrollService {
       this.path = `payrollCalc/getAllPayroll/${empId}`;
       return this.baseService.get(this.path);
     }
+
+    calculateMonthlyPayrollApi(year: number, month: number): Observable<any> {
+      this.path = `payslip/batchInsertPayslip?payslipYear=${year}&payslipMonth=${month}`;
+      return this.baseService.post(this.path);
+    }
 }
