@@ -19,11 +19,11 @@ import { DndDirective } from './employee-details/dnd.directive';
 import { ProgressComponent } from './employee-details/progress/progress.component';
 import { SafePipe } from './core/pipes/safepipe.pipe';
 import { InvestmentDeclarationComponent } from './investment-declaration/investment-declaration.component';
+import { AuthService } from './shared/services/auth.service';
 import { SocialAuthService, GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './core/authentication/auth.guard';
-import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [

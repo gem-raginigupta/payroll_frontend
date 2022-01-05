@@ -9,6 +9,7 @@ import {
 import {
   MatDialog,
   MatPaginator,
+  MatSnackBar,
   MatSort,
   MatTableDataSource,
 } from "@angular/material";
@@ -35,22 +36,34 @@ export class PayrollComponent implements AfterViewInit {
   payrollDataParsed: any = [];
   employeePayrollDetails: any;
   parsedEmployeePayrollDetails: any;
+  durationInSeconds = 5;
   employeeDetails: any;
+  selectedMonth: string = 'select';
+  selectedYear: any = 'select';
+  years: number[] = [];
   months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    { name: "January", value: 1 },
+    { name: "February", value: 2 },
+    { name: "March", value: 3 },
+    { name: "April", value: 4 },
+    { name: "May", value: 5 },
+    { name: "June", value: 6 },
+    { name: "July", value: 7 },
+    { name: "August", value: 8 },
+    { name: "September", value: 9 },
+    { name: "October", value: 10 },
+    { name: "November", value: 11 },
+    { name: "December", value: 12 },
   ];
-  displayedColumns: string[] = ['gem_id', 'name', 'dept', 'role', 'total_salary', 'payment_status', 'options'];
+  displayedColumns: string[] = [
+    "gem_id",
+    "name",
+    "dept",
+    "role",
+    "total_salary",
+    "payment_status",
+    "options",
+  ];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild("iframePay", { static: false }) iframePay: ElementRef;
@@ -59,11 +72,17 @@ export class PayrollComponent implements AfterViewInit {
   constructor(
     public dialog: MatDialog,
     private employeeService: EmployeeService,
+    private _snackBar: MatSnackBar,
     private payrollService: PayrollService
   ) {
     this.today = new Date();
     this.sixMonthsAgo = new Date();
     this.sixMonthsAgo.setMonth(this.today.getMonth() - 6);
+
+    for (let i = 2012; i <= new Date().getFullYear(); i++) {
+      this.years.push(i);
+    }
+    // console.log('years', this.years);
   }
   ngAfterViewInit(): void {
     // const iframDoc = this.iframePay.nativeElement.contentWindow.document;
@@ -79,7 +98,7 @@ export class PayrollComponent implements AfterViewInit {
         this.allPayrollDetails = res.data;
         this.payrollDataParsed = this.parsePayrollData(res.data);
         console.log(this.allPayrollDetails);
-        console.log('Parsed', this.payrollDataParsed);
+        console.log("Parsed", this.payrollDataParsed);
       },
       (error) => {
         console.log("get all payroll details failed", error);
@@ -114,10 +133,11 @@ export class PayrollComponent implements AfterViewInit {
     return this.payrollDataParsed;
   }
 
-  parseEmployeePayrollDetails(employeePayrollDetails){
-    let parsedData = {}
-    for (let i = 0; i< employeePayrollDetails.length; i++) {
-      parsedData[employeePayrollDetails[i]['component']] = employeePayrollDetails[i]['value']
+  parseEmployeePayrollDetails(employeePayrollDetails) {
+    let parsedData = {};
+    for (let i = 0; i < employeePayrollDetails.length; i++) {
+      parsedData[employeePayrollDetails[i]["component"]] =
+        employeePayrollDetails[i]["value"];
     }
     return parsedData;
   }
@@ -126,10 +146,12 @@ export class PayrollComponent implements AfterViewInit {
     this.payrollService.getAllPayrollDetailsApi(element.employeeId).subscribe(
       (res) => {
         this.employeePayrollDetails = res.data;
-        this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(this.employeePayrollDetails)
+        this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(
+          this.employeePayrollDetails
+        );
         console.log(this.parsedEmployeePayrollDetails);
         console.log("employeePayrollDetails res", this.employeePayrollDetails);
-        console.log(this.employeePayrollDetails[0]['component'])
+        console.log(this.employeePayrollDetails[0]["component"]);
         this.generatePayrollPDF();
         // this.save_pdf();
       },
@@ -140,18 +162,21 @@ export class PayrollComponent implements AfterViewInit {
   }
 
   getEmployeesDetails(element) {
-    this.employeeService.getEmployeDetailsApi(element.employeeId).subscribe(
-      (res) => {
+    this.employeeService
+      .getEmployeDetailsApi(element.employeeId)
+      .subscribe((res) => {
         this.employeeDetails = res.data;
         console.log(this.employeeDetails);
-      }
-    )
+      });
   }
 
   generatePayrollPDF() {
     let payrollArr = [];
-    const header = [{text: 'Earnings', style: 'header'}, ''];
-    const subHeader = [{text: '', fillColor: '#e9f6ff', height: '30px'}, {text: 'Amount in (Rs.)', style: 'subHeader'}];
+    const header = [{ text: "Earnings", style: "header" }, ""];
+    const subHeader = [
+      { text: "", fillColor: "#e9f6ff", height: "30px" },
+      { text: "Amount in (Rs.)", style: "subHeader" },
+    ];
     payrollArr.push(header);
     payrollArr.push(subHeader);
     this.employeePayrollDetails.forEach((detail) => {
@@ -160,7 +185,7 @@ export class PayrollComponent implements AfterViewInit {
     let docDefinition = {
       content: [
         {
-          style: 'mainContent',
+          style: "mainContent",
           layout: "headerLineOnly", // optional
           table: {
             // headers are automatically repeated if the table spans over multiple pages
@@ -175,30 +200,30 @@ export class PayrollComponent implements AfterViewInit {
 
       styles: {
         header: {
-          color: 'grey',
+          color: "grey",
           fontSize: 12,
           bold: true,
-          alignment: 'left',
-          margin: [ 6, 6, 6, 6 ]
+          alignment: "left",
+          margin: [6, 6, 6, 6],
         },
         subHeader: {
-          fillColor: '#e9f6ff',
-          color: 'grey',
+          fillColor: "#e9f6ff",
+          color: "grey",
           fontSize: 12,
           bold: true,
-          alignment: 'right',
-          height: '30px',
-          margin: [ 6, 6, 6, 6 ]
+          alignment: "right",
+          height: "30px",
+          margin: [6, 6, 6, 6],
         },
         mainContent: {
-          margin: [ 10, 20, 10, 20 ],
+          margin: [10, 20, 10, 20],
           fontSize: 12,
         },
         anotherStyle: {
           italics: true,
-          alignment: 'right'
-        }
-      }
+          alignment: "right",
+        },
+      },
     };
 
     // pdfMake.tableLayouts = {
@@ -260,32 +285,48 @@ export class PayrollComponent implements AfterViewInit {
     dp.close();
   }
 
-  save_pdf(){
+  save_pdf() {
     console.log("Fetching PDF");
-    let doc = new jsPDF('p', 'pt', 'a4');
+    let doc = new jsPDF("p", "pt", "a4");
     // pdf.setFont("helvetica");
     // pdf.setFontType("bold");
-    let  width = doc.internal.pageSize.getWidth();
+    let width = doc.internal.pageSize.getWidth();
     let height = doc.internal.pageSize.getHeight();
     let position = 0;
-    const pdf_temp = document.getElementById('payslipPDF');
+    const pdf_temp = document.getElementById("payslipPDF");
     console.log(pdf_temp);
     doc.html(pdf_temp, {
-      callback: function(pdf){
+      callback: function (pdf) {
         doc.setFontSize(1);
         doc.save("Payroll.pdf");
-      }
+      },
     });
   }
 
   calculateMonthlyPayroll() {
-    this.payrollService.calculateMonthlyPayrollApi(2021, 6).subscribe(
-      (res) => {
-        console.log('calculate monthly payroll res', res);
-      },
-      (error) => {
-        console.log("calculate monthly payroll failed", error);
+    let month = 0;
+    this.months.forEach((mon) => {
+      if (mon.name === this.selectedMonth) {
+        month = mon.value;
       }
-    );
+    });
+    this.payrollService
+      .calculateMonthlyPayrollApi(this.selectedYear, month)
+      .subscribe(
+        (res) => {
+          console.log("calculate monthly payroll res", res);
+          this.openSnackbar(res.data, 'Close');
+        },
+        (error) => {
+          this.openSnackbar('Monthly payroll calculation failed', 'Close');
+          console.log("calculate monthly payroll failed", error);
+        }
+      );
+  }
+
+  openSnackbar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+    });
   }
 }
