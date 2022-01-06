@@ -100,7 +100,14 @@
           {{ year }}
         </option>
       </select>
-      <button class="float-right monthly-payroll-btn" mat-raised-button color="primary" (click)="calculateMonthlyPayroll()"><b>Monthly Payroll</b></button>
+      <button
+        class="float-right monthly-payroll-btn"
+        mat-raised-button
+        color="primary"
+        (click)="calculateMonthlyPayroll()"
+      >
+        <b>Monthly Payroll</b>
+      </button>
     </div>
   </div>
 
@@ -210,7 +217,7 @@
   </mat-form-field> -->
         <select name="month" id="month">
           <option *ngFor="let month of months" [value]="month">
-            {{ month }}
+            {{ month.name }}
           </option>
         </select>
       </form>

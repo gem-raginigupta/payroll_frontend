@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit,TemplateRef, ViewChild } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSnackBar, MatSort, MatTableDataSource } from '@angular/material';
 import { AddEmployeeDetailsComponent } from '../add-employee-details/add-employee-details.component';
 import { EmployeeService } from '../shared/services/employee.service';
 
@@ -26,6 +26,7 @@ export class EmployeeDetailsComponent implements OnInit {
   files: any[] = [];
   employeeCalculatedDetails: any;
   private selectedFile: File;
+  durationInSeconds = 5;
   @ViewChild('fileInp', {static: false}) fileInp: ElementRef;
 
   empDetails: any = [
@@ -41,7 +42,7 @@ export class EmployeeDetailsComponent implements OnInit {
   ];
 
   public empListDataSource: MatTableDataSource<any>;
-  constructor(public dialog: MatDialog, private employeeService: EmployeeService) { }
+  constructor(public dialog: MatDialog, private employeeService: EmployeeService, private _snackBar: MatSnackBar) { }
   displayedColumns: string[] = ['expand_action', 'id', 'name', 'doj', 'dob', 'doe', 'cityType', 'aadhaar', 'status'];
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -102,9 +103,14 @@ export class EmployeeDetailsComponent implements OnInit {
       }
       this.employeeService.postBulkFileUploadApi(formData).subscribe(
           res => {
+            this.openSnackbar(res.msg, 'Close');
+            if (res.msg === 'SUCCESS') {
+              this.dialog.closeAll();
+            }
             console.log(res, 'Files uploaded');
           },
           error => {
+            this.openSnackbar('Failed to upload file', 'Close');
             console.log('Files uploading failed', error);
           }
         );
@@ -214,4 +220,9 @@ export class EmployeeDetailsComponent implements OnInit {
         this.dialog.closeAll();
       }
 
+      openSnackbar(message: string, action: string) {
+        this._snackBar.open(message, action, {
+          duration: this.durationInSeconds * 1000,
+        });
+      }
 }
