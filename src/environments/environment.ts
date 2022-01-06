@@ -3,9 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+<<<<<<< HEAD
   production: false,
   baseURL: 'https://gempayrolldevapi.geminisolutions.com/',
   clientId: '923610267740-fh42m58rsmfv3b94c2t7k46ad3q79c5g.apps.googleusercontent.com',
+=======
+
+  production: true,
+  baseURL: 'https://gempayrollapi.geminisolutions.com/',
+  clientId: '923610267740-m6is6fppdvke8jejn87benr27hlm134n.apps.googleusercontent.com',
+>>>>>>> e5939fe306771fa913edd4abd667e5b791919fb9
   env: 'local'
 };
 
