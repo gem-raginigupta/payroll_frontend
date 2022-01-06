@@ -81,6 +81,11 @@ export class EmployeeService {
     return this.baseService.get(this.path);
   }
 
+  postBulkFileUploadApi(data: any): Observable<any>  {
+    this.path = 'employee/bulkImportEmployee';
+    return this.baseService.post(this.path, data);
+  }
+
   getInvestmentLimitApi(): Observable<any> {
     this.path = `InvestLimitXref/allInvestLimitXref`;
     return this.baseService.get(this.path);

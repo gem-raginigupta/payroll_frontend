@@ -6,17 +6,17 @@
             fill="url(#paint2_linear)" />
         <defs>
             <linearGradient id="paint0_linear" x1="134.5" y1="440" x2="134.5" y2="579" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#D856D8" />
-                <stop offset="1" stop-color="#B60CB6" stop-opacity="0.91" />
+                <stop stop-color="#702f9b" />
+                <stop offset="1" stop-color="#702f9b" stop-opacity="0.91" />
             </linearGradient>
             <linearGradient id="paint1_linear" x1="1366.5" y1="256" x2="1366.5" y2="343" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#D958D9" />
-                <stop offset="1" stop-color="#C800C8" />
+                <stop stop-color="#702f9b" />
+                <stop offset="1" stop-color="#702f9b" />
             </linearGradient>
             <linearGradient id="paint2_linear" x1="720.5" y1="522.58" x2="720.5" y2="1040.5"
                 gradientUnits="userSpaceOnUse">
-                <stop stop-color="#D958D9" />
-                <stop offset="1" stop-color="#6B006B" />
+                <stop stop-color="#702f9b" />
+                <stop offset="1" stop-color="#702f9b" />
             </linearGradient>
         </defs>
     </svg>

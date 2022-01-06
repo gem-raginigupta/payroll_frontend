@@ -12,8 +12,9 @@ export class LoginService {
   constructor(private baseService: BaseService) { }
 
   loginApi(token: any): Observable<any>  {
-    let headers = new HttpHeaders();
-    headers.append('token', token)
+    let headers = new HttpHeaders({'token': token});
+    // headers.append('token', token)
+    console.log('headers', headers)
     this.path = 'employee/login';
     return this.baseService.get(this.path, null, headers);
   }
