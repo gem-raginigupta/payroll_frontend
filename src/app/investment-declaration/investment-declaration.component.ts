@@ -24,6 +24,7 @@ export class InvestmentDeclarationComponent {
     investmentDeclarationDict: any;
     allInvestmentDeclarations: any;
     investmentDeclarationvalue: any;
+    allInvestmentsLimit: any;
     investment_sum:any;
     formgroup: any;
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -38,7 +39,7 @@ export class InvestmentDeclarationComponent {
       this.getInvestmentBySection('80D');
       this.display();
       this.getAllEmployees();
-      this.investment_sum = 0;
+      this.investment_sum = {};
       this.show80C = false;
       this.show80D = false;
     }
@@ -47,17 +48,25 @@ export class InvestmentDeclarationComponent {
       console.log("Yo!!!")
     }
 
-    sum(key, value){
-      console.log(key,value);
+    sum(key, value, section){
+      console.log(key,value, section);
       if(!value){
         value = 0
       }
       this.investmentDeclarationvalue[key] = parseInt(value);
       let obj = this.investmentDeclarationvalue;
-      this.investment_sum = 0
+      console.log(obj);
+      console.log(this.investmentDeclarationlist);
+      this.investment_sum[section] = 0
       for( var k in obj ) {
-        if( obj.hasOwnProperty( k ) ) {
-          this.investment_sum += parseFloat( obj[k] );
+        if( obj.hasOwnProperty(k) ) {
+          if (this.investmentDeclarationlist.includes(k)){
+            console.log("FFF")
+            this.investment_sum[section] += parseFloat( obj[k] );
+            if(this.investment_sum[section] > this.allInvestmentsLimit[section]){
+              this.investment_sum[section] = this.allInvestmentsLimit[section]
+            }
+          }
         }
       }
     }
@@ -104,16 +113,20 @@ export class InvestmentDeclarationComponent {
         return this.employeeIds;
     }
     onSubmit() {
+        console.log(this.investmentDeclarationvalue);
         console.log(this.investmentDeclarationForm.value);
-        const res = this.investmentDeclarationForm.value;
+        console.log(this.investmentDeclarationDict);
+        // const res = this.investmentDeclarationForm.value;
+        const res = this.investmentDeclarationvalue;
         let keys = Object.keys(res)
-        for (let i = 2; i < keys.length; i++){
-          if(res[keys[i]] != null){
+        for (let i = 0; i < keys.length; i++){
+          console.log('SS')
+          if(res[keys[i]] != 0){
             let inv_id = this.investmentDeclarationDict[keys[i]]
             let amount = res[keys[i]]
             let payload = {}
-            payload['employeeId'] = res['employeeid']
-            payload['fiscal'] = res['fiscal']
+            payload['employeeId'] = this.investmentDeclarationForm.value['employeeid']
+            payload['fiscal'] = this.investmentDeclarationForm.value['fiscal']
             payload['status'] = 'Active'
             payload['rowInsertBy'] = 'ujsharma'
             payload['rowInsertDate'] =  "20/12/2020 20:20:20"
@@ -137,22 +150,52 @@ export class InvestmentDeclarationComponent {
           this.investment_declarations = res.data;
           for(let i=0; i< res.data.length; i++){
             this.allInvestmentDeclarations.push(res.data[i]['optionValue'])
-            // this.getInvestmentBySection(this.investment_option);
           }
+          console.log(this.allInvestmentDeclarations);
+          this.getInvestmentIdMapping(this.allInvestmentDeclarations);
+        }
+      )
+      console.log(this.allInvestmentDeclarations);
+      this.employeeService.getInvestmentLimitApi().subscribe(
+        res => {
+          let limit_json = {}
+          let result = res.data;
+          for(let i=0; i< res.data.length; i++){
+            limit_json[res.data[i]['section']] = res.data[i]['investmentLimit']
+            this.investment_sum[res.data[i]['section']] = 0
+          }
+          this.allInvestmentsLimit = limit_json
+          console.log(this.allInvestmentsLimit)
         }
       )
     }
+
+    getInvestmentIdMapping(investment_dec_list){
+      this.investmentDeclarationDict = {}
+      for(let i = 0 ; i < investment_dec_list.length; i++){
+        this.employeeService.getInvestmentBySectionApi(investment_dec_list[i]).subscribe(
+          res => {
+            this.investmentDeclarationlist = []
+            for (let i = 0; i < res.data.length; i++){
+              this.investmentDeclarationDict[res.data[i]['investmentLabelName']] = res.data[i]['investmentViaId']
+              console.log(this.investmentDeclarationDict)
+          }
+        }
+        )
+      }
+    }
+
     getInvestmentBySection(section) {
       this.employeeService.getInvestmentBySectionApi(section).subscribe(
         res => {
           this.investmentDeclarationlist = []
-          this.investmentDeclarationDict = {}
+          // this.investmentDeclarationDict = {}
           for (let i = 0; i < res.data.length; i++){
-              this.investmentDeclarationDict[res.data[i]['investmentType']] = res.data[i]['investmentViaId']
-              this.investmentDeclarationlist.push(res.data[i]['investmentType']);
-              console.log(res.data[i]['investmentType']);
-              this.investmentDeclarationvalue[res.data[i]['investmentType']] = 0;
-              this.formgroup[res.data[i]['investmentType']] = []
+              // this.investmentDeclarationDict[res.data[i]['investmentType']] = res.data[i]['investmentViaId']
+              this.investmentDeclarationlist.push(res.data[i]['investmentLabelName']);
+              console.log(res.data[i]['investmentLabelName']);
+              this.investmentDeclarationvalue[res.data[i]['investmentLabelName']] = 0;
+              this.formgroup[res.data[i]['investmentLabelName']] = []
           }
           this.investmentDeclarationlist = this.investmentDeclarationlist.sort((n1,n2) => {
             if (n1 > n2) {

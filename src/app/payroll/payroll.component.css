@@ -312,17 +312,17 @@ h4 {
 
 .pdfhead{
   font-size: 18px;
-  width: 660px;
+  width: 600px;
   text-align: center;
   font-weight: bold;
 }
 
 .pdfsubhead{
   font-size: 12px;
-  width: 660px;
+  width: 600px;
   text-align: center;
   font-weight: bold;
-  
+
 }
 
 .pdfcell{
@@ -338,14 +338,32 @@ h4 {
 }
 
 .table_pdf{
-  width: 565px; 
+  width: 565px;
   border: 1px solid;
   /* border-color: black; */
   border-color: black;
+  margin-left: 14px;;
 }
 
 .table_pdf_row{
   height: 15px;
   border: 1px solid;
   border-color: black;
+}
+
+.monthly-payroll-btn {
+  width: 120px;
+}
+
+.mp-dropdowns{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 110px;
+  height: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 3px;
+  border-radius: 5px ;
+  border-style:solid 1px rgba(151, 151, 151, 0.15);
+  background-color: #FFFFFF;
 }
