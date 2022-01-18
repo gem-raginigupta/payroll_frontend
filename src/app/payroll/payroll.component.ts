@@ -18,6 +18,7 @@ import { EmployeeService } from "../shared/services/employee.service";
 import { PayrollService } from "../shared/services/payroll.service";
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { DomSanitizer } from "@angular/platform-browser";
 (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -34,6 +35,7 @@ export class PayrollComponent implements AfterViewInit {
   empListDataSource: any;
   allPayrollDetails: any;
   payrollDataParsed: any = [];
+  employeeId: number;
   employeePayrollDetails: any;
   parsedEmployeePayrollDetails: any;
   durationInSeconds = 5;
@@ -73,7 +75,8 @@ export class PayrollComponent implements AfterViewInit {
     public dialog: MatDialog,
     private employeeService: EmployeeService,
     private _snackBar: MatSnackBar,
-    private payrollService: PayrollService
+    private payrollService: PayrollService,
+    private sanitizer: DomSanitizer
   ) {
     this.today = new Date();
     this.sixMonthsAgo = new Date();
@@ -142,8 +145,14 @@ export class PayrollComponent implements AfterViewInit {
     return parsedData;
   }
 
-  getPayrollDetails(element) {
-    this.payrollService.getAllPayrollDetailsApi(element.employeeId).subscribe(
+  getPayrollDetails() {
+    let month = 0;
+    this.months.forEach((mon) => {
+      if (mon.name === this.selectedMonth) {
+        month = mon.value;
+      }
+    });
+    this.payrollService.getPayrollDetailsApi(this.employeeId, month, this.selectedYear).subscribe(
       (res) => {
         this.employeePayrollDetails = res.data;
         this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(
@@ -152,8 +161,6 @@ export class PayrollComponent implements AfterViewInit {
         console.log(this.parsedEmployeePayrollDetails);
         console.log("employeePayrollDetails res", this.employeePayrollDetails);
         console.log(this.employeePayrollDetails[0]["component"]);
-        this.generatePayrollPDF();
-        // this.save_pdf();
       },
       (error) => {
         console.log("employeePayrollDetails failed", error);
@@ -264,7 +271,7 @@ export class PayrollComponent implements AfterViewInit {
       width: "800px",
       height: "600px",
     });
-    this.getPayrollDetails(element);
+    this.employeeId = element.employeeId
     this.getEmployeesDetails(element);
     console.log(this.employeePayrollDetails);
     dialogRef.afterClosed().subscribe((result) => {
@@ -286,6 +293,7 @@ export class PayrollComponent implements AfterViewInit {
   }
 
   save_pdf() {
+    this.getPayrollDetails();
     console.log("Fetching PDF");
     let doc = new jsPDF("p", "pt", "a4");
     // pdf.setFont("helvetica");
@@ -296,7 +304,7 @@ export class PayrollComponent implements AfterViewInit {
     const pdf_temp = document.getElementById("payslipPDF");
     console.log(pdf_temp);
     doc.html(pdf_temp, {
-      callback: function (pdf) {
+      callback:(pdf) => {
         doc.setFontSize(1);
         doc.save("Payroll.pdf");
       },

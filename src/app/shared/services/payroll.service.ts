@@ -11,8 +11,8 @@ export class PayrollService {
 
   constructor(private baseService: BaseService) { }
 
-  getAllPayrollDetailsApi(empId): Observable<any> {
-      this.path = `payrollCalc/getAllPayroll/${empId}`;
+  getPayrollDetailsApi(empId: number, month: number, year: number): Observable<any> {
+      this.path = `payslip/getPayslip?employeeId=${empId}&payslipYear=${year}&payslipMonth=${month}`
       return this.baseService.get(this.path);
     }
 

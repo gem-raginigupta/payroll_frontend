@@ -85,13 +85,14 @@ input:focus {
   font-family: Helvetica regular;
 }
 
-.add-employee-btn {
-  width: 180px;
-  background-color: #5D38DB;
+.upload-employee-btn {
+  padding: 8px 10px 8px 10px;
   color: white;
   font-size: 14px;
   font-weight: bold;
   font-family: Helvetica regular;
+  background-color: #0CBB48;
+  box-shadow: 5px 5px 8px hsl(254, 46%, 73%);
 }
 
 table {
@@ -245,11 +246,10 @@ th.mat-header-cell {
 }
 
 .add-employee-btn {
-  width: 100px;
-  height: 40px;
+  padding: 8px 10px 8px 10px;
   background-color: #5D38DB;
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   font-family: Helvetica regular;
   box-shadow: 5px 5px 8px hsl(254, 46%, 73%);
@@ -307,7 +307,7 @@ th.mat-header-cell {
     }
 
 
-    
+
 
     .name {
       font-size: 14px;
@@ -327,4 +327,14 @@ th.mat-header-cell {
     .info {
       width: 100%
     }
-  
+
+    .upload-btn-disabled {
+      padding: 8px 10px 8px 10px;
+      color: white;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: Helvetica regular;
+      background-color: #85c79c;
+      box-shadow: 5px 5px 8px hsl(254, 46%, 73%);
+    }
+

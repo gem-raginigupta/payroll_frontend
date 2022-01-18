@@ -208,19 +208,26 @@
       <mat-icon (click)="onClose()" style="cursor: pointer">close</mat-icon>
     </div>
     <div>
-      <form class="mb-3">
+      <!-- <form class="mb-3">
         <label for="cars">Choose a month:</label><br />
-        <!-- <mat-form-field>
-    <input class="date-selector" matInput [matDatepicker]="dp2" [min]="sixMonthsAgo" [max]="today" placeholder="Select a Date" (click)="openDatePicker(dp2)">
-    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-    <mat-datepicker #dp2 startView="multi-year" (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
-  </mat-form-field> -->
         <select name="month" id="month">
           <option *ngFor="let month of months" [value]="month">
             {{ month.name }}
           </option>
         </select>
-      </form>
+      </form> -->
+      <select class="mp-dropdowns" [(ngModel)]="selectedMonth">
+        <option value="select">Select month</option>
+        <option *ngFor="let month of months" [value]="month.name">
+          {{ month.name }}
+        </option>
+      </select>
+      <select class="mp-dropdowns" [(ngModel)]="selectedYear">
+        <option value="select">Select year</option>
+        <option *ngFor="let year of years" [value]="year">
+          {{ year }}
+        </option>
+      </select>
     </div>
     <button (click)="save_pdf()">Download Payslip</button>
     <!-- <iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe> -->
