@@ -333,10 +333,6 @@ h4 {
   border-color: black;
 }
 
-.pdfbody{
-  visibility: hidden;
-}
-
 .table_pdf{
   width: 565px;
   border: 1px solid;

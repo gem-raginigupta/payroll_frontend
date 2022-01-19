@@ -208,14 +208,6 @@
       <mat-icon (click)="onClose()" style="cursor: pointer">close</mat-icon>
     </div>
     <div>
-      <!-- <form class="mb-3">
-        <label for="cars">Choose a month:</label><br />
-        <select name="month" id="month">
-          <option *ngFor="let month of months" [value]="month">
-            {{ month.name }}
-          </option>
-        </select>
-      </form> -->
       <select class="mp-dropdowns" [(ngModel)]="selectedMonth">
         <option value="select">Select month</option>
         <option *ngFor="let month of months" [value]="month.name">
@@ -230,6 +222,7 @@
       </select>
     </div>
     <button (click)="save_pdf()">Download Payslip</button>
+    <iframe *ngIf="url" [src]="url" width="400" height="400"></iframe>
     <!-- <iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe> -->
     <!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
     <p style="padding-left: 10px; color: gray; font-size: 14px; font-family: Montserrat;">Earnings</p>
@@ -244,8 +237,9 @@
   </div>
 </div> -->
   </ng-template>
-  <div class="pdfbody" *ngIf="employeePayrollDetails && employeeDetails">
-    <div class="payslipPDF" id="payslipPDF">
+
+  <div *ngIf="employeeDetails">
+    <div #payslipPDF class="payslipPDF" id="payslipPDF">
       <div class="pdfhead">
         GEMINI &nbsp; SOLUTIONS &nbsp; PRIVATE &nbsp; LIMITED
       </div>
@@ -290,7 +284,7 @@
         </tr>
       </table>
       <br />
-      <table class="table_pdf">
+      <!-- <table class="table_pdf">
         <tr class="table_pdf_row">
           <td class="pdfcell"><b>Earnings</b></td>
           <td class="pdfcell"><b>Amount</b></td>
@@ -337,9 +331,7 @@
             <b>{{ parsedEmployeePayrollDetails["TOTAL_DEDUCTIONS"] }}.00</b>
           </td>
         </tr>
-      </table>
-
-      <!-- </div> -->
+      </table> -->
+      </div>
     </div>
-  </div>
 </div>
