@@ -62,12 +62,19 @@
   }
 
     button {
-        width: 100px;
         border-radius: 4px;
         border: none;
         padding: 4px 0 4px 0;
         font-family: Helvetica Regular;
         font-size: 14px;
+    }
+
+    .payslip-btn {
+      width: 100px;
+      border-radius: 4px;
+      border: none;
+      font-family: Helvetica Regular;
+      font-size: 14px;
     }
 
     .search-btn {
@@ -311,34 +318,30 @@ h4 {
 }
 
 .pdfhead{
-  font-size: 18px;
-  width: 600px;
+  font-size: 36px;
+  /* width: 600px; */
   text-align: center;
   font-weight: bold;
 }
 
 .pdfsubhead{
-  font-size: 12px;
-  width: 600px;
+  font-size: 24px;
+  /* width: 600px; */
   text-align: center;
   font-weight: bold;
 
 }
 
 .pdfcell{
-  font-size: 12px;
+  font-size: 20px;
   padding: 0.6px;
   width: 140px;
   border: 1px solid;
   border-color: black;
 }
 
-.pdfbody{
-  visibility: hidden;
-}
-
 .table_pdf{
-  width: 565px;
+  width: 98%;
   border: 1px solid;
   /* border-color: black; */
   border-color: black;
