@@ -40,8 +40,10 @@ export class PayrollComponent implements OnInit {
   parsedEmployeePayrollDetails: any;
   durationInSeconds = 5;
   employeeDetails: any;
-  selectedMonth: string = 'select';
-  selectedYear: any = 'select';
+  selectedPayrollMonth: string = 'select';
+  selectedPayrollYear: any = 'select';
+  selectedPayslipMonth: string = 'select';
+  selectedPayslipYear: any = 'select';
   years: number[] = [];
   months = [
     { name: "January", value: 1 },
@@ -144,11 +146,11 @@ export class PayrollComponent implements OnInit {
   getPayrollDetails() {
     let month = 0;
     this.months.forEach((mon) => {
-      if (mon.name === this.selectedMonth) {
+      if (mon.name === this.selectedPayslipMonth) {
         month = mon.value;
       }
     });
-    this.payrollService.getPayrollDetailsApi(this.employeeId, month, this.selectedYear).subscribe(
+    this.payrollService.getPayrollDetailsApi(this.employeeId, month, this.selectedPayslipYear).subscribe(
       (res) => {
         this.employeePayrollDetails = res.data;
         this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(
@@ -245,17 +247,15 @@ export class PayrollComponent implements OnInit {
     //
   }
 
-
-
   calculateMonthlyPayroll() {
     let month = 0;
     this.months.forEach((mon) => {
-      if (mon.name === this.selectedMonth) {
+      if (mon.name === this.selectedPayrollMonth) {
         month = mon.value;
       }
     });
     this.payrollService
-      .calculateMonthlyPayrollApi(this.selectedYear, month)
+      .calculateMonthlyPayrollApi(this.selectedPayrollYear, month)
       .subscribe(
         (res) => {
           console.log("calculate monthly payroll res", res);
