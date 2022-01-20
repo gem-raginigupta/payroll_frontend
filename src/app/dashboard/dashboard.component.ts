@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('user', this.user);
+    // console.log('user', this.user);
   }
 
   openNotifications(event) {

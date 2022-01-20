@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    console.log('current environment', environment.env, environment.clientId);
+    // console.log('current environment', environment.env, environment.clientId);
     // this.socialAuthService.authState.subscribe((data) => {
     //   this.user = data;
     //   this.loggedIn = (data != null);
