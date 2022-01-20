@@ -135,8 +135,8 @@ export class PayrollComponent implements OnInit {
   parseEmployeePayrollDetails(employeePayrollDetails) {
     let parsedData = {};
     for (let i = 0; i < employeePayrollDetails.length; i++) {
-      parsedData[employeePayrollDetails[i]["component"]] =
-        employeePayrollDetails[i]["value"];
+      parsedData[employeePayrollDetails[i]["payslipComponent"]] =
+        employeePayrollDetails[i]["componentAmount"];
     }
     return parsedData;
   }
@@ -156,7 +156,11 @@ export class PayrollComponent implements OnInit {
         );
         console.log('parsedEmployeePayrollDetails', this.parsedEmployeePayrollDetails);
         console.log("employeePayrollDetails res", this.employeePayrollDetails);
-        console.log(this.employeePayrollDetails[0]["component"]);
+        console.log('payslipComponent', this.employeePayrollDetails[0]["payslipComponent"]);
+        console.log('parsedEmployeePayrollDetails["BASIC_PAY"]', this.parsedEmployeePayrollDetails["BASIC_PAY"]);
+        setTimeout(() => {
+          this.save_pdf();
+        }, 1000)
       },
       (error) => {
         console.log("employeePayrollDetails failed", error);
@@ -220,12 +224,11 @@ export class PayrollComponent implements OnInit {
   // }
 
   public save_pdf() {
-    this.getPayrollDetails();
     let data = document.getElementById('payslipPDF');
     let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
     html2canvas(data).then((canvas) => {
       // Few necessary setting options
-      var imgWidth = 210;
+      var imgWidth = 180;
       var imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       const contentDataURL = canvas.toDataURL('image/png');
