@@ -61,15 +61,13 @@
       background: rgba(229, 229, 229, 0.54);
   }
 
-    /* .save-pdf-btn {
-        margin-left: 150px;
-        width: 150px;
+    button {
         border-radius: 4px;
         border: none;
         padding: 4px 0 4px 0;
         font-family: Helvetica Regular;
         font-size: 14px;
-    } */
+    }
 
     .payslip-btn {
       width: 100px;
