@@ -24,8 +24,8 @@ export class EmployeeDetailsComponent implements OnInit {
   allEmpDetails: any;
   employeeCTCDetails: any[] = [];
   files: any[] = [];
+  browsedFile: any;
   employeeCalculatedDetails: any;
-  private selectedFile: File;
   durationInSeconds = 5;
   @ViewChild('fileInp', {static: false}) fileInp: ElementRef;
 
@@ -62,11 +62,6 @@ export class EmployeeDetailsComponent implements OnInit {
       });
   }
 
-  onFileSelect(event) {
-    this.selectedFile = event.target.files[0];
-    // console.log(this.selectedFile.name);
-  }
-
   getAllEmployeesDetails() {
     this.employeeService.getAllEmployeesDetailsApi().subscribe(
       res => {
@@ -97,8 +92,8 @@ export class EmployeeDetailsComponent implements OnInit {
 
     uploadBulkData() {
       const formData = new FormData();
-      formData.append('file', this.files[0]);
-      if (!this.files[0]) {
+      formData.append('file', this.browsedFile);
+      if (!this.browsedFile) {
         alert('Select a file to continue.');
       }
       this.employeeService.postBulkFileUploadApi(formData).subscribe(
@@ -106,6 +101,7 @@ export class EmployeeDetailsComponent implements OnInit {
             this.openSnackbar(res.msg, 'Close');
             if (res.msg === 'SUCCESS') {
               this.dialog.closeAll();
+              this.browsedFile = null;
             }
             console.log(res, 'Files uploaded');
           },
@@ -119,26 +115,27 @@ export class EmployeeDetailsComponent implements OnInit {
   /**
    * on file drop handler
    */
-  onFileDropped($event) {
-    this.prepareFilesList($event);
+  onFileDropped() {
+    this.prepareFilesList();
   }
 
   /**
    * handle file from browsing
    */
-  fileBrowseHandler(files) {
+  fileBrowseHandler(event) {
     // console.log('files', files);
-    this.prepareFilesList(files);
+    this.browsedFile = event.target.files[0];
+    this.prepareFilesList();
   }
 
   /**
    * Delete file from files list
    * @param index (File index)
    */
-  deleteFile(index: number) {
+  deleteFile() {
     console.log(this.fileInp.nativeElement.value);
     this.fileInp.nativeElement.value = '';
-    this.files.splice(index, 1);
+    this.browsedFile = null;
   }
 
   /**
@@ -146,31 +143,28 @@ export class EmployeeDetailsComponent implements OnInit {
    */
   uploadFilesSimulator(index: number) {
     setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
+      // if (index === this.files.length) {
+      //   return;
+      // } else {
         const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
+          if (this.browsedFile.progress === 100) {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
           } else {
-            this.files[index].progress += 5;
+            this.browsedFile.progress += 5;
           }
         }, 200);
-      }
+      // }
     }, 1000);
+    console.log('progress', this.browsedFile.progress);
   }
 
   /**
    * Convert Files list to normal array list
    * @param files (Files List)
    */
-  prepareFilesList(files: Array<any>) {
-    // console.log('files', files);
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
-    }
+  prepareFilesList() {
+      this.browsedFile.progress = 0;
     this.uploadFilesSimulator(0);
   }
 
@@ -218,6 +212,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
       onClose() {
         this.dialog.closeAll();
+        this.browsedFile = null;
       }
 
       openSnackbar(message: string, action: string) {

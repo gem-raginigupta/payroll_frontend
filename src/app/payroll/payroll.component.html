@@ -207,44 +207,32 @@
       <h4 class="mb-4"><u>Your Payslip</u></h4>
       <mat-icon (click)="onClose()" style="cursor: pointer">close</mat-icon>
     </div>
-    <div>
-      <form class="mb-3">
-        <label for="cars">Choose a month:</label><br />
-        <!-- <mat-form-field>
-    <input class="date-selector" matInput [matDatepicker]="dp2" [min]="sixMonthsAgo" [max]="today" placeholder="Select a Date" (click)="openDatePicker(dp2)">
-    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
-    <mat-datepicker #dp2 startView="multi-year" (monthSelected)="closeDatePicker($event, dp2)"></mat-datepicker>
-  </mat-form-field> -->
-        <select name="month" id="month">
-          <option *ngFor="let month of months" [value]="month">
-            {{ month.name }}
-          </option>
-        </select>
-      </form>
+    <div class="d-flex mb-4">
+      <select class="mp-dropdowns" [(ngModel)]="selectedMonth">
+        <option value="select">Select month</option>
+        <option *ngFor="let month of months" [value]="month.name">
+          {{ month.name }}
+        </option>
+      </select>
+      <select class="mp-dropdowns" [(ngModel)]="selectedYear">
+        <option value="select">Select year</option>
+        <option *ngFor="let year of years" [value]="year">
+          {{ year }}
+        </option>
+      </select>
+      <button class="ml-5 payslip-btn" (click)="getPayrollDetails()">Payslip</button>
+      <!-- <button class="save-pdf-btn" (click)="save_pdf()">Download Payslip</button> -->
     </div>
-    <button (click)="save_pdf()">Download Payslip</button>
-    <!-- <iframe width="700px" height="400px" id="iframeContainer" [src]="payUrl | safepipe" frameBorder="0"></iframe> -->
-    <!-- <div style="padding: 10px 0 10px 0; border: 1px solid rgb(206, 203, 203);">
-    <p style="padding-left: 10px; color: gray; font-size: 14px; font-family: Montserrat;">Earnings</p>
-</div>
-<div style="background-color: #e9f6ff; height: 40px; padding: 10px 0 10px 0; border-left: 1px solid rgb(206, 203, 203); border-right: 1px solid rgb(206, 203, 203)">
-    <p style="color: gray; font-size: 14px; font-family: Montserrat; padding-left: 10px;">Amount in (Rs)</p>
-</div>
-<div style="border: 1px solid rgb(206, 203, 203)">
-  <div class="row p-2 payslip" *ngFor="let payslip of employeePayrollDetails">
-    <div class="col-md-6">{{payslip.component | replaceUnderscore | titlecase}}</div>
-    <div class="col-md-6">{{payslip.value}}</div>
-  </div>
-</div> -->
+    <iframe *ngIf="url" [src]="url" width="500" height="400"></iframe>
   </ng-template>
-  <div class="pdfbody" *ngIf="employeePayrollDetails && employeeDetails">
-    <div class="payslipPDF" id="payslipPDF">
+
+  <div *ngIf="employeeDetails && employeePayrollDetails">
+    <div #payslipPDF id="payslipPDF">
       <div class="pdfhead">
-        GEMINI &nbsp; SOLUTIONS &nbsp; PRIVATE &nbsp; LIMITED
+        GEMINI SOLUTIONS PRIVATE LIMITED
       </div>
       <div class="pdfsubhead">
-        Plot No. 119, &nbsp; Udyog Vihar, &nbsp; Phase-1, &nbsp; Sector-20,
-        &nbsp; Gurgaon, &nbsp; Haryana-122016
+        Plot No. 119, Udyog Vihar, Phase-1, Sector-20, Gurgaon, Haryana-122016
       </div>
       <br />
       <table class="table_pdf">
@@ -331,8 +319,6 @@
           </td>
         </tr>
       </table>
-
-      <!-- </div> -->
+      </div>
     </div>
-  </div>
 </div>
