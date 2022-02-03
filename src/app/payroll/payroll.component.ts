@@ -162,7 +162,7 @@ export class PayrollComponent implements OnInit {
         // console.log('parsedEmployeePayrollDetails["BASIC_PAY"]', this.parsedEmployeePayrollDetails["BASIC_PAY"]);
         setTimeout(() => {
           this.save_pdf();
-        }, 1000)
+        }, 1000);
       },
       (error) => {
         console.log("employeePayrollDetails failed", error);
@@ -187,6 +187,7 @@ export class PayrollComponent implements OnInit {
     });
     this.employeeId = element.employeeId;
     this.getEmployeesDetails(element);
+    console.log('empId', element.employeeId);
     // console.log(this.employeePayrollDetails);
     dialogRef.afterClosed().subscribe((result) => {
       console.log("The dialog was closed");
@@ -195,6 +196,13 @@ export class PayrollComponent implements OnInit {
 
   onClose() {
     this.dialog.closeAll();
+    this.resetPayslipDialog();
+  }
+
+  resetPayslipDialog() {
+    this.url = '';
+    this.selectedPayslipMonth = 'select';
+    this.selectedPayslipYear = 'select';
   }
 
   openDatePicker(dp) {
@@ -225,8 +233,177 @@ export class PayrollComponent implements OnInit {
   //   });
   // }
 
+  // public save_pdf() {
+  //   let data = document.getElementById('uniquePdf');
+  //   data.style.display = 'inline';
+  //   data.innerHTML = `<html>
+  //   <head>
+  //   <style>
+  //   .pdfhead {
+  //     font-size: 36px;
+  //     text-align: center;
+  //     font-weight: bold;
+  //   }
+  //   .pdfsubhead {
+  //     font-size: 24px;
+  //     text-align: center;
+  //     font-weight: bold;
+  //   }
+  //   .table_pdf {
+  //     width: 98%;
+  //     border: 1px solid;
+  //     border-color: black;
+  //     margin-left: 14px;
+  //   }
+  //   .table_pdf_row {
+  //     height: 15px;
+  //     border: 1px solid;
+  //     border-color: black;
+  //   }
+  //   .pdfcell {
+  //     font-size: 20px;
+  //     padding: 0.6px;
+  //     width: 140px;
+  //     border: 1px solid;
+  //     border-color: black;
+  //   }
+  //   </style>
+  //   </head>
+  //   <body>
+  //   <div class="pdfhead">
+  //     GEMINI SOLUTIONS PRIVATE LIMITED
+  //   </div>
+  //   <div class="pdfsubhead">
+  //     Plot No. 119, Udyog Vihar, Phase-1, Sector-20, Gurgaon, Haryana-122016
+  //   </div>
+  //   <br />
+  //   <table class="table_pdf">
+  //     <tr class="table_pdf_row">
+  //       <td class="pdfcell">Name</td>
+  //       <td class="pdfcell">
+  //         ${this.employeeDetails["firstName"]}
+  //         ${this.employeeDetails["lastName"] }
+  //       </td>
+  //       <td class="pdfcell">Employee No.</td>
+  //       <td class="pdfcell">${this.employeeDetails["employeeId"] }</td>
+  //     </tr>
+  //     <tr class="table_pdf_row">
+  //       <td class="pdfcell">Joining Date</td>
+  //       <td class="pdfcell">${this.employeeDetails["dateOfJoining"] }</td>
+  //       <td class="pdfcell">Bank Name</td>
+  //       <td class="pdfcell">Yes Bank Ltd</td>
+  //     </tr>
+  //     <tr class="table_pdf_row">
+  //       <td class="pdfcell">Aadhar</td>
+  //       <td class="pdfcell">${this.employeeDetails["aadhaar"] }</td>
+  //       <td class="pdfcell">PAN Number</td>
+  //       <td class="pdfcell">${this.employeeDetails["pan"] }</td>
+  //     </tr>
+  //     <tr class="table_pdf_row">
+  //       <td class="pdfcell">Bank Account No</td>
+  //       <td class="pdfcell">${this.employeeDetails["bankAcctNo"] }</td>
+  //       <td class="pdfcell">PF No</td>
+  //       <td class="pdfcell">${this.employeeDetails["pfNo"] }</td>
+  //     </tr>
+  //     <tr class="table_pdf_row">
+  //       <td class="pdfcell">UAN No</td>
+  //       <td class="pdfcell">${this.employeeDetails["uanNo"] }</td>
+  //       <td class="pdfcell"></td>
+  //       <td class="pdfcell"></td>
+  //     </tr>
+  //     </table>
+  //     <br />
+  //     <table class="table_pdf">
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell"><b>Earnings</b></td>
+  //         <td class="pdfcell"><b>Amount</b></td>
+  //         <td class="pdfcell"><b>Deductions</b></td>
+  //         <td class="pdfcell"><b>Amount</b></td>
+  //       </tr>
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell">BASIC</td>
+  //         <td class="pdfcell">
+  //         ${this.parsedEmployeePayrollDetails["BASIC_PAY"] }.00
+  //         </td>
+  //         <td class="pdfcell">PF</td>
+  //         <td class="pdfcell">${this.parsedEmployeePayrollDetails["PF"] }.00</td>
+  //       </tr>
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell">HRA</td>
+  //         <td class="pdfcell">${this.parsedEmployeePayrollDetails["HRA"] }.00</td>
+  //         <td class="pdfcell"></td>
+  //         <td class="pdfcell"></td>
+  //       </tr>
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell">STD ALLOWANCE</td>
+  //         <td class="pdfcell">
+  //         ${this.parsedEmployeePayrollDetails["STANDARD_ALLOWANCE"] }.00
+  //         </td>
+  //         <td class="pdfcell"></td>
+  //         <td class="pdfcell"></td>
+  //       </tr>
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell">SPECIAL ALLOWANCE</td>
+  //         <td class="pdfcell">
+  //         ${this.parsedEmployeePayrollDetails["SPECIAL_ALLOWANCE"] }.00
+  //         </td>
+  //         <td class="pdfcell"></td>
+  //         <td class="pdfcell"></td>
+  //       </tr>
+  //       <tr class="table_pdf_row">
+  //         <td class="pdfcell"><b>Total Earnings</b></td>
+  //         <td class="pdfcell">
+  //           <b>${this.parsedEmployeePayrollDetails["TOTAL_EARNINGS"] }.00 </b>
+  //         </td>
+  //         <td class="pdfcell"><b> Total Deduction</b></td>
+  //         <td class="pdfcell">
+  //           <b>${this.parsedEmployeePayrollDetails["TOTAL_DEDUCTIONS"] }.00</b>
+  //         </td>
+  //       </tr>
+  //     </table>
+  //     </body>
+  // </html>`;
+  //   let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
+  //   // pdf.html(data).then((can) => {
+  //   html2canvas(data).then((canvas) => {
+  //     // Few necessary setting options
+  //     var imgWidth = 180;
+  //     var imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //     const contentDataURL = canvas.toDataURL('image/png');
+
+  //     var position = 0;
+  //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+  //     let blob = pdf.output('blob');
+  //     // console.log('blob', blob);
+  //     let fileURL = URL.createObjectURL(blob);
+  //     data.style.display = 'none';
+  //     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);
+  //   });
+  //   // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(pdf.output('datauristring'));
+  // //  });
+  //   // html2canvas(data).then((canvas) => {
+  //   //   // Few necessary setting options
+  //   //   var imgWidth = 180;
+  //   //   var imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  //   //   const contentDataURL = canvas.toDataURL('image/png');
+
+  //   //   var position = 0;
+  //   //   pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
+  //   //   let blob = pdf.output('blob');
+  //   //   // console.log('blob', blob);
+  //   //   let fileURL = URL.createObjectURL(blob);
+  //   //   this.url = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);
+  //   //   // pdf.save('MYPdf.pdf'); // Generated PDF
+  //   // });
+
+  //   //
+  // }
+
   public save_pdf() {
     let data = document.getElementById('payslipPDF');
+    data.style.display = 'inline';
     let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
     html2canvas(data).then((canvas) => {
       // Few necessary setting options
@@ -239,12 +416,11 @@ export class PayrollComponent implements OnInit {
       pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
       let blob = pdf.output('blob');
       // console.log('blob', blob);
+      data.style.display = 'none';
       let fileURL = URL.createObjectURL(blob);
       this.url = this.sanitizer.bypassSecurityTrustResourceUrl(fileURL);
       // pdf.save('MYPdf.pdf'); // Generated PDF
     });
-
-    //
   }
 
   calculateMonthlyPayroll() {

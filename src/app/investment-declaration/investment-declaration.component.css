@@ -15,6 +15,14 @@ input[type=text] {
     border: 3px solid #5D38DB;
   }
 
+  button {
+    border-radius: 4px;
+    border: none;
+    padding: 4px 0 4px 0;
+    font-family: Helvetica Regular;
+    font-size: 14px;
+}
+
   form {
     padding-left: 20px;
     padding-top: 5px;
@@ -138,15 +146,4 @@ input[type=text] {
 
 .limit{
   align-self: center;
-}
-
-.submit-btn {
-  width: 100px;
-  height: 40px;
-  background-color: #5D38DB;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  font-family: Helvetica regular;
-  box-shadow: 5px 5px 8px hsl(254, 46%, 73%);
 }
