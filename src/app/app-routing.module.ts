@@ -7,6 +7,7 @@ import {PayrollComponent} from './payroll/payroll.component';
 import  {InvestmentDeclarationComponent} from './investment-declaration/investment-declaration.component';
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './core/authentication/auth.guard';
+import { UserPayrollComponent } from './user-payroll/user-payroll.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
     {
       path: 'investmentDeclaration',
       component: InvestmentDeclarationComponent
+    },
+    {
+      path: 'userPayroll',
+      component: UserPayrollComponent
     }
   ]
 },
