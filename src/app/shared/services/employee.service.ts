@@ -10,6 +10,7 @@ export class EmployeeService {
 
   private path;
   private param: HttpParams;
+  userDetails: any;
 
   constructor(private baseService: BaseService, private http: HttpClient) { }
 
@@ -63,6 +64,12 @@ export class EmployeeService {
   getEmployeDetailsApi(empId: any): Observable<any> {
     // this.param = new HttpParams().set('employeeId', empId);
     this.path = `employee/getEmployeeById/` + empId;
+    return this.baseService.get(this.path);
+  }
+
+  getEmployeDetailsByEmailApi(email: any): Observable<any> {
+    // this.param = new HttpParams().set('employeeId', empId);
+    this.path = `employee/getEmployeeByEmail?email=${email}`;
     return this.baseService.get(this.path);
   }
 

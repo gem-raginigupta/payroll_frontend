@@ -228,6 +228,7 @@
     <iframe *ngIf="url" [src]="url" width="100%" height="400"></iframe>
     <!-- <div id="uniquePdf"></div> -->
   <div style="position: absolute; left: -9999px;" #payslipPDF id="payslipPDF" *ngIf="employeeDetails && employeePayrollDetails">
+    <div style="margin-left: 10%;">
       <div class="pdfhead">
         GEMINI SOLUTIONS PRIVATE LIMITED
       </div>
@@ -319,5 +320,6 @@
           </td>
         </tr>
       </table>
+    </div>
     </div>
   </ng-template>

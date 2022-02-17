@@ -24,6 +24,7 @@ import { SocialAuthService, GoogleLoginProvider, SocialAuthServiceConfig } from 
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from './account/login/login.component';
 import { AuthGuard } from './core/authentication/auth.guard';
+import { UserPayrollComponent } from './user-payroll/user-payroll.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AuthGuard } from './core/authentication/auth.guard';
     DndDirective,
     ProgressComponent,
     SafePipe,
-    InvestmentDeclarationComponent
+    InvestmentDeclarationComponent,
+    UserPayrollComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,117 @@
+<div class="p-3">
+  <div class="text-center">
+    <h4 class="mb-5"><u>Your Payslip</u></h4>
+  </div>
+  <div class="d-flex mb-4 justify-content-center">
+    <select class="mp-dropdowns" [(ngModel)]="selectedPayslipMonth">
+      <option value="select">Select month</option>
+      <option *ngFor="let month of months" [value]="month.name">
+        {{ month.name }}
+      </option>
+    </select>
+    <select class="mp-dropdowns" [(ngModel)]="selectedPayslipYear">
+      <option value="select">Select year</option>
+      <option *ngFor="let year of years" [value]="year">
+        {{ year }}
+      </option>
+    </select>
+    <button class="ml-5 payslip-btn" (click)="getPayrollDetails()">Payslip</button>
+  </div>
+  <iframe *ngIf="url" [src]="url" width="100%" height="400"></iframe>
+  <div style="position: absolute; left: -9999px;" #payslipPDF id="payslipPDF" *ngIf="employeeDetails && employeePayrollDetails">
+  <div style="margin-left: 10%;">
+    <div class="pdfhead">
+      GEMINI SOLUTIONS PRIVATE LIMITED
+    </div>
+    <div class="pdfsubhead">
+      Plot No. 119, Udyog Vihar, Phase-1, Sector-20, Gurgaon, Haryana-122016
+    </div>
+    <br />
+    <table class="table_pdf">
+      <tr class="table_pdf_row">
+        <td class="pdfcell">Name</td>
+        <td class="pdfcell">
+          {{ employeeDetails["firstName"] }}
+          {{ employeeDetails["lastName"] }}
+        </td>
+        <td class="pdfcell">Employee No.</td>
+        <td class="pdfcell">{{ employeeDetails["employeeId"] }}</td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">Joining Date</td>
+        <td class="pdfcell">{{ employeeDetails["dateOfJoining"] }}</td>
+        <td class="pdfcell">Bank Name</td>
+        <td class="pdfcell">Yes Bank Ltd</td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">Aadhar</td>
+        <td class="pdfcell">{{ employeeDetails["aadhaar"] }}</td>
+        <td class="pdfcell">PAN Number</td>
+        <td class="pdfcell">{{ employeeDetails["pan"] }}</td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">Bank Account No</td>
+        <td class="pdfcell">{{ employeeDetails["bankAcctNo"] }}</td>
+        <td class="pdfcell">PF No</td>
+        <td class="pdfcell">{{ employeeDetails["pfNo"] }}</td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">UAN No</td>
+        <td class="pdfcell">{{ employeeDetails["uanNo"] }}</td>
+        <td class="pdfcell"></td>
+        <td class="pdfcell"></td>
+      </tr>
+    </table>
+    <br />
+    <table class="table_pdf">
+      <tr class="table_pdf_row">
+        <td class="pdfcell"><b>Earnings</b></td>
+        <td class="pdfcell"><b>Amount</b></td>
+        <td class="pdfcell"><b>Deductions</b></td>
+        <td class="pdfcell"><b>Amount</b></td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">BASIC</td>
+        <td class="pdfcell">
+          {{ parsedEmployeePayrollDetails["BASIC_PAY"] }}.00
+        </td>
+        <td class="pdfcell">PF</td>
+        <td class="pdfcell">{{ parsedEmployeePayrollDetails["PF"] }}.00</td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">HRA</td>
+        <td class="pdfcell">{{ parsedEmployeePayrollDetails["HRA"] }}.00</td>
+        <td class="pdfcell"></td>
+        <td class="pdfcell"></td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">STD ALLOWANCE</td>
+        <td class="pdfcell">
+          {{ parsedEmployeePayrollDetails["STANDARD_ALLOWANCE"] }}.00
+        </td>
+        <td class="pdfcell"></td>
+        <td class="pdfcell"></td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell">SPECIAL ALLOWANCE</td>
+        <td class="pdfcell">
+          {{ parsedEmployeePayrollDetails["SPECIAL_ALLOWANCE"] }}.00
+        </td>
+        <td class="pdfcell"></td>
+        <td class="pdfcell"></td>
+      </tr>
+      <tr class="table_pdf_row">
+        <td class="pdfcell"><b>Total Earnings</b></td>
+        <td class="pdfcell">
+          <b>{{ parsedEmployeePayrollDetails["TOTAL_EARNINGS"] }}.00 </b>
+        </td>
+        <td class="pdfcell"><b> Total Deduction</b></td>
+        <td class="pdfcell">
+          <b>{{ parsedEmployeePayrollDetails["TOTAL_DEDUCTIONS"] }}.00</b>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>
+
+</div>

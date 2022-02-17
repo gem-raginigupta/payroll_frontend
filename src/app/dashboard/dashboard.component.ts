@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
 import { SocialUser } from 'angularx-social-login';
+import { EmployeeService } from '../shared/services/employee.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +19,12 @@ export class DashboardComponent implements OnInit {
   }
 
   public user: SocialUser;
-  constructor(private dialog: MatDialog, private router: Router) {
+  constructor(private dialog: MatDialog, private router: Router, private employeeService: EmployeeService) {
     this.user = JSON.parse(sessionStorage.getItem('user')) as SocialUser;
   }
 
   ngOnInit() {
+    this.getEmployeesDetails();
     // console.log('user', this.user);
   }
 
@@ -32,6 +34,15 @@ export class DashboardComponent implements OnInit {
     if (this.showNotifications) {
       // this.readNotifications();
     }
+  }
+
+  getEmployeesDetails() {
+    this.employeeService
+      .getEmployeDetailsByEmailApi(this.user.email)
+      .subscribe((res) => {
+        this.employeeService.userDetails = res.data;
+        console.log('userDetails', this.employeeService.userDetails);
+      });
   }
 
   openLogout(templateRef: TemplateRef<any>) {
