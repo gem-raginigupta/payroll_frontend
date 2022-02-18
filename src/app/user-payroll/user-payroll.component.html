@@ -18,7 +18,7 @@
     <button class="ml-5 payslip-btn" (click)="getPayrollDetails()">Payslip</button>
   </div>
   <iframe *ngIf="url" [src]="url" width="100%" height="400"></iframe>
-  <div style="position: absolute; left: -9999px;" #payslipPDF id="payslipPDF" *ngIf="employeeDetails && employeePayrollDetails">
+  <div style="position: absolute; left: -9999px;" #userPayslipPDF id="userPayslipPDF" *ngIf="employeeService.userDetails && employeePayrollDetails">
   <div style="margin-left: 10%;">
     <div class="pdfhead">
       GEMINI SOLUTIONS PRIVATE LIMITED
@@ -31,33 +31,33 @@
       <tr class="table_pdf_row">
         <td class="pdfcell">Name</td>
         <td class="pdfcell">
-          {{ employeeDetails["firstName"] }}
-          {{ employeeDetails["lastName"] }}
+          {{ employeeService.userDetails["firstName"] }}
+          {{ employeeService.userDetails["lastName"] }}
         </td>
         <td class="pdfcell">Employee No.</td>
-        <td class="pdfcell">{{ employeeDetails["employeeId"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["employeeId"] }}</td>
       </tr>
       <tr class="table_pdf_row">
         <td class="pdfcell">Joining Date</td>
-        <td class="pdfcell">{{ employeeDetails["dateOfJoining"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["dateOfJoining"] }}</td>
         <td class="pdfcell">Bank Name</td>
         <td class="pdfcell">Yes Bank Ltd</td>
       </tr>
       <tr class="table_pdf_row">
         <td class="pdfcell">Aadhar</td>
-        <td class="pdfcell">{{ employeeDetails["aadhaar"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["aadhaar"] }}</td>
         <td class="pdfcell">PAN Number</td>
-        <td class="pdfcell">{{ employeeDetails["pan"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["pan"] }}</td>
       </tr>
       <tr class="table_pdf_row">
         <td class="pdfcell">Bank Account No</td>
-        <td class="pdfcell">{{ employeeDetails["bankAcctNo"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["bankAcctNo"] }}</td>
         <td class="pdfcell">PF No</td>
-        <td class="pdfcell">{{ employeeDetails["pfNo"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["pfNo"] }}</td>
       </tr>
       <tr class="table_pdf_row">
         <td class="pdfcell">UAN No</td>
-        <td class="pdfcell">{{ employeeDetails["uanNo"] }}</td>
+        <td class="pdfcell">{{ employeeService.userDetails["uanNo"] }}</td>
         <td class="pdfcell"></td>
         <td class="pdfcell"></td>
       </tr>
@@ -81,8 +81,8 @@
       <tr class="table_pdf_row">
         <td class="pdfcell">HRA</td>
         <td class="pdfcell">{{ parsedEmployeePayrollDetails["HRA"] }}.00</td>
-        <td class="pdfcell"></td>
-        <td class="pdfcell"></td>
+        <td class="pdfcell">INCOME_TAX</td>
+        <td class="pdfcell">{{ parsedEmployeePayrollDetails["INCOME_TAX"] }}.00</td>
       </tr>
       <tr class="table_pdf_row">
         <td class="pdfcell">STD ALLOWANCE</td>
