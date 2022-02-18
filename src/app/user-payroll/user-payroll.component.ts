@@ -12,13 +12,13 @@ import { PayrollService } from '../shared/services/payroll.service';
   styleUrls: ['./user-payroll.component.css']
 })
 export class UserPayrollComponent implements OnInit {
-  @ViewChild('payslipPDF', { static: true }) payslipPDF: ElementRef;
+  @ViewChild('userPayslipPDF', { static: true }) userPayslipPDF: ElementRef;
   url: any = '';
   employeeId: number;
-  employeeDetails: any;
   selectedPayslipMonth: string = 'select';
   selectedPayslipYear: any = 'select';
   years: number[] = [];
+  durationInSeconds = 5;
   months = [
     { name: "January", value: 1 },
     { name: "February", value: 2 },
@@ -36,7 +36,7 @@ export class UserPayrollComponent implements OnInit {
   employeePayrollDetails: any;
   parsedEmployeePayrollDetails: any;
   constructor(
-    private employeeService: EmployeeService,
+    public employeeService: EmployeeService,
     private _snackBar: MatSnackBar,
     private payrollService: PayrollService,
     private sanitizer: DomSanitizer) {
@@ -45,9 +45,7 @@ export class UserPayrollComponent implements OnInit {
       }
     }
 
-  ngOnInit() {
-    this.employeeDetails = this.employeeService.userDetails;
-  }
+  ngOnInit() {}
 
   resetPayslipDialog() {
     this.url = '';
@@ -73,26 +71,27 @@ export class UserPayrollComponent implements OnInit {
     });
     this.payrollService.getPayrollDetailsApi(this.employeeService.userDetails.employeeId, month, this.selectedPayslipYear).subscribe(
       (res) => {
+        if (res.data === null || !this.employeeService.userDetails) {
+          this.url = '';
+          this.openSnackbar('Failed to display payslip.', 'Close');
+        }
         this.employeePayrollDetails = res.data;
         this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(
           this.employeePayrollDetails
         );
-        // console.log('parsedEmployeePayrollDetails', this.parsedEmployeePayrollDetails);
-        // console.log("employeePayrollDetails res", this.employeePayrollDetails);
-        // console.log('payslipComponent', this.employeePayrollDetails[0]["payslipComponent"]);
-        // console.log('parsedEmployeePayrollDetails["BASIC_PAY"]', this.parsedEmployeePayrollDetails["BASIC_PAY"]);
         setTimeout(() => {
           this.save_pdf();
         }, 1000);
       },
       (error) => {
+        this.openSnackbar('Failed to display payslip.', 'Close');
         console.log("employeePayrollDetails failed", error);
       }
     );
   }
 
   public save_pdf() {
-    let data = document.getElementById('payslipPDF');
+    let data = document.getElementById('userPayslipPDF');
     data.style.display = 'inline';
     let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF
     html2canvas(data).then((canvas) => {
@@ -113,5 +112,9 @@ export class UserPayrollComponent implements OnInit {
     });
   }
 
-
+  openSnackbar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
 }

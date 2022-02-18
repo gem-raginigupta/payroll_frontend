@@ -152,19 +152,20 @@ export class PayrollComponent implements OnInit {
     });
     this.payrollService.getPayrollDetailsApi(this.employeeId, month, this.selectedPayslipYear).subscribe(
       (res) => {
+        if (res.data === null || !this.employeeService.userDetails) {
+          this.url = '';
+          this.openSnackbar('Failed to display payslip.', 'Close');
+        }
         this.employeePayrollDetails = res.data;
         this.parsedEmployeePayrollDetails = this.parseEmployeePayrollDetails(
           this.employeePayrollDetails
         );
-        // console.log('parsedEmployeePayrollDetails', this.parsedEmployeePayrollDetails);
-        // console.log("employeePayrollDetails res", this.employeePayrollDetails);
-        // console.log('payslipComponent', this.employeePayrollDetails[0]["payslipComponent"]);
-        // console.log('parsedEmployeePayrollDetails["BASIC_PAY"]', this.parsedEmployeePayrollDetails["BASIC_PAY"]);
         setTimeout(() => {
           this.save_pdf();
         }, 1000);
       },
       (error) => {
+        this.openSnackbar('Failed to display payslip.', 'Close');
         console.log("employeePayrollDetails failed", error);
       }
     );
